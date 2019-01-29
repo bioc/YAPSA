@@ -1464,7 +1464,8 @@ complex_heatmap_exposures <- function(in_exposures_df,in_subgroups_df,
     clustering_distance_rows = in_method,
     clustering_distance_columns = in_method,
     heatmap_legend_param = list(title = in_data_type))
-  draw(ht_list, row_dend_side = 'left')
+  #draw(ht_list, row_dend_side = 'left')
+  draw(ht_list)
 }
 
 
