@@ -8,27 +8,27 @@ split_exposures_by_subgroups(in_exposures_df, in_subgroups_df,
   in_subgroups.field = "subgroup", in_PID.field = "PID")
 }
 \arguments{
-\item{in_exposures_df}{Numerical data frame of the exposures (i.e. contributions of the
-different signatures to the number of point mutations per PID)}
+\item{in_exposures_df}{Numerical data frame of the exposures (i.e.
+contributions of the different signatures to the number of point mutations
+per PID)}
 
-\item{in_subgroups_df}{Data frame indicating which PID belongs to which subgroup}
+\item{in_subgroups_df}{Data frame indicating which PID belongs to which
+subgroup}
 
-\item{in_subgroups.field}{Name indicating which column in \code{in_subgroups_df} contains the
-subgroup information}
+\item{in_subgroups.field}{Name indicating which column in
+\code{in_subgroups_df} contains the subgroup information}
 
-\item{in_PID.field}{Name indicating which column in \code{in_subgroups_df} contains the
-PID information}
+\item{in_PID.field}{Name indicating which column in \code{in_subgroups_df}
+contains the PID information}
 }
 \value{
-List of data frames with the subgroup specific signature
- exposures.
+List of data frames with the subgroup specific signature exposures.
 }
 \description{
-If a cohort consists of different subgroups, this function enables
-to split the data frame storing the signature exposures into a list
-of data frames with signature exposures, one per subgroup. This
-functionality is needed for \code{\link{stat_test_subgroups}} and
-\code{\link{stat_plot_subgroups}}
+If a cohort consists of different subgroups, this function enables to split
+the data frame storing the signature exposures into a list of data frames
+with signature exposures, one per subgroup. This functionality is needed for
+\code{\link{stat_test_subgroups}} and \code{\link{stat_plot_subgroups}}
 }
 \examples{
  NULL
@@ -39,4 +39,3 @@ functionality is needed for \code{\link{stat_test_subgroups}} and
 
 \code{\link{stat_plot_subgroups}}
 }
-

@@ -2,35 +2,38 @@
 % Please edit documentation in R/data.R
 \docType{data}
 \name{sigs}
-\alias{AlexCosmicArtif_sigInd_df}
-\alias{AlexCosmicArtif_sig_df}
-\alias{AlexCosmicValid_sigInd_df}
-\alias{AlexCosmicValid_sig_df}
-\alias{AlexInitialArtif_sigInd_df}
-\alias{AlexInitialArtif_sig_df}
-\alias{AlexInitialValid_sigInd_df}
-\alias{AlexInitialValid_sig_df}
 \alias{sigs}
+\alias{AlexInitialArtif_sig_df}
+\alias{AlexInitialArtif_sigInd_df}
+\alias{AlexInitialValid_sig_df}
+\alias{AlexInitialValid_sigInd_df}
+\alias{AlexCosmicValid_sig_df}
+\alias{AlexCosmicValid_sigInd_df}
+\alias{AlexCosmicArtif_sig_df}
+\alias{AlexCosmicArtif_sigInd_df}
 \title{Data for mutational signatures}
 \source{
-\code{AlexInitial}: \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/signatures.txt}
+\code{AlexInitial}: \url{ftp://ftp.sanger.ac.uk/pub/cancer/
+AlexandrovEtAl/signatures.txt}
 
-\code{AlexCosmic}: \url{http://cancer.sanger.ac.uk/cancergenome/assets/signatures_probabilities.txt}
+\code{AlexCosmic}: \url{http://cancer.sanger.ac.uk/cancergenome/
+assets/signatures_probabilities.txt}
 }
 \usage{
 data(sigs)
 }
 \description{
 The numerical data of the mutational signatures published initially by 
-Alexandrov et al. (Nature 2013) is stored in data frames with endings 
-\code{_sig_df}, the associated meta-information is stored in data frames 
-with endings \code{_sigInd_df}. There are several instances of 
-\code{_sig_df} and \code{_sigInd_df}, corresponding to results and data 
-obtained at different times and with different raw data. There always is a 
-one-to-one correspondence between a \code{_sig_df} and a \code{_sigInd_df}.
-The data frames of type \code{_sig_df} have as many rows as there are 
-features, i.e. 96 if analyzing mutational signatures of SNVs in a triplet 
-context, and as many columns as there are signatures.
+Alexandrov et al. (Nature 2013) and Alexandrov et al., (Bioaxiv 2018) is 
+stored in data frames with endings \code{_sig_df}, the associated 
+meta-information is stored in data frames with endings \code{_sigInd_df}. 
+There are several instances of \code{_sig_df} and \code{_sigInd_df}, 
+corresponding to results and data obtained at different times and with 
+different raw data. There always is a one-to-one correspondence between
+a \code{_sig_df} and a \code{_sigInd_df}. The data frames of type 
+\code{_sig_df} have as many rows as there are features, i.e. 96 if 
+analyzing mutational signatures of SNVs in a triplet context, and as
+many columns as there are signatures.
 Data frames of type \code{_sigInd_df} have as many rows as there are 
 signatures in the corresponding \code{_sig_df} and several columns: 
 \itemize{
@@ -47,6 +50,8 @@ signatures in the corresponding \code{_sig_df} and several columns:
  \item \code{cat.putative}: categorization of the signatures according
   to the asserted biological processes based on clustering and inference
  }
+ Please note, that categorization columns are only present for the data 
+ frames corrosponding to the data from Alexandorv et al. (Nature 2013).
 
 \code{AlexInitialArtif_sig_df}: Data frame of the signatures published 
 initially by Alexandrov et al. 
@@ -91,10 +96,9 @@ the rows is as described for \code{\link{AlexInitialArtif_sig_df}}.
 \code{AlexCosmicArtif_sigInd_df}: Meta-information for 
 \code{AlexCosmicArtif_sig_df}
 }
-\author{
-Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
-}
 \references{
 Alexandrov et al. (Nature 2013)
 }
-
+\author{
+Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
+}

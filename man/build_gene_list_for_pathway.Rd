@@ -18,8 +18,6 @@ A character vector of gene names
 Build a gene list for a given pathway name
 }
 \examples{
- NULL
- \dontrun{
    species <- "hsa"
    gene_lists_meta_df <- data.frame(
      name=c("BER","NHEJ","MMR"),
@@ -35,8 +33,7 @@ Build a gene list for a given pathway name
      gene_lists_list <- c(gene_lists_list,list(temp_list))
    }
    gene_lists_list
- }
-
+   
 }
 \seealso{
 \code{\link[KEGGREST]{keggLink}}
@@ -45,4 +42,3 @@ Build a gene list for a given pathway name
 
 \code{\link{extract_names_from_gene_list}}
 }
-

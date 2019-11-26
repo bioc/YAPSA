@@ -5,26 +5,31 @@
 \title{Plot the exposures of a cohort with different layers of annotation}
 \usage{
 annotation_exposures_barplot(in_exposures_df, in_signatures_ind_df,
-  in_subgroups_df, in_annotation_df, in_annotation_col, ylab = NULL,
-  title = "", in_labels = FALSE, in_barplot_borders = TRUE,
-  in_column_anno_borders = FALSE, in_annotation_legend_side = "right")
+  in_subgroups_df, in_annotation_df = NULL, in_annotation_col = NULL,
+  ylab = NULL, title = "", in_labels = FALSE,
+  in_barplot_borders = TRUE, in_column_anno_borders = FALSE,
+  in_annotation_legend_side = "right", in_padding = unit(c(2, 20, 2,
+  2), "mm"), in_annotation = NULL)
 }
 \arguments{
-\item{in_exposures_df}{Numerical data frame encoding the exposures \code{H}, i.e. which
-signature contributes how much to which PID (patient identifier or sample).}
+\item{in_exposures_df}{Numerical data frame encoding the exposures \code{H},
+i.e. which signature contributes how much to which PID (patient identifier
+or sample).}
 
-\item{in_signatures_ind_df}{A data frame containing meta information about the signatures}
+\item{in_signatures_ind_df}{A data frame containing meta information about
+the signatures}
 
-\item{in_subgroups_df}{A data frame indicating which PID (patient or sample identifyier) belongs
-to which subgroup}
+\item{in_subgroups_df}{A data frame indicating which PID (patient or sample
+identifyier) belongs to which subgroup}
 
-\item{in_annotation_df}{A data frame indicating which PID (patient or sample identifyier) belongs
-to which subgroup for all layers of annotation}
+\item{in_annotation_df}{A data frame indicating which PID (patient or sample
+identifyier) belongs to which subgroup for all layers of annotation}
 
-\item{in_annotation_col}{A list indicating colour attributions for all layers of annotation}
+\item{in_annotation_col}{A list indicating colour attributions for all
+layers of annotation}
 
-\item{ylab}{String indicating the column name in \code{in_subgroups_df} to take the
-subgroup information from.}
+\item{ylab}{String indicating the column name in \code{in_subgroups_df} to
+take the subgroup information from.}
 
 \item{title}{Title for the plot to be created.}
 
@@ -32,44 +37,48 @@ subgroup information from.}
 
 \item{in_barplot_borders}{Whether or not to show border lines in barplot}
 
-\item{in_column_anno_borders}{Whether or not to draw separating lines between the fields in the
-annotation}
+\item{in_column_anno_borders}{Whether or not to draw separating lines 
+between the fields in the annotation}
 
-\item{in_annotation_legend_side}{Where to put the legends of the annotation df, default is right.}
+\item{in_annotation_legend_side}{Where to put the legends of the annotation
+df, default is right.}
+
+\item{in_padding}{Parameter passed on to function
+\code{\link[ComplexHeatmap]{draw}}}
+
+\item{in_annotation}{A full annotation object may also be provided by the
+educated user.}
 }
 \value{
 The function doesn't return any value.
 }
 \description{
 The exposures \code{H}, determined by NMF or by \code{\link{LCD}}, are
-displayed as a stacked barplot by calling 
-\code{\link[ComplexHeatmap]{Heatmap}}.
-The x-axis displays the PIDs (patient identifier or sample), the y-axis
-the counts attributed to the different signatures with their respective
-colours per PID. It is analogous to \code{\link{plot_exposures}}. As many
-layers of information as desired can be added via an annotation data frame.
-The annotation data is handled in a way similar to
-\code{\link{annotation_heatmap_exposures}}. This function calls: 
-\itemize{
- \item \code{\link[ComplexHeatmap]{rowAnnotation}},
- \item \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and
- \item \code{\link[ComplexHeatmap]{Heatmap}}
-}
+displayed as a stacked barplot by calling
+\code{\link[ComplexHeatmap]{Heatmap}}. The x-axis displays the PIDs (patient
+identifier or sample), the y-axis the counts attributed to the different
+signatures with their respective colours per PID. It is analogous to
+\code{\link{plot_exposures}}. As many layers of information as desired can be
+added via an annotation data frame. The annotation data is handled in a way
+similar to \code{\link{annotation_heatmap_exposures}}. This function calls:
+\itemize{ \item \code{\link[ComplexHeatmap]{rowAnnotation}}, \item
+\code{\link[ComplexHeatmap]{HeatmapAnnotation}} and \item
+\code{\link[ComplexHeatmap]{Heatmap}} }
 }
 \details{
-It might be necessary to install the newest version of the development 
- branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by Zuguang 
- Gu: \code{devtools::install_github("jokergoo/circlize")} and 
- \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+It might be necessary to install the newest version of the
+development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by
+Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+\code{devtools::install_github("jokergoo/ComplexHeatmap")}
 
-It might be necessary to install the newest version of the development 
- branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by Zuguang 
- Gu: \code{devtools::install_github("jokergoo/circlize")} and
- \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+It might be necessary to install the newest version of the
+development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap}
+ by Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+\code{devtools::install_github("jokergoo/ComplexHeatmap")}
 }
 \examples{
- NULL  
- 
+ NULL
+
 }
 \seealso{
 \code{\link[ComplexHeatmap]{HeatmapAnnotation}}
@@ -82,4 +91,3 @@ It might be necessary to install the newest version of the development
 
 \code{\link{plot_exposures}}
 }
-

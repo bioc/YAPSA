@@ -2,9 +2,9 @@ test_that("Test cosine_dist with 2-dim vectors", {
   a <- c(1,0)
   b <- c(0,1)
   d <- c(1,1)
-  expect_that(YAPSA:::cosineDist(a,b), equals(1))
-  expect_that(YAPSA:::cosineDist(a,a), equals(0))
-  expect_that(YAPSA:::cosineDist(b,b), equals(0))
+  expect_equal(YAPSA:::cosineDist(a,b),1)
+  expect_equal(YAPSA:::cosineDist(a,a),0)
+  expect_equal(YAPSA:::cosineDist(b,b),0)
   expect_lt(YAPSA:::cosineDist(a,d) - (1-cos(pi/4)),1e-08)
 })
 
@@ -28,7 +28,7 @@ test_that("Test compare_sets", {
 
 test_that("Test repeat_df", {
   test_df <- data.frame(matrix(rep(1,6),ncol=3))
-  expect_that(sum(abs(YAPSA:::repeat_df(1,2,3)-test_df)), equals(0))
+  expect_equal(sum(abs(YAPSA:::repeat_df(1,2,3)-test_df)), 0)
   test_df <- data.frame(matrix(rep(NA,6),ncol=2))
   expect_that(YAPSA:::repeat_df(NA,3,2), is_equivalent_to(test_df))
   test_df <- data.frame(matrix(rep("a",12),ncol=3))
@@ -109,7 +109,7 @@ test_that("Test sum_over_list_of_df", {
   df_list <- list(A=A,B=B)
   ## compare
   result_df <- sum_over_list_of_df(df_list)
-  expect_that(class(result_df), equals("data.frame"))
+  expect_equal(class(result_df), "data.frame")
   expect_that(result_df, is_equivalent_to(compare_df))
   ## 2. for a non-named list
   df_list <- list()
@@ -117,7 +117,7 @@ test_that("Test sum_over_list_of_df", {
   df_list[[2]] <- B
   ## compare
   result_df <- sum_over_list_of_df(df_list)
-  expect_that(class(result_df), equals("data.frame"))
+  expect_equal(class(result_df), "data.frame")
   expect_that(result_df, is_equivalent_to(compare_df))
 })
 
@@ -157,8 +157,8 @@ test_that("Test translate_to_hg19 on very simple synthetic data", {
   ## run function
   hg19_df <- translate_to_hg19(test_df, in_CHROM.field = "CHROM")
   ## compare
-  expect_that(hg19_df$CHROM,equals(c("chr1","chr2","chrX","chrY")))
-  expect_that(hg19_df[,c(2,3)],equals(test_df[,c(2,3)]))
+  expect_equal(hg19_df$CHROM, c("chr1","chr2","chrX","chrY"))
+  expect_equal(hg19_df[,c(2,3)], test_df[,c(2,3)])
 })
 
 
@@ -171,8 +171,8 @@ test_that("Test translate_to_1kG on very simple synthetic data", {
   ## run function
   onekG_df <- translate_to_1kG(hg19_df, in_CHROM.field = "CHROM")
   ## compare
-  expect_that(onekG_df$CHROM,equals(as.character(test_df$CHROM)))
-  expect_that(onekG_df[,c(2,3)],equals(test_df[,c(2,3)]))
+  expect_equal(onekG_df$CHROM,as.character(test_df$CHROM))
+  expect_equal(onekG_df[,c(2,3)], test_df[,c(2,3)])
 })
 
 
@@ -190,10 +190,10 @@ test_that(paste0("Test attribute_nucleotide_exchanges on ",
                                                    in_REF.field = "REF",
                                                    in_ALT.field = "ALT")
   ## compare
-  expect_that(test_df$change,
-              equals(factor(c("CA","CG","CT","TA","TC","TG","TG",
+  expect_equal(test_df$change,
+              factor(c("CA","CG","CT","TA","TC","TG","TG",
                               "TC","TA","CT","CG","CA",NA,NA),
-                            levels=c("CA", "CG", "CT", "TA", "TC", "TG"))))
+                            levels=c("CA", "CG", "CT", "TA", "TC", "TG")))
 })
 
 
@@ -211,8 +211,8 @@ test_that("Test annotate_intermut_dist_PID on very simple synthetic data", {
   max_dist_df <- annotate_intermut_dist_PID(test_df,in_CHROM.field="CHROM",
                                             in_POS.field="POS", in_mode="max")
   ## compare
-  expect_that(min_dist_df$dist,equals(c(1,1,2,2,2,3,3,3,4,10,10,20,100,100)))
-  expect_that(max_dist_df$dist,equals(c(1,2,2,2,3,3,3,4,4,10,20,20,100,100)))
+  expect_equal(min_dist_df$dist,c(1,1,2,2,2,3,3,3,4,10,10,20,100,100))
+  expect_equal(max_dist_df$dist,c(1,2,2,2,3,3,3,4,4,10,20,20,100,100))
 })
 
 
@@ -238,10 +238,10 @@ test_that("Test annotate_intermut_dist_cohort on very simple synthetic data", {
                                                in_PID.field = "PID",
                                                in_mode = "max")
   ## compare
-  expect_that(min_dist_df$dist,
-              equals(c(1,1,2,3,3,1e+08,1e+08,2,2,3,1e+08,10,10,1e+08)))
-  expect_that(max_dist_df$dist,
-              equals(c(1,2,2,3,3,1e+08,1e+08,2,3,3,1e+08,10,10,1e+08)))
+  expect_equal(min_dist_df$dist,
+              c(1,1,2,3,3,1e+08,1e+08,2,2,3,1e+08,10,10,1e+08))
+  expect_equal(max_dist_df$dist,
+              c(1,2,2,3,3,1e+08,1e+08,2,3,3,1e+08,10,10,1e+08))
 })
 
 
@@ -253,7 +253,7 @@ test_that("Test shapiro_if_possible on very simple synthetic data", {
   set.seed(1)
   expect_more_than(shapiro_if_possible(rnorm(100,mean=5,sd=3)),
                    significance_threshold)
-  expect_that(shapiro_if_possible(rep(4.3,100)),equals(0))
+  expect_equal(shapiro_if_possible(rep(4.3,100)),0)
   expect_null(shapiro_if_possible(c("Hello","World")))
 })
 

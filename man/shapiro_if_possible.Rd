@@ -26,4 +26,3 @@ Wrapper for Shapiro test but allow for all identical values
 \seealso{
 \code{\link[stats]{shapiro.test}}
 }
-

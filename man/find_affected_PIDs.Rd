@@ -9,10 +9,11 @@ find_affected_PIDs(in_gene_list, in_gene_vector, in_PID_vector)
 \arguments{
 \item{in_gene_list}{List of genes in the pathway of interest.}
 
-\item{in_gene_vector}{Character vector for genes annotated to SNVs as in \code{vcf_like_df}.}
-
-\item{in_PID_vector}{Character vector for sample names annotated to SNVs as in
+\item{in_gene_vector}{Character vector for genes annotated to SNVs as in
 \code{vcf_like_df}.}
+
+\item{in_PID_vector}{Character vector for sample names annotated to SNVs as
+in \code{vcf_like_df}.}
 }
 \value{
 A character vector of the names of the affected samples
@@ -24,4 +25,3 @@ Find samples affected by SNVs in a certain pathway
  NULL
 
 }
-

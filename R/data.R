@@ -1,4 +1,4 @@
-# Copyright © 2014-2016  The YAPSA package contributors
+# Copyright © 2014-2019  The YAPSA package contributors
 # This file is part of the YAPSA package. The YAPSA package is licenced under
 # GPL-3
 
@@ -6,15 +6,16 @@
 #' Data for mutational signatures
 #' 
 #' The numerical data of the mutational signatures published initially by 
-#' Alexandrov et al. (Nature 2013) is stored in data frames with endings 
-#' \code{_sig_df}, the associated meta-information is stored in data frames 
-#' with endings \code{_sigInd_df}. There are several instances of 
-#' \code{_sig_df} and \code{_sigInd_df}, corresponding to results and data 
-#' obtained at different times and with different raw data. There always is a 
-#' one-to-one correspondence between a \code{_sig_df} and a \code{_sigInd_df}.
-#' The data frames of type \code{_sig_df} have as many rows as there are 
-#' features, i.e. 96 if analyzing mutational signatures of SNVs in a triplet 
-#' context, and as many columns as there are signatures.
+#' Alexandrov et al. (Nature 2013) and Alexandrov et al., (Bioaxiv 2018) is 
+#' stored in data frames with endings \code{_sig_df}, the associated 
+#' meta-information is stored in data frames with endings \code{_sigInd_df}. 
+#' There are several instances of \code{_sig_df} and \code{_sigInd_df}, 
+#' corresponding to results and data obtained at different times and with 
+#' different raw data. There always is a one-to-one correspondence between
+#' a \code{_sig_df} and a \code{_sigInd_df}. The data frames of type 
+#' \code{_sig_df} have as many rows as there are features, i.e. 96 if 
+#' analyzing mutational signatures of SNVs in a triplet context, and as
+#' many columns as there are signatures.
 #' Data frames of type \code{_sigInd_df} have as many rows as there are 
 #' signatures in the corresponding \code{_sig_df} and several columns: 
 #' \itemize{
@@ -31,6 +32,8 @@
 #'  \item \code{cat.putative}: categorization of the signatures according
 #'   to the asserted biological processes based on clustering and inference
 #'  }
+#'  Please note, that categorization columns are only present for the data 
+#'  frames corrosponding to the data from Alexandorv et al. (Nature 2013). 
 #' 
 #' @docType data
 #' @name sigs
@@ -40,6 +43,13 @@
 #' 
 NULL
 
+#' @docType data
+#' @name sigs_pcawg
+#' @usage data(sigs_pcawg)
+#' @author Lea Jopp-Saile \email{huebschmann.daniel@@googlemail.com}
+#' @references Alexandrov et al. (Biorxiv 2018)
+#' 
+NULL
 
 #' Data for initial sigs, including artifacts
 #' 
@@ -55,7 +65,8 @@ NULL
 #' trinucleotide context, e.g. \emph{C>A ACA}. In total there are 96 different 
 #' features and therefore 96 rows when dealing with a trinucleotide context. 
 #' 
-#' @source \code{AlexInitial}: \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/signatures.txt}
+#' @source \code{AlexInitial}: \url{ftp://ftp.sanger.ac.uk/pub/cancer/
+#' AlexandrovEtAl/signatures.txt}
 #' @name AlexInitialArtif_sig_df
 #' @rdname sigs
 #' 
@@ -105,12 +116,12 @@ NULL
 #' convention for the rows is as described for 
 #' \code{\link{AlexInitialArtif_sig_df}}.
 #' 
-#' @source \code{AlexCosmic}: \url{http://cancer.sanger.ac.uk/cancergenome/assets/signatures_probabilities.txt}
+#' @source \code{AlexCosmic}: \url{http://cancer.sanger.ac.uk/cancergenome/
+#' assets/signatures_probabilities.txt}
 #' @name AlexCosmicValid_sig_df
 #' @rdname sigs
 #' 
 NULL
-
 
 #' Meta-info for Cosmic sigs, only validated
 #' 
@@ -150,10 +161,98 @@ NULL
 NULL
 
 
+#' Data for PCAWG SNV signatures (COSMIC v3), including artifacts
+#'  
+#' \code{PCAWG_SP_SBS_sigs_Artif_df}: Data frame of the signatures published 
+#' by Alexandrov et al. (Biorxiv 2013) which were decomposed with the 
+#' method SigProfiler. SNV signatures are labeled with SBS, single base 
+#' signature. There are 67 signatures which constitute the columns, 47 of 
+#' which were validated by a bayesian NFM mehtod, SignatureAnayzer. Validated 
+#' signatures are SBS1-SBS26,SBS28-SBS42 and SBS44. SBS7 is split up into 
+#' 7 a/b/c and d. SBS10 ans SBS17 are both split up into a and b. Resulting in
+#' a 47 validated sigantures. Please note, unlike the paper by Alexandrov et al.
+#' (Biorxiv 2018) the data sets do not contain a SBS84 and SBS85 as not all 
+#' were availiablt to perfom supervised signature analysis. In total there are 
+#' 96 different features and therefore 96 rows when dealing with a trinucleotide
+#'context. 
+#' 
+#' @source \code{PCAWG_SNV}: \url{https://www.synapse.org/#!Synapse:syn11738319}
+#' @name PCAWG_SP_SBS_sigs_Artif_df
+#' @rdname sigs_pcawg
+#' 
+NULL
+
+
+#' Meta-info for PCAWG SNV signatures, including artifacts
+#' 
+#' \code{PCAWG_SP_SBS_sigInd_Artif_df}: Meta-information for 
+#' \code{PCAWG_SP_SBS_sigs_Artif_df} 
+#'  
+#' @name PCAWG_SP_SBS_sigInd_Artif_df
+#' @rdname sigs_pcawg
+#' 
+NULL
+
+#' Data for PCAWG SNV signatures (COSMIC v3), only validated
+#' 
+#' \code{PCAWG_SP_SBS_sigs_Real_df}: Data frame of only the validated
+#' signatures published by Alexandrov et al. (Biorxiv 2018), corresponding 
+#' to the column 1-26, 28-42 and 44 of the \code{PCAWG_SP_SBS_sigs_Artif_df}
+#' data frame
+#' 
+#' @name PCAWG_SP_SBS_sigs_Real_df
+#' @rdname sigs_pcawg
+#' 
+NULL
+
+
+#' Meta-info for PCAWG SNV signatures, only validated
+#' 
+#' \code{PCAWG_SP_SBS_sigInd_Real_df}: Meta-information for 
+#' \code{PCAWG_SP_SBS_sigs_Real_df} 
+#' 
+#' @name PCAWG_SP_SBS_sigInd_Real_df
+#' @rdname sigs_pcawg
+#' 
+NULL
+
+
+#' Data for PCAWG INDEL signatures (COSMIC v3)
+#'
+#' \code{PCAWG_SP_ID_sigs_df}: Data frame with INDEL signatures published by
+#' Alexandrov et al. (Biorxiv 2018) which were decomposed with the method
+#' SigProfiler. There are 17 Sigantures reported but as supervised signatures
+#' are only valid for whole genome sequencing data analysis. In whole genome
+#' sequencing data the INDEL signature ID15 was not discribed and thus is not
+#' part of this data set. In total 83 features are described. The categorization
+#' consideres the size of the insertion and delition, the motif, and the
+#' sequence context. Hereby the number of repetition or patial repetition of the
+#' motif is determined.
+#'
+#' @source \code{PCAWG_INDEL}: \url{https://cancer.sanger.ac.uk/cosmic/
+#'   signatures/ID}
+#' @name PCAWG_SP_ID_sigs_df
+#' @rdname sigs_pcawg
+#'   
+NULL
+
+
+#' Meta-info for PCAWG INDEL signatures
+#' 
+#' \code{PCAWG_SP_ID_sigInd_df}: Meta-information for 
+#' \code{PCAWG_SP_ID_sigs_df} 
+#' 
+#' @name PCAWG_SP_ID_sigInd_df
+#' @rdname sigs_pcawg
+#' 
+NULL
+
+
+
 #' Test and example data
 #' 
-#' Data structures used in examples, tests and the vignette of the YAPSA 
-#' package.
+#' Data structures used in examples, SNV tests and the SNV signature vignette 
+#' of the YAPSA package.
 #' 
 #' @docType data
 #' @name exampleYAPSA
@@ -162,6 +261,17 @@ NULL
 #' 
 NULL
 
+#' Data structures used in examples, INDEL tests and the INDEL signature
+#' vignette of the YAPSA package.
+#' 
+#' @docType data
+#' @name exampleINDEL_YAPSA
+#' @author Daniel Huebschmann \email{huebschmann.daniel@@googlemail.com}
+#' @references \url{http://www.ncbi.nlm.nih.gov/pubmed/23945592}
+#' 
+NULL
+
+
 
 
 #' Subgroup information for some samples in the vignette
@@ -169,7 +279,9 @@ NULL
 #' \code{lymphoma_PID_df}: A data frame carrying subgroup information for a 
 #' subcohort of samples used in the vignette. Data in the vignette is 
 #' downloaded from 
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+#' Lymphoma B-cell/
+#' Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in. In the vignette we want to restrict the 
@@ -183,12 +295,13 @@ NULL
 #' 
 NULL
 
-
 #' Test data for complex functions
 #' 
 #' \code{lymphoma_test_df}: A data frame carrying point mutation calls. It 
 #' represents a subset of the data stored in
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+#' Lymphoma B-cell/
+#' Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in. The data frame \code{lymphoma_test_df} has 
@@ -212,7 +325,9 @@ NULL
 #' 
 #' \code{lymphoma_Nature2013_raw_df}: A data frame carrying point mutation 
 #' calls. It represents a subset of the data stored in
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+#' Lymphoma B-cell/
+#' Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in.
@@ -228,12 +343,63 @@ NULL
 #' 
 NULL
 
+#' Example data for the INDEL vignette
+#' 
+#' \code{GenomeOfNl_raw}: A data frame contains the gemiline varinats of 
+#' the dutch population.  carrying point mutation 
+#' calls. It represents a subset of the data stored in
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/
+#' somatic_mutation_data/Lymphoma B-cell/
+#' Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' In the file available under that link somatic point mutation calls from 
+#' several samples are listed in a vcf-like format. One column encodes the 
+#' sample the variant was found in.
+#' 
+#' @name GenomeOfNl_raw
+#' @usage data(GenomeOfNl_raw)
+#' @references release version 5 \url{http://www.nlgenome.nl/?page_id=9}
+#' @return A data frame in a vcf-like format
+#' 
+#' @examples
+#' data(GenomeOfNl_raw)
+#' head(GenomeOfNl_raw)
+#' dim(GenomeOfNl_raw)
+#' 
+NULL
+
+#' Example mutational catalog for the INDEL vignette
+#' 
+#' \code{MutCat_indel_df}: A data frame in the format of a mutation catalog. 
+#' The mutational catalog contains INDEL variants from the 
+#' \code{GenomeOfNl_raw} data. Variants were random sampled for 15 artificial
+#' patient for the purpose to have a INDEL mutational catalog and have to
+#' show the functionality of the package. The results of the mutational 
+#' catalog should not be interpreted fot they biological relevance. 
+#' Mutational catalog was creased with 
+#' \code{create_indel_mutation_catalogue_from_df} function.
+#' 
+#' @name MutCat_indel_df
+#' @usage data(GenomeOfNl_MutCat)
+#' @references Mutational catalog created form release version 5 of the Genome 
+#' of NL 
+#' \url{http://www.nlgenome.nl/?page_id=9}
+#' @return  A data fame in the layout of a mutational catalog
+#' 
+#' @examples
+#' data(GenomeOfNl_MutCat)
+#' head(MutCat_indel_df)
+#' dim(MutCat_indel_df)
+#' 
+NULL
+
 
 #' Test exposures for plot functions
 #' 
 #' \code{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 #' exposures for testing the plot functions. Data taken from
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+#' Lymphoma B-cell/
+#' Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' 
 #' @name lymphoma_Nature2013_COSMIC_cutoff_exposures_df
 #' @usage data(lymphoma_cohort_LCD_results)
@@ -247,7 +413,9 @@ NULL
 #' \code{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 #' normalized or relative exposures for testing the plot functions. Data taken 
 #' from
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+#' Lymphoma B-cell/
+#' Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' 
 #' @name rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df
 #' @usage data(lymphoma_cohort_LCD_results)
@@ -271,8 +439,8 @@ NULL
 
 #' Sigs info (initial, including artifacts) for test data for plot functions
 #' 
-#' \code{chosen_AlexInitialArtif_sigInd_df}: Signature information for the data
-#' stored in
+#' \code{chosen_AlexInitialArtif_sigInd_df}: Signature information for the
+#'  data stored in
 #' \code{\link{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}} and 
 #' \code{\link{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}}.
 #' 
@@ -305,11 +473,23 @@ NULL
 #' equivalent to the ratio between costs for false negative attribution and 
 #' false positive attribution. The columns correspond to the different 
 #' signatures. To be used with \code{\link{LCD_complex_cutoff}}. 
+#' There are two different sets of cutoffs one for the signatures described by
+#' Alexandrov et al.(Natue 2013) and one for the signatures dokumented in 
+#' Alexandriv et al. (biorxiv 2018). The calculation of the PCAWG signature 
+#' specific cutoffs was perfomed in a single-sample resolution which are both 
+#' valid for whole genome and whole exome sequencing data analysis.   
 #' 
 #' @docType data
 #' @name cutoffs
 #' @usage data(cutoffs)
 #' @author Daniel Huebschmann \email{huebschmann.daniel@@googlemail.com}
+#' 
+NULL
+
+#' @docType data
+#' @name cutoffs
+#' @usage data(cutoffs_pcawg)
+#' @author Lea Jopp-Saile \email{huebschmann.daniel@@googlemail.com}
 #' 
 NULL
 
@@ -410,6 +590,42 @@ NULL
 NULL
 
 
+#' Opt. cutoffs, PCAWG SNV signatures, including artifacts
+#' 
+#' \code{cutoffPCAWG_SBS_WGSWES_artifPid_df}: Optimal cutoffs for 
+#' \code{\link{PCAWG_SP_SBS_sigs_Artif_df}}, i.e. initially published 
+#' signatures,including artifact signatures, trained in a single-sample 
+#' resolution.
+#' 
+#' @name cutoffPCAWG_SBS_WGSWES_artifPid_df
+#' @rdname cutoffs_pcawg
+#' 
+NULL
+
+#' Opt. cutoffs, PCAWG SNV signatures, only validated signatures
+#' 
+#' \code{cutoffPCAWG_SBS_WGSWES_realPid_df}: Optimal cutoffs for 
+#' \code{\link{PCAWG_SP_SBS_sigs_Real_df}}, i.e. initially published 
+#' signatures, only validated signatures, trained in a single-sample 
+#' resolution.
+#' 
+#' @name cutoffPCAWG_SBS_WGSWES_realPid_df
+#' @rdname cutoffs_pcawg
+#' 
+NULL
+
+#' Opt. cutoffs, PCAWG INDEL signatures, only validated signatures
+#' 
+#' \code{cutoffPCAWG_ID_WGS_Pid_df}: Optimal cutoffs for 
+#' \code{\link{PCAWG_SP_ID_sigs_df}}, i.e. initially published signatures, 
+#' signatures, trained in a single-sample resolution.
+#' 
+#' @name cutoffPCAWG_ID_WGS_Pid_df
+#' @rdname cutoffs_pcawg
+#' 
+NULL
+
+
 #' Correction factors for different target capture kits
 #' 
 #' List of lists with correction factors for different target capture kits.
@@ -434,8 +650,8 @@ NULL
 
 #' Colours codes for displaying SNVs
 #' 
-#' Vector attributing colours to nucleotide exchanges used when displaying SNV
-#' information, e.g. in a rainfall plot.
+#' Vector attributing colours to nucleotide exchanges used when displaying 
+#' SNV information, e.g. in a rainfall plot.
 #' 
 #' @docType data
 #' @name exchange_colour_vector

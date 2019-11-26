@@ -1,114 +1,88 @@
-# Copyright © 2014-2016  The YAPSA package contributors
+# Copyright © 2014-2019  The YAPSA package contributors
 # This file is part of the YAPSA package. The YAPSA package is licenced under
 # GPL-3
 
 #' Wrapper function for the Stratification of a Mutational Catalogue
 #'
-#' \code{run_SMC} takes as input a big dataframe constructed from a vcf-like 
-#' file of a whole cohort. This wrapper function calls custom functions to
-#' construct a mutational catalogue and stratify it according to categories
-#' indicated by a special column in the input dataframe:
-#' \itemize{
-#'  \item \code{\link{create_mutation_catalogue_from_df}}
-#'  \item \code{adjust_number_of_columns_in_list_of_catalogues}
-#' }
-#' This stratification
+#' \code{\link{run_SMC}} takes as input a big dataframe constructed from a
+#' vcf-like file of a whole cohort. This wrapper function calls custom functions
+#' to construct a mutational catalogue and stratify it according to categories
+#' indicated by a special column in the input dataframe: \itemize{ \item
+#' \code{\link{create_mutation_catalogue_from_df}} \item
+#' \code{adjust_number_of_columns_in_list_of_catalogues} } This stratification
 #' yields a collection of stratified mutational catalogues, these are
-#' reformatted and sent to the custom function \code{SMC} and thus
-#' indirectly to \code{LCD_SMC} to perform a signature analysis
-#' of the stratified mutational catalogues. The result is then handed over
-#' to \code{\link{plot_SMC}} for visualization.
+#' reformatted and sent to the custom function \code{\link{SMC}} and thus
+#' indirectly to \code{\link{LCD_SMC}} to perform a signature analysis of the
+#' stratified mutational catalogues. The result is then handed over to
+#' \code{\link{plot_SMC}} for visualization.
 #'
-#' @param my_table
-#'  A big dataframe constructed from a vcf-like file of a whole cohort. The 
-#'  first columns are those of a standard vcf file, followed by an arbitrary
-#'  number of custom or user defined columns. One of these must carry a PID
-#'  (patient or sample identifyier) and one must be the category used for
-#'  stratification.
-#' @param this_signatures_df
-#'  A numeric data frame \code{W} in with \code{n} rows and \code{l} columns,
-#'  \code{n} being the number of features and \code{l} being the number of
-#'  signatures
-#' @param this_signatures_ind_df
-#'  A data frame containing meta information about the signatures
-#' @param this_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup
-#' @param column_name
-#'  Name of the column in \code{my_table} which is going to be used for
-#'  stratification
-#' @param refGenome
-#'  FaFile of the reference genome to extract the motif context of the
-#'  variants in \code{my_table}
-#' @param cohort_method_flag
-#'  Either or several of \code{c("all_PIDs","cohort","norm_PIDs")}, 
-#'  representing alternative ways to average over the cohort.
-#' @param in_strata_order_ind
-#'  Index vector defining reordering of the strata
-#' @param wordLength
-#'  Integer number defining the length of the features or motifs, e.g. 3 for
-#'  tripletts or 5 for pentamers
-#' @param verbose_flag
-#'  Verbose if \code{verbose_flag=1}
-#' @param target_dir
-#'  Path to directory where the results of the stratification procedure are
-#'  going to be stored if non-NULL.
-#' @param strata_dir
-#'  Path to directory where the mutational catalogues of the different strata
-#'  are going to be stored if non-NULL
-#' @param output_path
-#'  Path to directory where the results, especially the figures produced by
-#'  \code{\link{plot_SMC}} are going to be stored.
-#' @param in_all_exposures_df
-#'  Optional argument, if specified, \code{H}, i.e. the overall exposures
-#'  without stratification, is set to equal \code{in_all_exposures_df}. This 
-#'  is equivalent to forcing the LCD_SMC procedure to use e.g. the exposures 
-#'  of a previously performed NMF decomposition.
-#' @param in_rownames
-#'  Optional parameter to specify rownames of the mutational catalogue \code{V}
-#'  i.e. the names of the features.
-#' @param in_norms
-#'  If specified, vector of the correction factors for every motif due to
-#'  differing trinucleotide content. If null, no correction is applied.
-#' @param in_label_orientation
-#'  Whether or not to turn the labels on the x-axis.
-#' @param this_sum_ind
-#'  Optional set of indices for reordering the PIDs
-#'   
-#' @return A list with entries
-#'  \code{exposures_list},
-#'  \code{catalogues_list},
-#'  \code{cohort} and
-#'  \code{name_list}.
-#' \itemize{
-#'  \item \code{exposures_list}:
-#'    The list of \code{s} strata specific exposures Hi, all are numerical data
-#'    frames with \code{l} rows and \code{m} columns, \code{l} being the number
-#'    of signatures and \code{m} being the number of samples
-#'  \item \code{catalogues_list}:
-#'    A list of \code{s} strata specific cohortwide (i.e. averaged over cohort)
-#'    normalized exposures
-#'  \item \code{cohort}:
-#'    \code{subgroups_df} adjusted for plotting
-#'  \item \code{name_list}:
-#'    Names of the contructed strata.
-#' }
-#' 
+#' @param my_table A big dataframe constructed from a vcf-like file of a whole
+#'   cohort. The first columns are those of a standard vcf file, followed by an
+#'   arbitrary number of custom or user defined columns. One of these must carry
+#'   a PID (patient or sample identifyier) and one must be the category used for
+#'   stratification.
+#' @param this_signatures_df A numeric data frame \code{W} in with \code{n} rows
+#'   and \code{l} columns, \code{n} being the number of features and \code{l}
+#'   being the number of signatures
+#' @param this_signatures_ind_df A data frame containing meta information about
+#'   the signatures
+#' @param this_subgroups_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup
+#' @param column_name Name of the column in \code{my_table} which is going to be
+#'   used for stratification
+#' @param refGenome FaFile of the reference genome to extract the motif context
+#'   of the variants in \code{my_table}
+#' @param cohort_method_flag Either or several of
+#'   \code{c("all_PIDs","cohort","norm_PIDs")}, representing alternative ways to
+#'   average over the cohort.
+#' @param in_strata_order_ind Index vector defining reordering of the strata
+#' @param wordLength Integer number defining the length of the features or
+#'   motifs, e.g. 3 for tripletts or 5 for pentamers
+#' @param verbose_flag Verbose if \code{verbose_flag=1}
+#' @param target_dir Path to directory where the results of the stratification
+#'   procedure are going to be stored if non-NULL.
+#' @param strata_dir Path to directory where the mutational catalogues of the
+#'   different strata are going to be stored if non-NULL
+#' @param output_path Path to directory where the results, especially the
+#'   figures produced by \code{\link{plot_SMC}} are going to be stored.
+#' @param in_all_exposures_df Optional argument, if specified, \code{H}, i.e.
+#'   the overall exposures without stratification, is set to equal
+#'   \code{in_all_exposures_df}. This is equivalent to forcing the
+#'   \code{\link{LCD_SMC}} procedure to use e.g. the exposures of a previously
+#'   performed NMF decomposition.
+#' @param in_rownames Optional parameter to specify rownames of the mutational
+#'   catalogue \code{V} i.e. the names of the features.
+#' @param in_norms If specified, vector of the correction factors for every
+#'   motif due to differing trinucleotide content. If null, no correction is
+#'   applied.
+#' @param in_label_orientation Whether or not to turn the labels on the x-axis.
+#' @param this_sum_ind Optional set of indices for reordering the PIDs
+#'
+#' @return A list with entries \code{exposures_list}, \code{catalogues_list},
+#'   \code{cohort} and \code{name_list}. \itemize{ \item \code{exposures_list}:
+#'   The list of \code{s} strata specific exposures Hi, all are numerical data
+#'   frames with \code{l} rows and \code{m} columns, \code{l} being the number
+#'   of signatures and \code{m} being the number of samples \item
+#'   \code{catalogues_list}: A list of \code{s} strata specific cohortwide (i.e.
+#'   averaged over cohort) normalized exposures \item \code{cohort}:
+#'   \code{subgroups_df} adjusted for plotting \item \code{name_list}: Names of
+#'   the contructed strata. }
+#'
 #' @examples
 #'  library(BSgenome.Hsapiens.UCSC.hg19)
 #'  data(sigs)
 #'  data(lymphoma_test)
 #'  data(lymphoma_cohort_LCD_results)
-#'  strata_list <- 
+#'  strata_list <-
 #'    cut_breaks_as_intervals(lymphoma_test_df$random_norm,
 #'                            in_outlier_cutoffs=c(-4,4),
 #'                            in_cutoff_ranges_list=list(c(-2.5,-1.5),
 #'                                                       c(0.5,1.5)),
 #'                            in_labels=c("small","intermediate","big"))
 #'  lymphoma_test_df$random_cat <- strata_list$category_vector
-#'  choice_ind <- (names(lymphoma_Nature2013_COSMIC_cutoff_exposures_df) 
+#'  choice_ind <- (names(lymphoma_Nature2013_COSMIC_cutoff_exposures_df)
 #'                 %in% unique(lymphoma_test_df$PID))
-#'  lymphoma_test_exposures_df <- 
+#'  lymphoma_test_exposures_df <-
 #'    lymphoma_Nature2013_COSMIC_cutoff_exposures_df[,choice_ind]
 #'  temp_subgroups_df <- make_subgroups_df(lymphoma_test_df,
 #'                                         lymphoma_test_exposures_df)
@@ -120,11 +94,11 @@
 #'                              refGenome=BSgenome.Hsapiens.UCSC.hg19,
 #'                              cohort_method_flag="norm_PIDs",
 #'                              in_rownames = rownames(AlexCosmicValid_sig_df))
-#' 
+#'
 #' @seealso \code{\link{create_mutation_catalogue_from_df}}
 #' @seealso \code{\link{normalizeMotifs_otherRownames}}
 #' @seealso \code{\link{plot_SMC}}
-#' 
+#'
 #' @export
 #' 
 run_SMC <- 
@@ -201,8 +175,63 @@ run_SMC <-
 }
 
 
-#' @import reshape2
-#' 
+#'Stratification of a Mutational Catalogue
+#'
+#'\code{SMC} takes a given collection of stratified mutational catalogues
+#'\code{Vi}, sends them to perform a mutational signatures decomposition by
+#'Linear Combination Decomposition (LCD) with the functions
+#'\code{\link{LCD_SMC}} with known signatures \code{W}. It subsequently performs
+#'some useful statistics and preparation for plotting with the function
+#'\code{\link{plot_SMC}}. \code{SMC} is naturally called by
+#'\code{\link{run_SMC}}.
+#'
+#'@param df_list A list of \code{s} stratified mutational catalogues \code{Vi}
+#'  \(numeric data frames\) with \code{n} rows and \code{m} columns each,
+#'  \code{n} being the number of features and \code{m} being the number of
+#'  samples.This list is naturally provided in \code{\link{run_SMC}}.
+#'@param this_signatures_df A numeric data frame \code{W} in with \code{n} rows
+#'  and \code{l} columns, \code{n} being the number of features and \code{l}
+#'  being the number of signatures
+#'@param in_all_exposures_df The overall exposures \code{H} without
+#'  stratification, a numeric data frame with \code{l} rows and \code{m}
+#'  columns, \code{l} being the number of signatures and \code{m} being the
+#'  number of samples
+#'@param number_of_strata The length of the list \code{df_list}
+#'@param number_of_sigs The number of signatures used in the current
+#'  decomposition.
+#'@param name_list A list of names of the different strata
+#'@param this_subgroups_df A data frame indicating which PID (patient or sample
+#'  identifyier) belongs to which subgroup
+#'@param mutation_catalogue_all_df The overall mutational catalogue \code{V}
+#'  without stratification.
+#'@param cohort_method_flag Either or several of
+#'  \code{c("all_PIDs","cohort","norm_PIDs")}, representing alternative ways to
+#'  average over the cohort.
+#'@param in_verbose Verbose if \code{in_verbose=1}
+#'
+#'@return A list with entries \code{exposures_strata_list},
+#'  \code{exposures_both_rel_df_list}, \code{this_subgroups_df},
+#'  \code{subgroup_ind} and \code{decomposition_method}. \itemize{ \item
+#'  \code{exposures_strata_list}: The list of \code{s} strata specific exposures
+#'  Hi, all are numerical data frames with \code{l} rows and \code{m} columns,
+#'  \code{l} being the number of signatures and \code{m} being the number of
+#'  samples \item \code{exposures_both_rel_df_list}: A list of \code{s} strata
+#'  specific cohortwide (i.e. averaged over cohort) normalized exposures \item
+#'  \code{this_subgroups_df}: \code{subgroups_df} adjusted for plotting \item
+#'  \code{subgroup_ind}: Index of the subgroups chosen and relevant for
+#'  plotting. \item \code{decomposition_method}: String telling whether LCD or
+#'  NMF was used, relevant only for handing over to \code{\link{plot_SMC}}. }
+#'
+#' @examples
+#' NULL
+#'
+#'@seealso \code{\link{run_SMC}}
+#'@seealso \code{\link{plot_SMC}}
+#'@seealso \code{\link{LCD_SMC}}
+#'
+#'@import reshape2
+#'@export
+#'
 SMC <- function(df_list, this_signatures_df, in_all_exposures_df,
                 number_of_strata,number_of_sigs, name_list, this_subgroups_df,
                 mutation_catalogue_all_df, cohort_method_flag, in_verbose=1){
@@ -329,12 +358,20 @@ SMC <- function(df_list, this_signatures_df, in_all_exposures_df,
     my_index <- 4*(i)+1
     norm_exposures_all_PIDs_df[,my_index] <- 0
     norm_exposures_all_PIDs_df[,my_index+1] <- 0
-    norm_exposures_all_PIDs_df[,my_index+2] <- 
-      average_over_present(
-        exposures_strata_list$sub_norm_exposures_list[[i]], 1)
-    norm_exposures_all_PIDs_df[,my_index+3] <- 
-      stderrmean_over_present(
-        exposures_strata_list$sub_norm_exposures_list[[i]], 1)
+    temp_vec <- average_over_present(
+      exposures_strata_list$sub_norm_exposures_list[[i]], 1)
+    if(!is.null(temp_vec)) {
+      norm_exposures_all_PIDs_df[,my_index+2] <- temp_vec
+    } else {
+      norm_exposures_all_PIDs_df[,my_index+2] <- 0
+    }
+    temp_vec <- stderrmean_over_present(
+      exposures_strata_list$sub_norm_exposures_list[[i]], 1)
+    if(!is.null(temp_vec)) {
+      norm_exposures_all_PIDs_df[,my_index+3] <- temp_vec
+    } else {
+      norm_exposures_all_PIDs_df[,my_index+3] <- 0
+    }
     names(norm_exposures_all_PIDs_df)[my_index] <- paste0(name_list[[i]],
                                                           "_abs")
     names(norm_exposures_all_PIDs_df)[my_index+1] <- paste0(name_list[[i]],
@@ -415,64 +452,48 @@ SMC <- function(df_list, this_signatures_df, in_all_exposures_df,
 
 #' Apply statistical tests to a stratification (SMC)
 #'
-#' \code{stat_test_SMC} tests for enrichment or depletion in the different 
+#' \code{stat_test_SMC} tests for enrichment or depletion in the different
 #' strata of a stratification of the mutational catalogue for every signature
-#' independently by applying Kruskal Wallis tests. For those signatures where 
-#' the Kruskal Wallis test gives a significant p-value, pairwise posthoc tests 
-#' are carried out by calling 
-#' \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}. Additionally all data is
-#' tested for normality by Shapiro Wilk tests, so that the user may apply 
-#' ANOVA and pairwise posthoc t-test where allowed.
+#' independently by applying Kruskal Wallis tests. For those signatures where
+#' the Kruskal Wallis test gives a significant p-value, pairwise posthoc tests
+#' are carried out by calling \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}.
+#' Additionally all data is tested for normality by Shapiro Wilk tests, so that
+#' the user may apply ANOVA and pairwise posthoc t-test where allowed.
 #'
-#' @param in_strat_list
-#'  A list with entries \code{exposures_list}, \code{catalogues_list},
-#'  \code{cohort} and \code{name_list} as in the output of 
-#'  \code{\link{run_SMC}}.
-#'  \itemize{
-#'    \item \code{exposures_list}:
-#'      The list of \code{s} strata specific exposures Hi, all are numerical 
-#'      data frames with \code{l} rows and \code{m} columns, \code{l} being the
-#'      number of signatures and \code{m} being the number of samples
-#'    \item \code{catalogues_list}:
-#'      A list of \code{s} strata specific cohortwide (i.e. averaged over 
-#'      cohort) normalized exposures
-#'    \item \code{cohort}:
-#'      \code{subgroups_df} adjusted for plotting
-#'    \item \code{name_list}:
-#'      Names of the contructed strata.
-#'  }
-#' @param in_flag
-#'  If "norm", all tests are performed on normalized exposures, otherwise the
-#'  absolute exposures are taken.
-#'  
-#' @return A list with entries
-#'  \code{kruskal_df},
-#'  \code{shapiro_df},
-#'  \code{kruskal_posthoc_list},
-#' \itemize{
-#'  \item \code{kruskal_df}:
-#'    A data frame containing results (statistic and p values) of the Kruskal 
-#'    Wallis tests (tests for enrichment or depletion in the different strata 
-#'    for every signature independently).
-#'  \item \code{shapiro_df}:
-#'    A data frame containing results (p values) of the Shapiro Wilk tests
-#'    (tests for normal distribution in the different strata for every
-#'    signature independently).
-#'  \item \code{kruskal_posthoc_list}:
-#'    A list of results of pairwise posthoc tests carried out for those 
-#'    signatures where the Kruskal Wallis test yielded a significant p-value 
-#'    (carried out by \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}).
-#' }
-#' 
+#' @param in_strat_list A list with entries \code{exposures_list},
+#'   \code{catalogues_list}, \code{cohort} and \code{name_list} as in the output
+#'   of \code{\link{run_SMC}}. \itemize{ \item \code{exposures_list}: The list
+#'   of \code{s} strata specific exposures Hi, all are numerical data frames
+#'   with \code{l} rows and \code{m} columns, \code{l} being the number of
+#'   signatures and \code{m} being the number of samples \item
+#'   \code{catalogues_list}: A list of \code{s} strata specific cohortwide (i.e.
+#'   averaged over cohort) normalized exposures \item \code{cohort}:
+#'   \code{subgroups_df} adjusted for plotting \item \code{name_list}: Names of
+#'   the contructed strata. }
+#' @param in_flag If "norm", all tests are performed on normalized exposures,
+#'   otherwise the absolute exposures are taken.
+#'
+#' @return A list with entries \code{kruskal_df}, \code{shapiro_df},
+#'   \code{kruskal_posthoc_list}, \itemize{ \item \code{kruskal_df}: A data
+#'   frame containing results (statistic and p values) of the Kruskal Wallis
+#'   tests (tests for enrichment or depletion in the different strata for every
+#'   signature independently). \item \code{shapiro_df}: A data frame containing
+#'   results (p values) of the Shapiro Wilk tests (tests for normal distribution
+#'   in the different strata for every signature independently). \item
+#'   \code{kruskal_posthoc_list}: A list of results of pairwise posthoc tests
+#'   carried out for those signatures where the Kruskal Wallis test yielded a
+#'   significant p-value (carried out by
+#'   \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}). }
+#'
 #' @examples
 #'  NULL
-#'  
+#'
 #' @seealso \code{\link{run_SMC}}
 #' @seealso \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}
 #' @seealso \code{\link[stats]{kruskal.test}}
 #' @seealso \code{\link{shapiro_if_possible}}
 #' @seealso \code{\link[stats]{shapiro.test}}
-#' 
+#'
 #' @import PMCMR
 #' @export
 #' 
@@ -525,46 +546,38 @@ stat_test_SMC <- function(in_strat_list,in_flag="norm"){
 
 
 #' Test for differences in average signature exposures between subgroups
-#' 
+#'
 #' Apply Kruskal-Wallis tests to detect differences in the signature exposures
-#' between different subgroups. Uses 
-#' \code{\link{split_exposures_by_subgroups}}.
+#' between different subgroups. Uses \code{\link{split_exposures_by_subgroups}}.
 #' Algorithm analogous to \code{\link{stat_test_SMC}}.
-#' 
-#' @param in_exposures_df
-#'  Numerical data frame of the exposures (i.e. contributions of the
-#'  different signatures to the number of point mutations per PID)
-#' @param in_subgroups_df
-#'  Data frame indicating which PID belongs to which subgroup
-#' @param in_subgroups.field
-#'  Name indicating which column in \code{in_subgroups_df} contains the
-#'  subgroup information
-#' @param in_PID.field
-#'  Name indicating which column in \code{in_subgroups_df} contains the
-#'  PID information 
-#'  
-#' @return A list with entries
-#'  \code{kruskal_df},
-#'  \code{kruskal_posthoc_list},
-#' \itemize{
-#'  \item \code{kruskal_df}:
-#'    A data frame containing results (statistic and p values) of the Kruskal 
-#'    Wallis tests (tests for enrichment or depletion in the different strata 
-#'    for every signature independently).
-#'  \item \code{kruskal_posthoc_list}:
-#'    A list of results of pairwise posthoc tests carried out for those 
-#'    signatures where the Kruskal Wallis test yielded a significant p-value 
-#'    (carried out by \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}).
-#' }
-#' 
+#'
+#' @param in_exposures_df Numerical data frame of the exposures (i.e.
+#'   contributions of the different signatures to the number of point mutations
+#'   per PID)
+#' @param in_subgroups_df Data frame indicating which PID belongs to which
+#'   subgroup
+#' @param in_subgroups.field Name indicating which column in
+#'   \code{in_subgroups_df} contains the subgroup information
+#' @param in_PID.field Name indicating which column in \code{in_subgroups_df}
+#'   contains the PID information
+#'
+#' @return A list with entries \code{kruskal_df}, \code{kruskal_posthoc_list},
+#'   \itemize{ \item \code{kruskal_df}: A data frame containing results
+#'   (statistic and p values) of the Kruskal Wallis tests (tests for enrichment
+#'   or depletion in the different strata for every signature independently).
+#'   \item \code{kruskal_posthoc_list}: A list of results of pairwise posthoc
+#'   tests carried out for those signatures where the Kruskal Wallis test
+#'   yielded a significant p-value (carried out by
+#'   \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}). }
+#'
 #' @seealso \code{\link{split_exposures_by_subgroups}}
 #' @seealso \code{\link{stat_test_SMC}}
 #' @seealso \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}
 #' @seealso \code{\link[stats]{kruskal.test}}
-#' 
+#'
 #' @examples
 #'  NULL
-#'  
+#'
 #' @export
 #' 
 stat_test_subgroups <- function(in_exposures_df,in_subgroups_df,
@@ -607,4 +620,93 @@ stat_test_subgroups <- function(in_exposures_df,in_subgroups_df,
                                            method="BH")
   return(list(kruskal_df = out_stat_df,shapiro_df=shapiro_df,
               kruskal_posthoc_list = posthoc_list))
+}
+
+
+#' Run SMC at a per sample level
+#'
+#' Run an SMC analysis (stratification of the mutational catalogue) at per
+#' sample / per-PID level, corresponding to a divide and conquer strategy. For
+#' every single PID, only those signatures actually present in this PID will be
+#' provided for the SMC analysis.
+#'
+#' @param in_dfList Named list of vcf-like data frames, one entry per sample/PID
+#'   of a cohort.
+#' @param in_LCDlist Output of an LCD list perfomed on the above cohort,
+#'   carrying notably information on the exposures
+#'   (\code{in_LCDlist$exposures}), the present signatures
+#'   (\code{in_LCDlist$signatures}) and meta information about the
+#'   signatures(\code{in_LCDlist$out_sig_ind_df}).
+#' @param in_subgroups_df Data frame with subgroup information about the PIDs in
+#'   the above mentioned cohort.
+#' @param in_save_plot Boolean flag to indicate whether per-PID plots should be
+#'   saved.
+#' @param in_save_dir If per-PID plots are to be saved, this is the path where
+#'   to save them.
+#' @param in_save_name Suffix to be appended to the sample name to generate the
+#'   name of the saved per-PID plots.
+#' @param in_verbose_flag Whether to run verbose (1) or not (0).
+#' @param ... Data passed on to \code{\link{run_SMC}}.
+#'
+#' @return A list of lists. The top level is a named per-PID list, each entry is
+#'   of type SMClist (cf. \code{\link{run_SMC}}).
+#'
+#' @export
+#'
+#' @examples
+#'  NULL
+#'  
+SMC_perPID <- function (in_dfList,
+                        in_LCDlist,
+                        in_subgroups_df,
+                        in_save_plot = TRUE,
+                        in_save_dir = NULL,
+                        in_save_name = "KataegisSMCs.pdf",
+                        in_verbose_flag = 0,
+                        ...) {
+  out_listsList <- 
+    lapply(names(in_dfList), function(current_PID){
+      if(in_verbose_flag == 1) cat("\nCurrent PID: ", current_PID, "\n")
+      current_vcf_like_df <- in_dfList[[current_PID]]
+      temp_sig_ind <- which(in_LCDlist$exposures[, current_PID] > 0)
+      current_sig_df <- in_LCDlist$signatures[, temp_sig_ind, drop = FALSE]
+      current_sigInd_df <- 
+        in_LCDlist$out_sig_ind_df[temp_sig_ind, , drop = FALSE]
+      current_all_exposures_df <- 
+        in_LCDlist$exposures[temp_sig_ind, current_PID, drop = FALSE]
+      current_subgroups_subdf <- 
+        in_subgroups_df[which(in_subgroups_df$PID == current_PID),]
+      currentNumberOfStrata <- length(unique(current_vcf_like_df$Kataegis))
+      if(in_save_plot & !is.null(in_save_dir)){
+        fileName <- file.path(in_save_dir, 
+                              paste0(current_PID, "_", in_save_name))
+        pdf(fileName, width = 6, height = currentNumberOfStrata + 1)
+        temp_SMClist <- run_SMC(
+          my_table = current_vcf_like_df,
+          this_signatures_df = current_sig_df,
+          this_signatures_ind_df = current_sigInd_df,
+          this_subgroups_df = current_subgroups_subdf,
+          verbose_flag = in_verbose_flag,
+          in_all_exposures_df = current_all_exposures_df,
+          ...)
+        dev.off()
+      } else {
+        temp_SMClist <- run_SMC(
+          my_table = current_vcf_like_df,
+          this_signatures_df = current_sig_df,
+          this_signatures_ind_df = current_sigInd_df,
+          this_subgroups_df = current_subgroups_subdf,
+          verbose_flag = in_verbose_flag,
+          in_all_exposures_df = current_all_exposures_df,
+          ...)
+      }
+      temp_names <- 
+        unlist(lapply(temp_SMClist$cohort, function(current_df){
+          return(current_df$variable[1])
+        }))
+      names(temp_SMClist$cohort) <- gsub("_rel", "", temp_names)
+      return(temp_SMClist)
+    })
+  names(out_listsList) <- names(in_dfList)
+  return(out_listsList)
 }

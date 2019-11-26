@@ -5,47 +5,40 @@
 \title{Wrapper for cut}
 \usage{
 cut_breaks_as_intervals(in_vector, in_outlier_cutoffs = c(0, 3000),
-  in_cutoff_ranges_list = list(c(60, 69), c(25, 32)), in_labels = c("late",
-  "intermediate", "early"), in_name = "", output_path = NULL)
+  in_cutoff_ranges_list = list(c(60, 69), c(25, 32)),
+  in_labels = c("late", "intermediate", "early"), in_name = "",
+  output_path = NULL)
 }
 \arguments{
 \item{in_vector}{Vector of numerical continuously distributed input}
 
-\item{in_outlier_cutoffs}{Interval specifyinf the upper and lower bounds of the range to be
-considered}
+\item{in_outlier_cutoffs}{Interval specifyinf the upper and lower bounds of
+the range to be considered}
 
-\item{in_cutoff_ranges_list}{List if intervals in which the cutoffs for \code{\link{cut}} have to be
-optimized.}
+\item{in_cutoff_ranges_list}{List if intervals in which the cutoffs for
+\code{\link{cut}} have to be optimized.}
 
 \item{in_labels}{Labels assigned to the strata or factors returned}
 
-\item{in_name}{String specifying the name of the quantity analyzed (and plotted on the
-x-axis of the figure to be created).}
+\item{in_name}{String specifying the name of the quantity analyzed (and
+plotted on the x-axis of the figure to be created).}
 
-\item{output_path}{Path where the figure produced by the density function should be stored
-if non-NULL.}
+\item{output_path}{Path where the figure produced by the density function
+should be stored if non-NULL.}
 }
 \value{
-A list with entries
- \code{category_vector}, and
- \code{density_plot} and
- \code{cutoffs}
-\itemize{
- \item \code{category_vector}:
-   Factor vector of the categories or strata, of the same length as
-   \code{in_vector}
- \item \code{density_plot}:
-   Density plot produced by the density function and indication of the
-   chosen cutoffs.
- \item \code{cutoffs}:
-   Vector of the computed optimal cutoffs
-}
+A list with entries \code{category_vector}, and \code{density_plot}
+  and \code{cutoffs} \itemize{ \item \code{category_vector}: Factor vector of
+  the categories or strata, of the same length as \code{in_vector} \item
+  \code{density_plot}: Density plot produced by the density function and
+  indication of the chosen cutoffs. \item \code{cutoffs}: Vector of the
+  computed optimal cutoffs }
 }
 \description{
 In this wrapper function for the known \code{\link{cut}} function, the
-\code{breaks} vector need not be supplied directly, instead, for every
-break, an interval is supplied and the function optimizes the choice of
-the breakpoint by chosing a local minimum of the distribution.
+\code{breaks} vector need not be supplied directly, instead, for every break,
+an interval is supplied and the function optimizes the choice of the
+breakpoint by chosing a local minimum of the distribution.
 }
 \examples{
  data(lymphoma_test)
@@ -63,4 +56,3 @@ the breakpoint by chosing a local minimum of the distribution.
 
 \code{\link[stats]{density}}
 }
-

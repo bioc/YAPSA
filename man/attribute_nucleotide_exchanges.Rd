@@ -8,24 +8,24 @@ attribute_nucleotide_exchanges(in_dat, in_REF.field = "REF",
   in_ALT.field = "ALT", in_verbose = FALSE)
 }
 \arguments{
-\item{in_dat}{VRanges object or data frame which carries one column for the reference 
-base and one column for the variant base}
+\item{in_dat}{VRanges object or data frame which carries one column for the
+reference base and one column for the variant base}
 
-\item{in_REF.field}{String indicating which column of \code{in_dat} carries the reference base
-if dealing with data frames}
+\item{in_REF.field}{String indicating which column of \code{in_dat} carries
+the reference base if dealing with data frames}
 
-\item{in_ALT.field}{String indicating which column of \code{in_dat} carries the variant base
-if dealing with data frames}
+\item{in_ALT.field}{String indicating which column of \code{in_dat} carries
+the variant base if dealing with data frames}
 
 \item{in_verbose}{Whether verbose or not.}
 }
 \value{
-A character vector with as many rows as there are in \code{in_dat} 
- which can be annotated (i.e. appended) to the input data frame.
+A character vector with as many rows as there are in \code{in_dat}
+  which can be annotated (i.e. appended) to the input data frame.
 }
 \description{
-SNVs are grouped into 6 different categories (12/2 as reverse complements 
-are summed over). This function defines the attribution.
+SNVs are grouped into 6 different categories (12/2 as reverse complements are
+summed over). This function defines the attribution.
 }
 \examples{
 test_df <- data.frame(
@@ -38,4 +38,3 @@ test_df$change <- attribute_nucleotide_exchanges(
 test_df
 
 }
-

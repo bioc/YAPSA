@@ -2,15 +2,15 @@
 % Please edit documentation in R/data.R
 \docType{data}
 \name{exampleYAPSA}
+\alias{exampleYAPSA}
+\alias{lymphoma_PID_df}
+\alias{lymphoma_test_df}
+\alias{lymphoma_Nature2013_raw_df}
+\alias{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}
+\alias{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}
 \alias{COSMIC_subgroups_df}
 \alias{chosen_AlexInitialArtif_sigInd_df}
 \alias{chosen_signatures_indices_df}
-\alias{exampleYAPSA}
-\alias{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}
-\alias{lymphoma_Nature2013_raw_df}
-\alias{lymphoma_PID_df}
-\alias{lymphoma_test_df}
-\alias{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}
 \title{Test and example data}
 \usage{
 data(lymphoma_PID)
@@ -30,13 +30,15 @@ data(lymphoma_cohort_LCD_results)
 data(lymphoma_cohort_LCD_results)
 }
 \description{
-Data structures used in examples, tests and the vignette of the YAPSA 
-package.
+Data structures used in examples, SNV tests and the SNV signature vignette 
+of the YAPSA package.
 
 \code{lymphoma_PID_df}: A data frame carrying subgroup information for a 
 subcohort of samples used in the vignette. Data in the vignette is 
 downloaded from 
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+Lymphoma B-cell/
+Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in. In the vignette we want to restrict the 
@@ -46,7 +48,9 @@ the attributed subgroup in a column called \code{subgroup}.
 
 \code{lymphoma_test_df}: A data frame carrying point mutation calls. It 
 represents a subset of the data stored in
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+Lymphoma B-cell/
+Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in. The data frame \code{lymphoma_test_df} has 
@@ -55,26 +59,32 @@ and 4121361.
 
 \code{lymphoma_Nature2013_raw_df}: A data frame carrying point mutation 
 calls. It represents a subset of the data stored in
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+Lymphoma B-cell/
+Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in.
 
 \code{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 exposures for testing the plot functions. Data taken from
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+Lymphoma B-cell/
+Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 
 \code{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 normalized or relative exposures for testing the plot functions. Data taken 
 from
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma B-cell/Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/
+Lymphoma B-cell/
+Lymphoma B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 
 \code{COSMIC_subgroups_df}: Subgroup information for the data stored in
 \code{\link{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}} and 
 \code{\link{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}}.
 
-\code{chosen_AlexInitialArtif_sigInd_df}: Signature information for the data
-stored in
+\code{chosen_AlexInitialArtif_sigInd_df}: Signature information for the
+ data stored in
 \code{\link{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}} and 
 \code{\link{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}}.
 
@@ -94,10 +104,9 @@ head(lymphoma_Nature2013_raw_df)
 dim(lymphoma_Nature2013_raw_df)
 
 }
-\author{
-Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
-}
 \references{
 \url{http://www.ncbi.nlm.nih.gov/pubmed/23945592}
 }
-
+\author{
+Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
+}

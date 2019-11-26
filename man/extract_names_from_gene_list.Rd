@@ -26,4 +26,3 @@ Return gene names from gene lists
 
 \code{\link{build_gene_list_for_pathway}}
 }
-

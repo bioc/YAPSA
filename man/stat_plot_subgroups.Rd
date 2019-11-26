@@ -9,20 +9,24 @@ stat_plot_subgroups(in_exposures_df, in_subgroups_df, in_signatures_ind_df,
   in_colour_vector = NULL)
 }
 \arguments{
-\item{in_exposures_df}{Numerical data frame of the exposures (i.e. contributions of the
-different signatures to the number of point mutations per PID)}
+\item{in_exposures_df}{Numerical data frame of the exposures (i.e.
+contributions of the different signatures to the number of point mutations
+per PID)}
 
-\item{in_subgroups_df}{Data frame indicating which PID belongs to which subgroup}
+\item{in_subgroups_df}{Data frame indicating which PID belongs to which
+subgroup}
 
-\item{in_signatures_ind_df}{Data frame carrying additional information on the signatures}
+\item{in_signatures_ind_df}{Data frame carrying additional information on the
+signatures}
 
-\item{in_subgroups.field}{Name indicating which column in \code{in_subgroups_df} contains the
-subgroup information}
+\item{in_subgroups.field}{Name indicating which column in
+\code{in_subgroups_df} contains the subgroup information}
 
-\item{in_PID.field}{Name indicating which column in \code{in_subgroups_df} contains the
-PID information}
+\item{in_PID.field}{Name indicating which column in \code{in_subgroups_df}
+contains the PID information}
 
-\item{in_colour_vector}{If non-null, specifies the colours attributed to the subgroups}
+\item{in_colour_vector}{If non-null, specifies the colours attributed to the
+subgroups}
 }
 \value{
 The function doesn't return any value, it plots instead.
@@ -38,4 +42,3 @@ Plot one averaged signature exposure pattern per subgroup. Uses
 \seealso{
 \code{\link{split_exposures_by_subgroups}}
 }
-

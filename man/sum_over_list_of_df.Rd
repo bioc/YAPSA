@@ -23,4 +23,3 @@ df_list <- list(A=A,B=B)
 sum_over_list_of_df(df_list)
 
 }
-

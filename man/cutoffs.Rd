@@ -2,18 +2,20 @@
 % Please edit documentation in R/data.R
 \docType{data}
 \name{cutoffs}
-\alias{cutoffCosmicArtif_abs_df}
+\alias{cutoffs}
+\alias{cutoffCosmicValid_rel_df}
 \alias{cutoffCosmicArtif_rel_df}
 \alias{cutoffCosmicValid_abs_df}
-\alias{cutoffCosmicValid_rel_df}
-\alias{cutoffInitialArtif_abs_df}
+\alias{cutoffCosmicArtif_abs_df}
+\alias{cutoffInitialValid_rel_df}
 \alias{cutoffInitialArtif_rel_df}
 \alias{cutoffInitialValid_abs_df}
-\alias{cutoffInitialValid_rel_df}
-\alias{cutoffs}
+\alias{cutoffInitialArtif_abs_df}
 \title{Cutoffs for a supervised analysis of mutational signatures.}
 \usage{
 data(cutoffs)
+
+data(cutoffs_pcawg)
 }
 \description{
 Series of data frames with signature-specific cutoffs. All values represent
@@ -21,7 +23,12 @@ optimal cutoffs. The optimal cutoffs were determined for different choices
 of parameters in the cost function of the optimization. The row index is 
 equivalent to the ratio between costs for false negative attribution and 
 false positive attribution. The columns correspond to the different 
-signatures. To be used with \code{\link{LCD_complex_cutoff}}.
+signatures. To be used with \code{\link{LCD_complex_cutoff}}. 
+There are two different sets of cutoffs one for the signatures described by
+Alexandrov et al.(Natue 2013) and one for the signatures dokumented in 
+Alexandriv et al. (biorxiv 2018). The calculation of the PCAWG signature 
+specific cutoffs was perfomed in a single-sample resolution which are both 
+valid for whole genome and whole exome sequencing data analysis.
 
 \code{cutoffCosmicValid_rel_df}: Optimal cutoffs for 
 \code{\link{AlexCosmicValid_sig_df}}, i.e. COSMIC signatures, only 
@@ -57,5 +64,6 @@ including artifact signatures, trained on absolute exposures.
 }
 \author{
 Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
-}
 
+Lea Jopp-Saile \email{huebschmann.daniel@googlemail.com}
+}

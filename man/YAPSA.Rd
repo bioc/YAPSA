@@ -16,4 +16,3 @@ known signatures (\code{\link{LCD}} = linear combination decomposition) and
 a signature analysis on stratified mutational catalogue 
 (\code{\link{run_SMC}} = stratify mutational catalogue) are provided.
 }
-

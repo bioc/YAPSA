@@ -25,4 +25,3 @@ structure may be used as input to
 \author{
 Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
 }
-

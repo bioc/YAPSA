@@ -33,7 +33,8 @@ test_that(paste0("Test LCD (linear combination decomposition) ",
   ## apply function to be tested
   exposures_df <- YAPSA:::LCD(V_compl_df,W_df)
   exposures <- as.matrix(exposures_df)
-  expect_that(exposures[sign_ind], equals(rep(0,length(sign_ind))))
+  test_df <- rep(0,length(sign_ind))
+  expect_that(exposures[sign_ind], is_identical_to(test_df))
   expect_that(all(exposures[other_ind]<H_compl[other_ind]),is_true())
 })
 
@@ -52,8 +53,7 @@ test_that("Test LCD_cutoff with small hand made data frames", {
   exposures_big_cutoff_list <- YAPSA:::LCD_cutoff(V_df,W_df,in_cutoff = 0.4)
   ## compare
   expect_lt(max(abs(exposures_small_cutoff_list$exposures - H_df)),1e-05)
-  expect_that(dim(exposures_big_cutoff_list$exposures)[1], 
-              equals(dim(H_df)[1] - 1))
+  expect_equal(dim(exposures_big_cutoff_list$exposures)[1], dim(H_df)[1] - 1)
 })
 
 test_that("Test LCD_SMC with small hand made data frames", {
@@ -105,12 +105,12 @@ test_that("Test LCD_SMC with small hand made data frames", {
   ## check if the overall decomposition is equal to the result of 
   ## the normal LCD
   expect_that(exposures_strata_list$exposures_all_df, 
-              equals(simple_exposures_all_df))
+              is_identical_to(simple_exposures_all_df))
   ## check if the sum of the exposures of the strata equals 
   ## the result of the normal LCD
   expect_that(exposures_strata_list$sub_exposures_list[[1]] +
                 exposures_strata_list$sub_exposures_list[[2]],
-              equals(simple_exposures_all_df))
+              is_identical_to(simple_exposures_all_df))
   ## check if the positions not affected by the perturbation remain the same
   # comp_exposures_1_df <- exposures_strata_list$sub_exposures_list[[1]]
   # comp_exposures_1_sub_df <- comp_exposures_1_df[,other_col_ind_2+1]

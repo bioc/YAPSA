@@ -4,7 +4,7 @@
 \alias{compare_sets}
 \title{Compare two sets of signatures by cosine distance}
 \usage{
-compare_sets(in_df_small, in_df_big)
+compare_sets(in_df_small, in_df_big, in_distance = cosineDist)
 }
 \arguments{
 \item{in_df_small, in_df_big}{Numerical data frames \code{W1} and 
@@ -12,6 +12,9 @@ compare_sets(in_df_small, in_df_big)
 and \code{l1} and \code{l2} columns, \code{n} being the number of
 features and \code{l1} and \code{l2} being the respective numbers
 of signatures of \code{W1} and \code{W2}}
+
+\item{in_distance}{A function which computes the distance measure, default
+is \code{\link{cosineDist}}}
 }
 \value{
 A list with entries
@@ -45,4 +48,3 @@ compare_sets(sig_1_df,sig_2_df)
 \seealso{
 \code{\link{cosineDist}}
 }
-

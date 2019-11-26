@@ -9,40 +9,38 @@ run_comparison_general(in_stratification_lists_list, output_path = NULL,
   in_additional_stratum = NULL)
 }
 \arguments{
-\item{in_stratification_lists_list}{List of lists with entries from different (orthogonal) stratification 
-axes or SMCs}
+\item{in_stratification_lists_list}{List of lists with entries from different
+(orthogonal) stratification axes or SMCs}
 
-\item{output_path}{Path to directory where the results, especially the figure produced by
-\code{\link[corrplot]{corrplot}} is going to be stored.}
+\item{output_path}{Path to directory where the results, especially the figure
+produced by \code{\link[corrplot]{corrplot}} is going to be stored.}
 
 \item{in_nrect}{Number of clusters in the clustering procedure provided by
 \code{\link[corrplot]{corrplot}}}
 
-\item{in_attribute}{Additional string for the file name where the figure produced by
-\code{\link[corrplot]{corrplot}} is going to be stored.}
+\item{in_attribute}{Additional string for the file name where the figure
+produced by \code{\link[corrplot]{corrplot}} is going to be stored.}
 
-\item{in_remove_signature_ind}{Omit one of the signatures in \code{in_signatures_ind_df} for the 
-comparison if non-NULL. The parameter specifies the index of the
-signature to be removed.}
+\item{in_remove_signature_ind}{Omit one of the signatures in
+\code{in_signatures_ind_df} for the comparison if non-NULL. The parameter
+specifies the index of the signature to be removed.}
 
-\item{in_additional_stratum}{Include an additionally supplied stratum in comparison in non-NULL.}
+\item{in_additional_stratum}{Include an additionally supplied stratum in
+comparison in non-NULL.}
 }
 \value{
 The comparison matrix of cosine similarities.
 }
 \description{
 Compare all strata from different orthogonal stratification axes, i.e.
-othogonal SMCs by cosine similarity of signature exposures. Function 
-similar to \code{\link{compare_SMCs}}, but without calling
-\code{\link{plot_strata}}. First calls
-\itemize{
- \item \code{make_strata_df}, then
- \item \code{\link{make_comparison_matrix}}
-}
+othogonal SMCs by cosine similarity of signature exposures. Function similar
+to \code{\link{compare_SMCs}}, but without calling \code{\link{plot_strata}}.
+First calls \itemize{ \item \code{make_strata_df}, then \item
+\code{\link{make_comparison_matrix}} }
 }
 \examples{
  NULL
- 
+
 }
 \seealso{
 \code{\link{make_comparison_matrix}}
@@ -51,4 +49,3 @@ similar to \code{\link{compare_SMCs}}, but without calling
 
 \code{\link{run_comparison_catalogues}}
 }
-

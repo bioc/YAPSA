@@ -7,7 +7,8 @@
 compute_comparison_stat_df(in_sim_df)
 }
 \arguments{
-\item{in_sim_df}{A similarity data frame as extracted by \code{\link{compare_to_catalogues}}}
+\item{in_sim_df}{A similarity data frame as extracted by
+\code{\link{compare_to_catalogues}}}
 }
 \value{
 A dataframe containing statistical measures, prepared for bar plot
@@ -21,4 +22,3 @@ puplication) by cosine similarities
  NULL
 
 }
-

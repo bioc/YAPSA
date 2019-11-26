@@ -1,4 +1,4 @@
-# Copyright © 2014-2016  The YAPSA package contributors
+# Copyright © 2014-2019  The YAPSA package contributors
 # This file is part of the YAPSA package. The YAPSA package is licenced under
 # GPL-3
 
@@ -109,41 +109,36 @@ run_bedtools_getfasta <- function(in_ref_genome,in_target_capture_bed,
 
 
 #' Provide normalized correction factors for kmer content
-#' 
-#' This function is analogous to 
-#' \code{\link[SomaticSignatures]{normalizeMotifs}}. If an 
-#' analysis of mutational signatures is performed on e.g. Whole Exome 
-#' Sequencing (WES) data, the signatures and exposures have to be adapted to 
-#' the potentially different kmer (trinucleotide) content of the target 
-#' capture. The present function takes as arguments paths to the used reference
-#' genome and target capture file. It the extracts the sequence of the target 
-#' capture by calling \code{bedtools getfasta} on the system command prompt. 
-#' \code{run_kmer_frequency_normalization} then calls a custom made perl script
-#' \code{kmer_frequencies.pl} also included in this package to count the 
-#' occurences of the tripletts in both the whole reference genome and the 
-#' created target capture sequence. These counts are used for normalization as 
-#' in \code{\link[SomaticSignatures]{normalizeMotifs}}. Note that
-#' \code{\link[SomaticSignatures]{kmerFrequency}} provides a solution to 
-#' approximate kmer frequencies by random sampling. As opposed to that 
-#' approach, the function described here deterministically counts all 
-#' occurences of the kmers in the respective genome.
-#' 
-#' @param in_ref_genome_fasta
-#'  Path to the reference genome fasta file used.
-#' @param in_target_capture_bed
-#'  Path to a bed file containing the information on the used target capture. 
-#'  May also be a compressed bed.
-#' @param in_word_length
-#'  Integer number defining the length of the features or motifs, e.g. 3 for
-#'  tripletts or 5 for pentamers
-#' @param project_folder
-#'  Path where the created files, especially the fasta file with the sequence 
-#'  of the target capture and the count matrices, can be stored.
-#' @param in_verbose
-#'  Verbose if \code{in_verbose=1}
 #'
-#' @return
-#'  A numeric vector with correction factors
+#' This function is analogous to
+#' \code{\link[SomaticSignatures]{normalizeMotifs}}. If an analysis of
+#' mutational signatures is performed on e.g. Whole Exome Sequencing (WES) data,
+#' the signatures and exposures have to be adapted to the potentially different
+#' kmer (trinucleotide) content of the target capture. The present function
+#' takes as arguments paths to the used reference genome and target capture
+#' file. It the extracts the sequence of the target capture by calling
+#' \code{bedtools getfasta} on the system command prompt.
+#' \code{run_kmer_frequency_normalization} then calls a custom made perl script
+#' \code{kmer_frequencies.pl} also included in this package to count the
+#' occurences of the tripletts in both the whole reference genome and the
+#' created target capture sequence. These counts are used for normalization as
+#' in \code{\link[SomaticSignatures]{normalizeMotifs}}. Note that
+#' \code{\link[SomaticSignatures]{kmerFrequency}} provides a solution to
+#' approximate kmer frequencies by random sampling. As opposed to that approach,
+#' the function described here deterministically counts all occurences of the
+#' kmers in the respective genome.
+#'
+#' @param in_ref_genome_fasta Path to the reference genome fasta file used.
+#' @param in_target_capture_bed Path to a bed file containing the information on
+#'   the used target capture. May also be a compressed bed.
+#' @param in_word_length Integer number defining the length of the features or
+#'   motifs, e.g. 3 for tripletts or 5 for pentamers
+#' @param project_folder Path where the created files, especially the fasta file
+#'   with the sequence of the target capture and the count matrices, can be
+#'   stored.
+#' @param in_verbose Verbose if \code{in_verbose=1}
+#'
+#' @return A numeric vector with correction factors
 #'
 #' @examples
 #'  NULL
@@ -231,51 +226,41 @@ run_kmer_frequency_normalization <- function(in_ref_genome_fasta,
 
 
 #' Provide comprehensive correction factors for kmer content
-#' 
-#' This function is analogous to 
-#' \code{\link[SomaticSignatures]{normalizeMotifs}}. If an analysis of 
-#' mutational signatures is performed on e.g. Whole Exome Sequencing (WES)
-#' data, the signatures and exposures have to be adapted to the potentially 
-#' different kmer (trinucleotide) content of the target capture. The present 
-#' function takes as arguments paths to the used reference genome and target 
-#' capture file. It the extracts the sequence of the target capture by calling 
-#' \code{bedtools getfasta} on the system command prompt. 
-#' \code{run_kmer_frequency_normalization} then calls a custom made perl
-#' script \code{kmer_frequencies.pl} also included in this package to count the
-#' occurences of the tripletts in both the whole reference genome and the 
+#'
+#' This function is analogous to
+#' \code{\link[SomaticSignatures]{normalizeMotifs}}. If an analysis of
+#' mutational signatures is performed on e.g. Whole Exome Sequencing (WES) data,
+#' the signatures and exposures have to be adapted to the potentially different
+#' kmer (trinucleotide) content of the target capture. The present function
+#' takes as arguments paths to the used reference genome and target capture
+#' file. It the extracts the sequence of the target capture by calling
+#' \code{bedtools getfasta} on the system command prompt.
+#' \code{run_kmer_frequency_normalization} then calls a custom made perl script
+#' \code{kmer_frequencies.pl} also included in this package to count the
+#' occurences of the tripletts in both the whole reference genome and the
 #' created target capture sequence. These counts are used for normalization as
 #' in \code{\link[SomaticSignatures]{normalizeMotifs}}. Note that
-#' \code{\link[SomaticSignatures]{kmerFrequency}} provides a solution to 
-#' approximate kmer frequencies by random sampling. As opposed to that 
-#' approach, the function described here deterministically counts all 
-#' occurences of the kmers in the respective genome.
-#' 
-#' @param in_ref_genome_fasta
-#'  Path to the reference genome fasta file used.
-#' @param in_target_capture_bed
-#'  Path to a bed file containing the information on the used target capture. 
-#'  May also be a compressed bed.
-#' @param in_word_length
-#'  Integer number defining the length of the features or motifs, e.g. 3 for
-#'  tripletts or 5 for pentamers
-#' @param project_folder
-#'  Path where the created files, especially the fasta file with the sequence 
-#'  of the target capture and the count matrices, can be stored.
-#' @param target_capture_fasta
-#'  Name of the fasta file of the target capture to be created if not yet 
-#'  existent.
-#' @param in_verbose
-#'  Verbose if \code{in_verbose=1}
+#' \code{\link[SomaticSignatures]{kmerFrequency}} provides a solution to
+#' approximate kmer frequencies by random sampling. As opposed to that approach,
+#' the function described here deterministically counts all occurences of the
+#' kmers in the respective genome.
 #'
-#' @return
-#'  A list with 2 entries:
-#'  \itemize{
-#'    \item \code{rel_cor}:
-#'      The correction factors after normalization as in 
-#'      \code{\link{run_kmer_frequency_normalization}}
-#'    \item \code{abs_cor}:
-#'      The correction factors without normalization.
-#'  }
+#' @param in_ref_genome_fasta Path to the reference genome fasta file used.
+#' @param in_target_capture_bed Path to a bed file containing the information on
+#'   the used target capture. May also be a compressed bed.
+#' @param in_word_length Integer number defining the length of the features or
+#'   motifs, e.g. 3 for tripletts or 5 for pentamers
+#' @param project_folder Path where the created files, especially the fasta file
+#'   with the sequence of the target capture and the count matrices, can be
+#'   stored.
+#' @param target_capture_fasta Name of the fasta file of the target capture to
+#'   be created if not yet existent.
+#' @param in_verbose Verbose if \code{in_verbose=1}
+#'
+#' @return A list with 2 entries: \itemize{ \item \code{rel_cor}: The correction
+#' factors after normalization as in
+#' \code{\link{run_kmer_frequency_normalization}} \item \code{abs_cor}: The
+#' correction factors without normalization. }
 #'
 #' @examples
 #'  NULL
@@ -372,39 +357,32 @@ run_kmer_frequency_correction <-
 
 
 #' Wrapper function to annotate addition information
-#' 
-#' Wrapper function to the perl script annotate_vcf.pl which annotates
-#' data of a track stored in file_B (may be different formats) to called 
-#' variants stored in a vcf-like file_A.
-#' 
-#' @param in_data_file
-#'  Path to the input vcf-like file to be annotated
-#' @param in_anno_track_file
-#'  Path to the input file containing the annotation track
-#' @param in_new_column_name
-#'  String indicating the name of the column to be created for annotation.
-#' @param out_file
-#'  Path where the created files can be stored.
-#' @param in_data_file_type
-#'  \code{custom} for vcf-like
-#' @param in_anno_track_file_type
-#'  Type of the file \code{in_anno_track_file} containing the annotation
-#'  track.
-#' @param in_data_CHROM.field
-#'  String indicating which column of \code{in_data_file} contains the
-#'  chromosome information.
-#' @param in_data_POS.field
-#'  String indicating which column of \code{in_data_file} contains the
-#'  position information.
-#' @param in_data_END.field
-#'  String indicating which column of \code{in_data_file} contains the
-#'  end information if regions are considered.
-#'  
+#'
+#' Wrapper function to the perl script annotate_vcf.pl which annotates data of a
+#' track stored in file_B (may be different formats) to called variants stored
+#' in a vcf-like file_A.
+#'
+#' @param in_data_file Path to the input vcf-like file to be annotated
+#' @param in_anno_track_file Path to the input file containing the annotation
+#'   track
+#' @param in_new_column_name String indicating the name of the column to be
+#'   created for annotation.
+#' @param out_file Path where the created files can be stored.
+#' @param in_data_file_type \code{custom} for vcf-like
+#' @param in_anno_track_file_type Type of the file \code{in_anno_track_file}
+#'   containing the annotation track.
+#' @param in_data_CHROM.field String indicating which column of
+#'   \code{in_data_file} contains the chromosome information.
+#' @param in_data_POS.field String indicating which column of
+#'   \code{in_data_file} contains the position information.
+#' @param in_data_END.field String indicating which column of
+#'   \code{in_data_file} contains the end information if regions are considered.
+#'
 #' @return Return zero if no problems occur.
-#' 
+#'
 #' @examples
 #'  NULL
-#'  
+#'
 #' @export
 #' 
 run_annotate_vcf_pl <- function(in_data_file,
@@ -449,8 +427,6 @@ run_annotate_vcf_pl <- function(in_data_file,
 #' @return A character vector of gene names
 #' 
 #' @examples
-#'  NULL
-#'  \dontrun{
 #'    species <- "hsa"
 #'    gene_lists_meta_df <- data.frame(
 #'      name=c("BER","NHEJ","MMR"),
@@ -466,8 +442,7 @@ run_annotate_vcf_pl <- function(in_data_file,
 #'      gene_lists_list <- c(gene_lists_list,list(temp_list))
 #'    }
 #'    gene_lists_list
-#'  }
-#' 
+#'    
 #' @seealso \code{\link[KEGGREST]{keggLink}}
 #' @seealso \code{\link[KEGGREST]{keggFind}}
 #' @seealso \code{\link{extract_names_from_gene_list}}
@@ -489,20 +464,18 @@ build_gene_list_for_pathway <- function(in_string,in_organism) {
 
 
 #' Return gene names from gene lists
-#' 
-#' @param in_KEGG_gene_list
-#'  Gene list to extract names from
-#' @param l
-#'  Index of the gene to be extracted
-#' 
+#'
+#' @param in_KEGG_gene_list Gene list to extract names from
+#' @param l Index of the gene to be extracted
+#'
 #' @return The gene name.
-#' 
+#'
 #' @examples
 #'  NULL
-#' 
+#'
 #' @seealso \code{\link[KEGGREST]{keggGet}}
 #' @seealso \code{\link{build_gene_list_for_pathway}}
-#' 
+#'
 #' @importFrom KEGGREST keggGet
 #' @export
 #' 

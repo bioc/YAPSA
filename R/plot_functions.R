@@ -1,41 +1,34 @@
-# Copyright © 2014-2016  The YAPSA package contributors
+# Copyright © 2014-2019  The YAPSA package contributors
 # This file is part of the YAPSA package. The YAPSA package is licenced under
 # GPL-3
 
 #' Plot the exposures of a cohort
 #'
-#' \code{plot_exposures}: The exposures \code{H}, determined by NMF or by 
-#' \code{\link{LCD}}, are displayed as a stacked barplot by calling
-#' \itemize{
-#'  \item \code{\link[ggplot2]{geom_bar}} and optionally
-#'  \item \code{\link[ggplot2]{geom_text}}.
-#' }
-#' The x-axis displays the PIDs (patient identifier or sample), the y-axis
-#' the counts attributed to the different signatures with their respective
-#' colours per PID. Is called by \code{\link{plot_relative_exposures}}.
+#' \code{plot_exposures}: The exposures \code{H}, determined by NMF or by
+#' \code{\link{LCD}}, are displayed as a stacked barplot by calling \itemize{
+#' \item \code{\link[ggplot2]{geom_bar}} and optionally \item
+#' \code{\link[ggplot2]{geom_text}}. } The x-axis displays the PIDs (patient
+#' identifier or sample), the y-axis the counts attributed to the different
+#' signatures with their respective colours per PID. Is called by
+#' \code{\link{plot_relative_exposures}}.
 #'
-#' @param in_exposures_df
-#'  Numerical data frame encoding the exposures \code{H}, i.e. which
-#'  signature contributes how much to which PID (patient identifier or sample).
-#' @param in_signatures_ind_df
-#'  A data frame containing meta information about the signatures
-#' @param in_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup
-#' @param in_sum_ind
-#'  Index vector influencing the order in which the PIDs are going to be
-#'  displayed
-#' @param in_subgroups.field
-#'  String indicating the column name in \code{in_subgroups_df} to take the
-#'  subgroup information from.
-#' @param in_title
-#'  Title for the plot to be created.
-#' @param in_labels
-#'  Flag, if \code{TRUE} the PIDs are displayed on the x-axis
-#' @param in_show_subgroups
-#'  Flag, if \code{TRUE} then PIDs are grouped by subgroups
-#' @param legend_height
-#'  How many signatures should be displayed in one column together at most.
+#' @param in_exposures_df Numerical data frame encoding the exposures \code{H},
+#'   i.e. which signature contributes how much to which PID (patient identifier
+#'   or sample).
+#' @param in_signatures_ind_df A data frame containing meta information about
+#'   the signatures
+#' @param in_subgroups_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup
+#' @param in_sum_ind Index vector influencing the order in which the PIDs are
+#'   going to be displayed
+#' @param in_subgroups.field String indicating the column name in
+#'   \code{in_subgroups_df} to take the subgroup information from.
+#' @param in_title Title for the plot to be created.
+#' @param in_labels Flag, if \code{TRUE} the PIDs are displayed on the x-axis
+#' @param in_show_subgroups Flag, if \code{TRUE} then PIDs are grouped by
+#'   subgroups
+#' @param legend_height How many signatures should be displayed in one column
+#'   together at most.
 #'
 #' @return The generated barplot - a ggplot2 plot
 #'
@@ -48,7 +41,7 @@
 #' @seealso \code{\link{LCD}}
 #' @seealso \code{\link[ggplot2]{geom_bar}}
 #' @seealso \code{\link[ggplot2]{geom_text}}
-#' 
+#'
 #' @import ggplot2
 #' @import reshape2
 #' @export
@@ -215,9 +208,8 @@ plot_exposures_old <- function(in_exposures_df,
 #' Plot the relative exposures of a cohort
 #'
 #' \code{plot_relative_exposures}: Plot the relative or normalized exposures of
-#' a cohort. This function first
-#' normalizes its input and then sends the normalized data to
-#' \code{\link{plot_exposures}}.
+#' a cohort. This function first normalizes its input and then sends the
+#' normalized data to \code{\link{plot_exposures}}.
 #'
 #' @examples
 #'  data(lymphoma_cohort_LCD_results)
@@ -227,7 +219,7 @@ plot_exposures_old <- function(in_exposures_df,
 #'
 #' @export
 #' @rdname plot_exposures
-#' 
+#'   
 plot_relative_exposures <- function(in_exposures_df,in_signatures_ind_df,
                                     in_subgroups_df,in_sum_ind=NULL,
                                     in_subgroups.field="subgroup",in_title="",
@@ -327,36 +319,29 @@ enhanced_barplot = function(mat, col, anno, anno_color, ylab = NULL,
 
 
 #' Wrapper for enhanced_barplot
-#' 
-#' @param in_exposures_df
-#'  Numerical data frame encoding the exposures \code{H}, i.e. which
-#'  signature contributes how much to which PID (patient identifier or sample).
-#' @param in_signatures_ind_df
-#'  A data frame containing meta information about the signatures. If NULL, the
-#'  colour information for the signatures is taken from a rainbow palette.
-#' @param in_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup. If NULL, it is assumed that all PIDs belong to one 
-#'  common subgroup. The colour coding for the default subgroup is red.
-#' @param in_sum_ind
-#'  Index vector influencing the order in which the PIDs are going to be
-#'  displayed
-#' @param in_subgroups.field
-#'  String indicating the column name in \code{in_subgroups_df} to take the
-#'  subgroup information from.
-#' @param in_title
-#'  Title for the plot to be created.
-#' @param in_labels
-#'  Flag, if \code{TRUE} the PIDs are displayed on the x-axis
-#' @param in_show_subgroups
-#'  Flag, if \code{TRUE} then PIDs are grouped by subgroups
-#' @param ylab
-#'  Label of the y-axis on the plot to be generate
-#' @param in_barplot_borders
-#'  Whether or not to show border lines in barplot
-#' @param in_column_anno_borders
-#'  Whether or not to draw separating lines between the fields in the
-#'  annotation
+#'
+#' @param in_exposures_df Numerical data frame encoding the exposures \code{H},
+#'   i.e. which signature contributes how much to which PID (patient identifier
+#'   or sample).
+#' @param in_signatures_ind_df A data frame containing meta information about
+#'   the signatures. If NULL, the colour information for the signatures is 
+#'   taken from a rainbow palette.
+#' @param in_subgroups_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup. If NULL, it is assumed that all
+#'   PIDs belong to one common subgroup. The colour coding for the default
+#'   subgroup is red.
+#' @param in_sum_ind Index vector influencing the order in which the PIDs are
+#'   going to be displayed
+#' @param in_subgroups.field String indicating the column name in
+#'   \code{in_subgroups_df} to take the subgroup information from.
+#' @param in_title Title for the plot to be created.
+#' @param in_labels Flag, if \code{TRUE} the PIDs are displayed on the x-axis
+#' @param in_show_subgroups Flag, if \code{TRUE} then PIDs are grouped by
+#'   subgroups
+#' @param ylab Label of the y-axis on the plot to be generate
+#' @param in_barplot_borders Whether or not to show border lines in barplot
+#' @param in_column_anno_borders Whether or not to draw separating lines 
+#' between the fields in the annotation
 #'
 #' @return The generated barplot - a ggplot2 plot
 #'
@@ -364,8 +349,8 @@ enhanced_barplot = function(mat, col, anno, anno_color, ylab = NULL,
 #'  data(lymphoma_cohort_LCD_results)
 #'  exposures_barplot(lymphoma_Nature2013_COSMIC_cutoff_exposures_df,
 #'                    chosen_signatures_indices_df,
-#'                    COSMIC_subgroups_df)  
-#'  
+#'                    COSMIC_subgroups_df)
+#'
 #' @importFrom grDevices rainbow
 #' @export
 #' 
@@ -407,41 +392,35 @@ exposures_barplot <- function(in_exposures_df,in_signatures_ind_df=NULL,
 
 
 #' Add information to an annotation data structure
-#' 
-#' Function to iteratively add information to an annotation data structure as
-#' needed for \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and especially
-#' for \code{\link{annotation_exposures_barplot}}
-#' 
-#' @param in_annotation_col
-#'  List, every element of which refers to one layer of annotation. List
-#'  elements are structures corresponding to named colour vectors
-#' @param in_annotation_df
-#'  Data frame, every column of which corresponds to a layer of annotation. It
-#'  has as many rows as there are samples, every entry in a row corresponding
-#'  to the attribute the samples has for the corresponding layer of annotation.
-#'  The factor levels of a column of \code{in_annotation_df} correspond to the
-#'  names of the corresponding element in \code{in_annotation_col}
-#' @param in_attribution_vector
-#'  A vector which is going to be cbinded to \code{in_annotatiin_df}, carrying
-#'  the annotation information of the new layer to be added
-#' @param in_colour_vector
-#'  Named vector of colours to be attributed to the new annotation
-#' @param in_name
-#'  Name of the new layer of annotation
 #'
-#' @return A list with entries
-#' \itemize{
-#'  \item \code{annotation_col}:
-#'    A list as in \code{in_annotation_col} but with one additional layer of
-#'    annotation
-#'  \item \code{annotation_df}:
-#'    A data frame as in \code{in_annotation_df} but with one additional layer
-#'    of annotation
-#' }
+#' Function to iteratively add information to an annotation data structure as
+#' needed for \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and especially 
+#' for \code{\link{annotation_exposures_barplot}}
+#'
+#' @param in_annotation_col List, every element of which refers to one layer 
+#'   of annotation List elements are structures corresponding to named colour
+#'   vectors
+#' @param in_annotation_df Data frame, every column of which corresponds to a
+#'   layer of annotation. It has as many rows as there are samples, every 
+#'   entry in a row corresponding to the attribute the samples has for the
+#'   corresponding layer of annotation.The factor levels of a column of
+#'   \code{in_annotation_df} correspond to the names of the corresponding
+#'   element in \code{in_annotation_col}
+#' @param in_attribution_vector A vector which is going to be cbinded to
+#'   \code{in_annotatiin_df}, carrying the annotation information of the new
+#'   layer to be added
+#' @param in_colour_vector Named vector of colours to be attributed to the new
+#'   annotation
+#' @param in_name Name of the new layer of annotation
+#'
+#' @return A list with entries \itemize{ \item \code{annotation_col}: A list 
+#'   as in \code{in_annotation_col} but with one additional layer of annotation
+#'   \item \code{annotation_df}: A data frame as in \code{in_annotation_df}
+#'   but with one additional layer of annotation}
 #'
 #' @examples
 #'  NULL
-#'  
+#'
 #' @export
 #' 
 add_annotation <- function(in_annotation_col,
@@ -470,85 +449,80 @@ add_annotation <- function(in_annotation_col,
 #' Plot the exposures of a cohort with different layers of annotation
 #'
 #' The exposures \code{H}, determined by NMF or by \code{\link{LCD}}, are
-#' displayed as a stacked barplot by calling 
-#' \code{\link[ComplexHeatmap]{Heatmap}}.
-#' The x-axis displays the PIDs (patient identifier or sample), the y-axis
-#' the counts attributed to the different signatures with their respective
-#' colours per PID. It is analogous to \code{\link{plot_exposures}}. As many
-#' layers of information as desired can be added via an annotation data frame.
-#' The annotation data is handled in a way similar to
-#' \code{\link{annotation_heatmap_exposures}}. This function calls: 
-#' \itemize{
-#'  \item \code{\link[ComplexHeatmap]{rowAnnotation}},
-#'  \item \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and
-#'  \item \code{\link[ComplexHeatmap]{Heatmap}}
-#' }
+#' displayed as a stacked barplot by calling
+#' \code{\link[ComplexHeatmap]{Heatmap}}. The x-axis displays the PIDs (patient
+#' identifier or sample), the y-axis the counts attributed to the different
+#' signatures with their respective colours per PID. It is analogous to
+#' \code{\link{plot_exposures}}. As many layers of information as desired can be
+#' added via an annotation data frame. The annotation data is handled in a way
+#' similar to \code{\link{annotation_heatmap_exposures}}. This function calls:
+#' \itemize{ \item \code{\link[ComplexHeatmap]{rowAnnotation}}, \item
+#' \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and \item
+#' \code{\link[ComplexHeatmap]{Heatmap}} }
 #'
-#' @details
-#'  It might be necessary to install the newest version of the development 
-#'  branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by Zuguang 
-#'  Gu: \code{devtools::install_github("jokergoo/circlize")} and 
-#'  \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+#' @details It might be necessary to install the newest version of the
+#' development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by
+#' Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+#' \code{devtools::install_github("jokergoo/ComplexHeatmap")}
 #'
-#' @param in_exposures_df
-#'  Numerical data frame encoding the exposures \code{H}, i.e. which
-#'  signature contributes how much to which PID (patient identifier or sample).
-#' @param in_signatures_ind_df
-#'  A data frame containing meta information about the signatures
-#' @param in_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup
-#' @param in_annotation_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup for all layers of annotation
-#' @param in_annotation_col
-#'  A list indicating colour attributions for all layers of annotation
-#' @param ylab
-#'  String indicating the column name in \code{in_subgroups_df} to take the
-#'  subgroup information from.
-#' @param title
-#'  Title for the plot to be created.
-#' @param in_labels
-#'  Whether or not to show the names of the samples.
-#' @param in_barplot_borders
-#'  Whether or not to show border lines in barplot
-#' @param in_column_anno_borders
-#'  Whether or not to draw separating lines between the fields in the
-#'  annotation
-#' @param in_annotation_legend_side
-#'  Where to put the legends of the annotation df, default is right.
+#' @param in_exposures_df Numerical data frame encoding the exposures \code{H},
+#'   i.e. which signature contributes how much to which PID (patient identifier
+#'   or sample).
+#' @param in_signatures_ind_df A data frame containing meta information about
+#'   the signatures
+#' @param in_subgroups_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup
+#' @param in_annotation_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup for all layers of annotation
+#' @param in_annotation_col A list indicating colour attributions for all
+#'  layers of annotation
+#' @param ylab String indicating the column name in \code{in_subgroups_df} to
+#'   take the subgroup information from.
+#' @param title Title for the plot to be created.
+#' @param in_labels Whether or not to show the names of the samples.
+#' @param in_barplot_borders Whether or not to show border lines in barplot
+#' @param in_column_anno_borders Whether or not to draw separating lines 
+#'  between the fields in the annotation
+#' @param in_annotation_legend_side Where to put the legends of the annotation
+#'   df, default is right.
+#' @param in_padding Parameter passed on to function
+#'   \code{\link[ComplexHeatmap]{draw}}
+#' @param in_annotation A full annotation object may also be provided by the
+#'   educated user.
 #'
-#' @details
-#'  It might be necessary to install the newest version of the development 
-#'  branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by Zuguang 
-#'  Gu: \code{devtools::install_github("jokergoo/circlize")} and
-#'  \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+#' @details It might be necessary to install the newest version of the
+#' development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap}
+#'  by Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+#' \code{devtools::install_github("jokergoo/ComplexHeatmap")}
 #'
 #' @return The function doesn't return any value.
-#' 
+#'
 #' @examples
-#'  NULL  
-#'  
+#'  NULL
+#'
 #' @seealso \code{\link[ComplexHeatmap]{HeatmapAnnotation}}
 #' @seealso \code{\link[ComplexHeatmap]{Heatmap}}
 #' @seealso \code{\link[ComplexHeatmap]{decorate_heatmap_body}}
 #' @seealso \code{\link{annotation_heatmap_exposures}}
 #' @seealso \code{\link{plot_exposures}}
-#' 
+#'
 #' @import ComplexHeatmap
 #' @import circlize
 #' @export
 #' 
-annotation_exposures_barplot <- function(in_exposures_df,
-                                         in_signatures_ind_df,
-                                         in_subgroups_df,
-                                         in_annotation_df,
-                                         in_annotation_col,
-                                         ylab = NULL,
-                                         title = "",in_labels=FALSE,
-                                         in_barplot_borders=TRUE,
-                                         in_column_anno_borders=FALSE,
-                                         in_annotation_legend_side="right") {
+annotation_exposures_barplot <- function(
+  in_exposures_df,
+  in_signatures_ind_df,
+  in_subgroups_df,
+  in_annotation_df = NULL,
+  in_annotation_col = NULL,
+  ylab = NULL,
+  title = "",in_labels=FALSE,
+  in_barplot_borders=TRUE,
+  in_column_anno_borders=FALSE,
+  in_annotation_legend_side="right",
+  in_padding = unit(c(2, 20, 2, 2), "mm"),
+  in_annotation = NULL){
   order_ind <- order(in_subgroups_df$index)
   mat <- in_exposures_df[,order_ind]
   this_annotation_df <- in_annotation_df[order_ind,]
@@ -557,29 +531,33 @@ annotation_exposures_barplot <- function(in_exposures_df,
   names(col) = rownames(mat)
   mat_foo = matrix(rep(rownames(mat), ncol(mat)), nrow = nrow(mat))
   
-  if(in_labels){
-    if(!in_column_anno_borders){
-      ha = HeatmapAnnotation(
-        df = this_annotation_df,
-        col = in_annotation_col,
-        text = anno_text(colnames(mat), offset = unit(1, "npc"), 
-                         just = "right", rot = 90))      
-    } else {
-      ha = HeatmapAnnotation(
-        df = this_annotation_df,
-        col = in_annotation_col,
-        text = anno_text(colnames(mat), offset = unit(1, "npc"), 
-                         just = "right", rot = 90),
-        gp = gpar(col="black"))
-    }
+  if(!is.null(in_annotation)){
+    ha <- in_annotation
   } else {
-    if(!in_column_anno_borders){
-      ha = HeatmapAnnotation(df = this_annotation_df,
-                             col = in_annotation_col)    
+    if(in_labels){
+      if(!in_column_anno_borders){
+        ha = HeatmapAnnotation(
+          df = this_annotation_df,
+          col = in_annotation_col,
+          text = anno_text(colnames(mat), offset = unit(1, "npc"), 
+                           just = "right", rot = 90))      
+      } else {
+        ha = HeatmapAnnotation(
+          df = this_annotation_df,
+          col = in_annotation_col,
+          text = anno_text(colnames(mat), offset = unit(1, "npc"), 
+                           just = "right", rot = 90),
+          gp = gpar(col="black"))
+      }
     } else {
-      ha = HeatmapAnnotation(df = this_annotation_df,
-                             col = in_annotation_col,
-                             gp = gpar(col="black"))          
+      if(!in_column_anno_borders){
+        ha = HeatmapAnnotation(df = this_annotation_df,
+                               col = in_annotation_col)    
+      } else {
+        ha = HeatmapAnnotation(df = this_annotation_df,
+                               col = in_annotation_col,
+                               gp = gpar(col="black"))          
+      }
     }
   }
   ht = Heatmap(mat_foo, col = col, name = "main", cluster_rows = FALSE, 
@@ -588,7 +566,7 @@ annotation_exposures_barplot <- function(in_exposures_df,
                heatmap_legend_param = list(at = rev(names(col)), 
                                            labels = rev(names(col))))
   
-  draw(ht, padding = unit(c(2, 20, 2, 2), "mm"), column_title = title,
+  draw(ht, padding = in_padding, column_title = title,
        annotation_legend_side=in_annotation_legend_side)
   
   decorate_heatmap_body("main", {
@@ -622,6 +600,203 @@ annotation_exposures_barplot <- function(in_exposures_df,
     
     upViewport()
   })
+}
+
+#' Plot the exposures of a cohort with different layers of annotation for 
+#' SNV and INDEL signatures
+#'
+#' The exposures \code{H}, determined by NMF or by \code{\link{LCD}}, are
+#' displayed as a stacked barplot by calling
+#' \code{\link[ComplexHeatmap]{Heatmap}}. The x-axis displays the PIDs (patient
+#' identifier or sample), the y-axis the counts attributed to the different
+#' signatures with their respective colours per PID. It is analogous to
+#' \code{\link{plot_exposures}}. As many layers of information as desired can be
+#' added via an annotation data frame. The annotation data is handled in a way
+#' similar to \code{\link{annotation_heatmap_exposures}}. In comparison to
+#' \code{\link{annotation_exposures_barplot}} allows this function to deal with
+#' a list of differn signature and mutation types. This function calls:
+#' \itemize{ \item \code{\link[ComplexHeatmap]{rowAnnotation}}, \item
+#' \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and \item
+#' \code{\link[ComplexHeatmap]{Heatmap}} }
+#'
+#' @details It might be necessary to install the newest version of the
+#' development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by
+#' Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+#' \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+#'
+#' @param in_exposures_list A list of numerical data frame encoding the
+#'   exposures \code{H} of different signature types, i.e. which signature
+#'   contributes how much to which PID (patient identifier or sample).
+#' @param in_signatures_ind_list A list of data frame containing meta
+#'   information about the each signature type individually
+#' @param in_subgroups_list A list of data frame indicating of each siganture
+#'   type which PID (patient or sample identifyier) belongs to which subgroup
+#' @param in_annotation_list A list data frame indicating which PID (patient or
+#'   sample identifyier) belongs to which subgroup for all layers of annotation
+#'   and a list indicating colour attributions for all layers of annotation for
+#'   each siganture type individually
+#' @param ylab String indicating the column name in \code{in_subgroups_df} to
+#'   take the subgroup information from.
+#' @param title Title for the plot to be created.
+#' @param in_labels Whether or not to show the names of the samples.
+#' @param in_barplot_borders Whether or not to show border lines in barplot
+#' @param in_column_anno_borders Whether or not to draw separating lines 
+#'   between the fields in the annotation
+#' @param in_annotation_legend_side Where to put the legends of the annotation
+#'   df, default is right.
+#' @param in_padding Parameter passed on to function
+#'   \code{\link[ComplexHeatmap]{draw}}
+#' @param in_annotation A full annotation object may also be provided by the
+#'   educated user.
+#' @param in_indel_sigs Tag which is default FALSE when whole genome data are
+#'   analysed the tag will be TRUE
+#'
+#' @details It might be necessary to install the newest version of the
+#' development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap}
+#' by Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+#' \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+#'
+#' @return The function doesn't return any value.
+#'
+#' @examples
+#'  NULL
+#'
+#' @seealso \code{\link[ComplexHeatmap]{HeatmapAnnotation}}
+#' @seealso \code{\link[ComplexHeatmap]{Heatmap}}
+#' @seealso \code{\link[ComplexHeatmap]{decorate_heatmap_body}}
+#' @seealso \code{\link{annotation_heatmap_exposures}}
+#' @seealso \code{\link{plot_exposures}}
+#'
+#' @import ComplexHeatmap
+#' @import circlize
+#' @export
+#' 
+annotation_exposures_list_barplot <- function(
+  in_exposures_list,
+  in_signatures_ind_list,
+  in_subgroups_list,
+  in_annotation_list,
+  ylab = NULL,
+  title = "",
+  in_indel_sigs = FALSE,
+  in_labels=FALSE,
+  in_barplot_borders=TRUE,
+  in_column_anno_borders=FALSE,
+  in_annotation_legend_side="right",
+  in_padding = unit(c(2, 20, 2, 2), "mm"),
+  in_annotation = NULL){
+  graphic_list <- lapply(seq(1:length(in_exposures_list)), function(i){
+    
+    order_ind <- order(in_subgroups_list[[i]]$index)
+    mat <- in_exposures_list[[i]][,order_ind]
+    this_annotation_df <- in_annotation_list[[i]]$annotation_df[order_ind,]
+    col <- in_signatures_ind_list[[i]]$colour
+    
+    names(col) = rownames(mat)
+    mat_foo= matrix(rep(rownames(mat), ncol(mat)), nrow = nrow(mat))
+    
+    if(!is.null(in_annotation)){
+      ha <- in_annotation_list
+    } else {
+      if(in_labels){
+        if(!in_column_anno_borders){
+          ha = HeatmapAnnotation(
+            df = this_annotation_df,
+            col = in_annotation_list[[i]]$annotation_col,
+            text = anno_text(colnames(mat), 
+                             offset = unit(1, "npc"), 
+                             just = "right", 
+                             rot = 45, 
+                             gp = gpar(fontsize = 9)))      
+        } else {
+          ha = HeatmapAnnotation(
+            df = this_annotation_df,
+            col = in_annotation_list[[i]]$annotation_col,
+            text = anno_text(colnames(mat), 
+                             offset = unit(1, "npc"), 
+                             just = "right",
+                             rot = 45, 
+                             gp = gpar(fontsize = 9)),
+            gp = gpar(col="black"))
+        }
+      } else {
+        if(!in_column_anno_borders){
+          ha = HeatmapAnnotation(df = this_annotation_df,
+                                 col = in_annotation_list[[i]]$annotation_col)
+        } else {
+          ha = HeatmapAnnotation(df = this_annotation_df,
+                                 col = in_annotation_list[[i]]$annotation_col,
+                                 gp = gpar(col="black"))          
+        }
+      }
+    }
+    ht = Heatmap(mat_foo, col = col, name = "main", cluster_rows = FALSE, 
+                 cluster_columns = FALSE,
+                 rect_gp = gpar(type = "none"), bottom_annotation = ha,
+                 heatmap_legend_param = list(at = rev(names(col)), 
+                                             labels = rev(names(col))))
+    plot = grid.grabExpr({
+      draw(ht, padding = in_padding, column_title = title,
+           annotation_legend_side=in_annotation_legend_side)
+      
+      decorate_heatmap_body("main", {
+        pushViewport(viewport(xscale = c(0, ncol(mat)),
+                              yscale = c(0, max(colSums(mat)))))
+        if(in_barplot_borders) {
+          for(i in seq_len(ncol(mat))) {
+            x = i - 0.5
+            for(j in seq_len(nrow(mat))) {
+              y = sum(mat[1:j, i])
+              grid.rect(x, y, width = 0.9, height = mat[j, i], just = c("top"),
+                        default.units = "native", gp = gpar(fill = col[j]))
+            }
+          }
+        } else {
+          for(i in seq_len(ncol(mat))) {
+            x = i - 0.5
+            for(j in seq_len(nrow(mat))) {
+              y = sum(mat[1:j, i])
+              grid.rect(x, y, width = 0.9, height = mat[j, i], just = c("top"),
+                        default.units = "native", gp = gpar(fill = col[j],
+                                                            col = NA))
+            }
+          }      
+        }
+        grid.yaxis(gp=gpar(fontsize=8))
+        if(!is.null(ylab)){
+          grid.text(ylab, x = unit(0, "npc") - unit(15, "mm"), 
+                    just = "left", rot = 90)      
+        }    
+        
+        upViewport()
+      })
+    })
+    return(list(mat=mat,
+                ha=ha,
+                ht=ht,
+                plot=plot))
+  })  
+  
+  names(graphic_list) <- names(in_exposures_list)
+  
+  grid.newpage()
+  
+  if(!in_indel_sigs){
+    pushViewport(viewport(height=1, layout = grid.layout(nrow = 1, ncol = 2)))
+  }else if(in_indel_sigs){
+    pushViewport(viewport(height=1, layout = grid.layout(nrow = 2, ncol = 2)))
+  }
+  pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 1))
+  grid.draw(graphic_list$cosmic_df$plot)
+  popViewport()
+  pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
+  grid.draw(graphic_list$pcawg_df$plot)
+  popViewport()
+  if(in_indel_sigs){
+    pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
+    grid.draw(graphic_list$indel_df$plot)
+    popViewport()
+  }
 }
 
 
@@ -784,7 +959,7 @@ plot_SMC_old <- function(number_of_strata,output_path,decomposition_method,
     horizontal_temp_stop <- 
       (horizontal_temp_start - 1) + horizontal_big_element_width
     vertical_temp_start <- vertical_temp_stop + 1
-    vertical_temp_stop <- (vertical_temp_start - 1) + vertical_element_height    
+    vertical_temp_stop <- (vertical_temp_start - 1)+vertical_element_height    
     print(plot_list_abs[[i]], 
           vp = vplayout(vertical_temp_start:vertical_temp_stop, 
                         horizontal_temp_start:horizontal_temp_stop))
@@ -936,54 +1111,42 @@ plot_group_facet <-
 #' Plot results of the Stratification of a Mutational Catalogue
 #'
 #' Plot a big composite figure with 3 columns: in the left column the per-PID
-#' absolute exposures will be shown, in the middle column the per_PID
-#' relative or normalized exposures will be shown, in the right column the
-#' cohort-wide exposures are shown (averaged over PIDs).
+#' absolute exposures will be shown, in the middle column the per_PID relative
+#' or normalized exposures will be shown, in the right column the cohort-wide
+#' exposures are shown (averaged over PIDs).
 #'
-#' @param number_of_strata
-#'  Number of strata as deduced from \code{link{SMC}}
-#' @param output_path
-#'  Path to file where the results are going to be stored. If NULL, the results
-#'  will be plotted to the running environment.
-#' @param decomposition_method
-#'  String for the filename of the generated barplot.
-#' @param number_of_sigs
-#'  Number of signatures
-#' @param name_list
-#'  Names of the contructed strata.
-#' @param exposures_strata_list
-#'  The list of \code{s} strata specific exposures Hi, all are numerical data 
-#'  frames with \code{l} rows and \code{m} columns, \code{l} being the number
-#'  of signatures and \code{m} being the number of samples
-#' @param this_signatures_ind_df
-#'  A data frame containing meta information about the signatures
-#' @param this_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup
-#' @param in_strata_order_ind
-#'  Index vector defining reordering of the strata
-#' @param exposures_both_rel_df_list
-#'  A list of \code{s} strata specific cohortwide (i.e. averaged over cohort)
-#'  normalized exposures
-#' @param cohort_method_flag
-#'  Either or several of \code{c("all_PIDs","cohort","norm_PIDs")}, 
-#'  representing alternative ways to average over the cohort.
-#' @param fig_width
-#'  Width of the figure to be plotted
-#' @param fig_height
-#'  Height of the figure to be plotted
-#' @param fig_type
-#'  png or pdf
-#' @param in_label_orientation
-#'  Whether or not to turn the labels on the x-axis.
-#' @param this_sum_ind
-#'  Optional set of indices for reordering the PIDs
-#'  
+#' @param number_of_strata Number of strata as deduced from \code{link{SMC}}
+#' @param output_path Path to file where the results are going to be stored.
+#'  If NULL, the results will be plotted to the running environment.
+#' @param decomposition_method String for the filename of the generated 
+#'  barplot.
+#' @param number_of_sigs Number of signatures
+#' @param name_list Names of the contructed strata.
+#' @param exposures_strata_list The list of \code{s} strata specific exposures
+#'   Hi, all are numerical data frames with \code{l} rows and \code{m} columns,
+#'   \code{l} being the number of signatures and \code{m} being the number of
+#'   samples
+#' @param this_signatures_ind_df A data frame containing meta information about
+#'   the signatures
+#' @param this_subgroups_df A data frame indicating which PID (patient or 
+#'   sample identifyier) belongs to which subgroup
+#' @param in_strata_order_ind Index vector defining reordering of the strata
+#' @param exposures_both_rel_df_list A list of \code{s} strata specific
+#'   cohortwide (i.e. averaged over cohort) normalized exposures
+#' @param cohort_method_flag Either or several of
+#'   \code{c("all_PIDs","cohort","norm_PIDs")}, representing alternative ways 
+#'   to average over the cohort.
+#' @param fig_width Width of the figure to be plotted
+#' @param fig_height Height of the figure to be plotted
+#' @param fig_type png or pdf
+#' @param in_label_orientation Whether or not to turn the labels on the x-axis.
+#' @param this_sum_ind Optional set of indices for reordering the PIDs
+#'
 #' @examples
 #' NULL
-#'  
+#'
 #' @return The function doesn't return any value.
-#' 
+#'
 #' @importFrom grDevices pdf png dev.off
 #' @import ggplot2
 #' @import grid
@@ -1109,34 +1272,32 @@ stat_plot_subgroups_old <- function(in_exposures_df,in_subgroups_df,
 
 
 #' Plot averaged signature exposures per subgroup
-#' 
+#'
 #' Plot one averaged signature exposure pattern per subgroup. Uses
 #' \code{\link{split_exposures_by_subgroups}}.
-#' 
-#' @param in_exposures_df
-#'  Numerical data frame of the exposures (i.e. contributions of the
-#'  different signatures to the number of point mutations per PID)
-#' @param in_signatures_ind_df
-#'  Data frame carrying additional information on the signatures
-#' @param in_subgroups_df
-#'  Data frame indicating which PID belongs to which subgroup
-#' @param in_subgroups.field
-#'  Name indicating which column in \code{in_subgroups_df} contains the
-#'  subgroup information
-#' @param in_PID.field
-#'  Name indicating which column in \code{in_subgroups_df} contains the
-#'  PID information 
-#' @param in_colour_vector
-#'  If non-null, specifies the colours attributed to the subgroups 
-#'  
+#'
+#' @param in_exposures_df Numerical data frame of the exposures (i.e.
+#'   contributions of the different signatures to the number of point mutations
+#'   per PID)
+#' @param in_signatures_ind_df Data frame carrying additional information on the
+#'   signatures
+#' @param in_subgroups_df Data frame indicating which PID belongs to which
+#'   subgroup
+#' @param in_subgroups.field Name indicating which column in
+#'   \code{in_subgroups_df} contains the subgroup information
+#' @param in_PID.field Name indicating which column in \code{in_subgroups_df}
+#'   contains the PID information
+#' @param in_colour_vector If non-null, specifies the colours attributed to the
+#'   subgroups
+#'
 #' @return The function doesn't return any value, it plots instead.
-#' 
+#'
 #' @seealso \code{\link{split_exposures_by_subgroups}}
-#' 
+#'
 #' @examples
 #'  NULL
 #'
-#' @importFrom grDevices rainbow  
+#' @importFrom grDevices rainbow
 #' @export
 #' 
 stat_plot_subgroups <- function(in_exposures_df,in_subgroups_df,
@@ -1222,7 +1383,20 @@ stat_plot_subgroups <- function(in_exposures_df,in_subgroups_df,
           panel.background = element_rect(fill=NA, colour="black"),
           panel.border=element_rect(fill=NA, colour="black")) +
     guides(size=FALSE)
-  return(list(facet_plot=p1,dodged_plot=q))
+  plot_df <- plot_df[which(plot_df$subgroup != "all"),]
+  r <- ggplot(plot_df,environment=.e,
+              aes_string(x="sig",y="mean",group="subgroup")) +
+    geom_bar(aes_string(fill="subgroup",size=0.3),
+             stat='identity',position="dodge",width=.7,size=1) +
+    scale_fill_manual(name="subgroup",
+                      values=my_palette) +
+    geom_errorbar(aes(ymin=min,ymax=max),width=0.5,
+                  position=position_dodge(width=0.7)) +
+    labs(y = "exposures", x = "signatures") + 
+    theme(panel.background = element_rect(fill=NA, colour="black"),
+          panel.border=element_rect(fill=NA, colour="black")) +
+    guides(size=FALSE)
+  return(list(facet_plot = p1, dodged_plot = q, dodgedSimple_plot = r))
 }
 
 
@@ -1230,58 +1404,39 @@ stat_plot_subgroups <- function(in_exposures_df,in_subgroups_df,
 #' Cluster the PIDs according to their signature exposures
 #'
 #' The PIDs are clustered according to their signature exposures by calling
-#' first creating a distance matrix:
-#' \itemize{
-#'  \item \code{\link{dist}}, then
-#'  \item \code{\link{hclust}} and then
-#'  \item \code{\link[dendextend]{labels_colors}} to colour the labels (the
-#'    text) of the leaves in the dendrogram.
-#' }
-#' Typically one colour per subgroup.
+#' first creating a distance matrix: \itemize{ \item \code{\link{dist}}, then
+#' \item \code{\link{hclust}} and then \item
+#' \code{\link[dendextend]{labels_colors}} to colour the labels (the text) of
+#' the leaves in the dendrogram. } Typically one colour per subgroup.
 #'
-#' @param in_exposures_df
-#'  Numerical data frame encoding the exposures \code{H}, i.e. which
-#'  signature contributes how much to which PID (patient identifier or sample).
-#' @param in_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup
-#' @param in_method
-#'  Method of the clustering to be supplied to \code{\link{dist}}. Can be
-#'  either of: \code{euclidean}, \code{maximum}, \code{manhattan}, 
-#'  \code{canberra}, \code{binary} or \code{minkowski}
-#' @param in_subgroup_column
-#'  Indicates the name of the column in which the subgroup information
-#'  is encoded in \code{in_subgroups_df}
-#' @param in_palette
-#'  Palette with colours or colour codes for the labels (the text) of the 
-#'  leaves in the dendrogram. Typically one colour per subgroup. If none is
-#'  specified, a rainbow palette of the length of the number of subgroups will
-#'  be used as default.
-#' @param in_cutoff
-#'  A numeric value less than 1. Signatures from within \code{W}
-#'  with an overall exposure less than \code{in_cutoff} will be
-#'  discarded for the clustering.
-#' @param in_filename
-#'  A path to save the dendrogram. If none is specified, the figure will be 
-#'  plotted to the running environment.
-#' @param in_shift_factor
-#'  Graphical parameter to adjust figure to be created
-#' @param in_cex
-#'  Graphical parameter to adjust figure to be created
-#' @param in_title
-#'  Title in the figure to be created under \code{in_filename}
-#' @param in_plot_flag
-#'  Whether or not to display the dendrogram
+#' @param in_exposures_df Numerical data frame encoding the exposures \code{H},
+#'   i.e. which signature contributes how much to which PID (patient identifier
+#'   or sample).
+#' @param in_subgroups_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup
+#' @param in_method Method of the clustering to be supplied to
+#'   \code{\link{dist}}. Can be either of: \code{euclidean}, \code{maximum},
+#'   \code{manhattan}, \code{canberra}, \code{binary} or \code{minkowski}
+#' @param in_subgroup_column Indicates the name of the column in which the
+#'   subgroup information is encoded in \code{in_subgroups_df}
+#' @param in_palette Palette with colours or colour codes for the labels (the
+#'   text) of the leaves in the dendrogram. Typically one colour per subgroup.
+#'   If none is specified, a rainbow palette of the length of the number of
+#'   subgroups will be used as default.
+#' @param in_cutoff A numeric value less than 1. Signatures from within \code{W}
+#'   with an overall exposure less than \code{in_cutoff} will be discarded for
+#'   the clustering.
+#' @param in_filename A path to save the dendrogram. If none is specified, the
+#'   figure will be plotted to the running environment.
+#' @param in_shift_factor Graphical parameter to adjust figure to be created
+#' @param in_cex Graphical parameter to adjust figure to be created
+#' @param in_title Title in the figure to be created under \code{in_filename}
+#' @param in_plot_flag Whether or not to display the dendrogram
 #'
-#' @return A list with entries
-#'  \code{hclust} and
-#'  \code{dendrogram}.
-#' \itemize{
-#'  \item \code{hclust}:
-#'    The object created by \code{\link{hclust}}
-#'  \item \code{dendrogram}:
-#'    The above object wrapped in \code{\link{as.dendrogram}}
-#' }
+#' @return A list with entries \code{hclust} and \code{dendrogram}. \itemize{
+#'   \item \code{hclust}: The object created by \code{\link{hclust}} \item
+#'   \code{dendrogram}: The above object wrapped in \code{\link{as.dendrogram}}
+#'   }
 #'
 #' @examples
 #'  data(lymphoma_cohort_LCD_results)
@@ -1294,7 +1449,7 @@ stat_plot_subgroups <- function(in_exposures_df,in_subgroups_df,
 #' @seealso \code{\link{dist}}
 #' @seealso \code{\link[dendextend]{labels_colors}}
 #'
-#' @importFrom grDevices rainbow png dev.off 
+#' @importFrom grDevices rainbow png dev.off
 #' @import dendextend
 #' @export
 #' 
@@ -1342,63 +1497,50 @@ hclust_exposures <- function(in_exposures_df,in_subgroups_df,
 }
 
 
-#' Heatmap to cluster the PIDs on their signature exposures (ComplexHeatmap)
+#' Heatmap to cluster the PIDs on their signature 
+#' exposures (ComplexHeatmap)
 #'
 #' The PIDs are clustered according to their signature exposures. uses package
-#' \pkg{ComplexHeatmap} by Zuguang Gu. This function calls: 
-#' \itemize{
-#'  \item \code{\link[ComplexHeatmap]{rowAnnotation}},
-#'  \item \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and
-#'  \item \code{\link[ComplexHeatmap]{Heatmap}}
-#' }
+#' \pkg{ComplexHeatmap} by Zuguang Gu. This function calls: \itemize{ \item
+#' \code{\link[ComplexHeatmap]{rowAnnotation}}, \item
+#' \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and \item
+#' \code{\link[ComplexHeatmap]{Heatmap}} }
 #'
-#' @param in_exposures_df
-#'  Numerical data frame encoding the exposures \code{H}, i.e. which
-#'  signature contributes how much to which PID (patient identifier or sample).
-#' @param in_subgroups_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup
-#' @param in_signatures_ind_df
-#'  A data frame containing meta information about the signatures, especially 
-#'  the asserted colour
-#' @param in_data_type
-#'  Title in the figure
-#' @param in_method
-#'  Method of the clustering to be supplied to \code{\link{dist}}. Can be
-#'  either of: \code{euclidean}, \code{maximum}, \code{manhattan}, 
-#'  \code{canberra}, \code{binary} or \code{minkowski}
-#' @param in_subgroup_column
-#'  Indicates the name of the column in which the subgroup information
-#'  is encoded in \code{in_subgroups_df}
-#' @param in_subgroup_colour_column
-#'  Indicates the name of the column in which the colour information for
-#'  subgroups is encoded in \code{in_subgroups_df}. If NULL, a rainbow palette
-#'  is used instead.
-#' @param in_palette
-#'  Palette with colours for the heatmap. Default is
-#'  \code{colorRamp2(c(0, 0.2, 0.4, 0.6), c('white','yellow','orange','red'))}
-#' @param in_cutoff
-#'  A numeric value less than 1. Signatures from within \code{W}
-#'  with an overall exposure less than \code{in_cutoff} will be
-#'  discarded for the clustering.
-#' @param in_filename
-#'  A path to save the heatmap. If none is specified, the figure will be 
-#'  plotted to the running environment.
-#' @param in_column_anno_borders
-#'  Whether or not to draw separating lines between the fields in the 
-#'  annotation
-#' @param in_row_anno_borders
-#'  Whether or not to draw separating lines between the fields in the 
-#'  annotation
+#' @param in_exposures_df Numerical data frame encoding the exposures \code{H},
+#'   i.e. which signature contributes how much to which PID (patient identifier
+#'   or sample).
+#' @param in_subgroups_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup
+#' @param in_signatures_ind_df A data frame containing meta information about
+#'   the signatures, especially the asserted colour
+#' @param in_data_type Title in the figure
+#' @param in_method Method of the clustering to be supplied to
+#'   \code{\link{dist}}. Can be either of: \code{euclidean}, \code{maximum},
+#'   \code{manhattan}, \code{canberra}, \code{binary} or \code{minkowski}
+#' @param in_subgroup_column Indicates the name of the column in which the
+#'   subgroup information is encoded in \code{in_subgroups_df}
+#' @param in_subgroup_colour_column Indicates the name of the column in which
+#'   the colour information for subgroups is encoded in \code{in_subgroups_df}.
+#'   If NULL, a rainbow palette is used instead.
+#' @param in_palette Palette with colours for the heatmap. Default is
+#'   \code{colorRamp2(c(0, 0.2, 0.4, 0.6), c('white','yellow','orange','red'))}
+#' @param in_cutoff A numeric value less than 1. Signatures from within \code{W}
+#'   with an overall exposure less than \code{in_cutoff} will be discarded for
+#'   the clustering.
+#' @param in_filename A path to save the heatmap. If none is specified, the
+#'   figure will be plotted to the running environment.
+#' @param in_column_anno_borders Whether or not to draw separating lines between
+#'   the fields in the annotation
+#' @param in_row_anno_borders Whether or not to draw separating lines between
+#'   the fields in the annotation
 #'
-#' @details
-#'  It might be necessary to install the newest version of the development 
-#'  branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by Zuguang 
-#'  Gu: \code{devtools::install_github("jokergoo/circlize")} and
-#'  \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+#' @details It might be necessary to install the newest version of the
+#' development branch of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by
+#' Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+#' \code{devtools::install_github("jokergoo/ComplexHeatmap")}
 #'
 #' @return The function doesn't return any value.
-#' 
+#'
 #' @examples
 #'  data(lymphoma_cohort_LCD_results)
 #'  complex_heatmap_exposures(
@@ -1464,71 +1606,59 @@ complex_heatmap_exposures <- function(in_exposures_df,in_subgroups_df,
     clustering_distance_rows = in_method,
     clustering_distance_columns = in_method,
     heatmap_legend_param = list(title = in_data_type))
-  #draw(ht_list, row_dend_side = 'left')
-  draw(ht_list)
+    #draw(ht_list, row_dend_side = 'left')
+    draw(ht_list)
 }
 
 
-#' Heatmap to cluster the PIDs on their signature exposures (ComplexHeatmap)
+#' Heatmap to cluster the PIDs on their signature 
+#' exposures (ComplexHeatmap)
 #'
 #' The PIDs are clustered according to their signature exposures. The procedure
 #' is analogous to \code{\link{complex_heatmap_exposures}}, but enabling more
-#' than one annotation row for the PIDs. This function calls: 
-#' \itemize{
-#'  \item \code{\link[ComplexHeatmap]{rowAnnotation}},
-#'  \item \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and
-#'  \item \code{\link[ComplexHeatmap]{Heatmap}}
-#' }
+#' than one annotation row for the PIDs. This function calls: \itemize{ \item
+#' \code{\link[ComplexHeatmap]{rowAnnotation}}, \item
+#' \code{\link[ComplexHeatmap]{HeatmapAnnotation}} and \item
+#' \code{\link[ComplexHeatmap]{Heatmap}} }
 #'
-#' @param in_exposures_df
-#'  Numerical data frame encoding the exposures \code{H}, i.e. which
-#'  signature contributes how much to which PID (patient identifier or sample).
-#' @param in_annotation_df
-#'  A data frame indicating which PID (patient or sample identifyier) belongs
-#'  to which subgroup for all layers of annotation
-#' @param in_annotation_col
-#'  A list indicating colour attributions for all layers of annotation
-#' @param in_signatures_ind_df
-#'  A data frame containing meta information about the signatures, especially
-#'  the asserted colour
-#' @param in_data_type
-#'  Title in the figure
-#' @param in_method
-#'  Method of the clustering to be supplied to \code{\link{dist}}. Can be 
-#'  either of: \code{euclidean}, \code{maximum}, \code{manhattan}, 
-#'  \code{canberra}, \code{binary} or \code{minkowski}
-#' @param in_palette
-#'  Palette with colours or colour codes for the heatmap. Default is
-#'  \code{colorRamp2(c(0, 0.2, 0.4, 0.6), c('white','yellow','orange','red'))}
-#' @param in_cutoff
-#'  A numeric value less than 1. Signatures from within \code{W}
-#'  with an overall exposure less than \code{in_cutoff} will be
-#'  discarded for the clustering.
-#' @param in_filename
-#'  A path to save the heatmap. If none is specified, the figure will be 
-#'  plotted to the running environment.
-#' @param in_column_anno_borders
-#'  Whether or not to draw separating lines between the fields in the 
-#'  annotation
-#' @param in_row_anno_borders
-#'  Whether or not to draw separating lines between the fields in the 
-#'  annotation
-#' @param in_show_PIDs
-#'  Whether or not to show the PIDs on the x-axis
-#' @param in_annotation_legend_side
-#'  Where to put the legends of the annotation df, default is right.
+#' @param in_exposures_df Numerical data frame encoding the exposures \code{H},
+#'   i.e. which signature contributes how much to which PID (patient identifier
+#'   or sample).
+#' @param in_annotation_df A data frame indicating which PID (patient or sample
+#'   identifyier) belongs to which subgroup for all layers of annotation
+#' @param in_annotation_col A list indicating colour attributions for all layers
+#'   of annotation
+#' @param in_signatures_ind_df A data frame containing meta information about
+#'   the signatures, especially the asserted colour
+#' @param in_data_type Title in the figure
+#' @param in_method Method of the clustering to be supplied to
+#'   \code{\link{dist}}. Can be either of: \code{euclidean}, \code{maximum},
+#'   \code{manhattan}, \code{canberra}, \code{binary} or \code{minkowski}
+#' @param in_palette Palette with colours or colour codes for the heatmap.
+#'   Default is \code{colorRamp2(c(0, 0.2, 0.4, 0.6),
+#'   c('white','yellow','orange','red'))}
+#' @param in_cutoff A numeric value less than 1. Signatures from within \code{W}
+#'   with an overall exposure less than \code{in_cutoff} will be discarded for
+#'   the clustering.
+#' @param in_filename A path to save the heatmap. If none is specified, the
+#'   figure will be plotted to the running environment.
+#' @param in_column_anno_borders Whether or not to draw separating lines between
+#'   the fields in the annotation
+#' @param in_row_anno_borders Whether or not to draw separating lines between
+#'   the fields in the annotation
+#' @param in_show_PIDs Whether or not to show the PIDs on the x-axis
+#' @param in_annotation_legend_side Where to put the legends of the annotation
+#'   df, default is right.
 #'
-#' @details
-#'  One additional parameter, in_show_legend_bool_vector, indicating which 
-#'  legends to display, is planned but deactivated in this version of the 
-#'  package. In order to use this features,
-#'  it will be necessary to install the newest version of 
-#'  the packages \pkg{circlize} and \pkg{ComplexHeatmap} by Zuguang 
-#'  Gu: \code{devtools::install_github("jokergoo/circlize")} and
-#'  \code{devtools::install_github("jokergoo/ComplexHeatmap")}
+#' @details One additional parameter, in_show_legend_bool_vector, indicating
+#' which legends to display, is planned but deactivated in this version of the
+#' package. In order to use this features, it will be necessary to install the
+#' newest version of the packages \pkg{circlize} and \pkg{ComplexHeatmap} by
+#' Zuguang Gu: \code{devtools::install_github("jokergoo/circlize")} and
+#' \code{devtools::install_github("jokergoo/ComplexHeatmap")}
 #'
 #' @return The function doesn't return any value.
-#' 
+#'
 #' @examples
 #'  NULL
 #'
@@ -1570,18 +1700,18 @@ annotation_heatmap_exposures <-
     column_anno = HeatmapAnnotation(
       df = in_annotation_df, 
       col = in_annotation_col#,
-      # show_legend=in_show_legend_bool_vector,
-      # show_annotation_name=TRUE,
-      # annotation_name_offset=unit(2,"mm")
+      #show_legend=in_show_legend_bool_vector,
+      #show_annotation_name=TRUE,
+      #annotation_name_offset=unit(2,"mm")
       )
   } else {
     column_anno = HeatmapAnnotation(
       df = in_annotation_df, 
       col = in_annotation_col,
       gp = gpar(col="black")#,
-      # show_legend=in_show_legend_bool_vector,
-      # show_annotation_name=TRUE,
-      # annotation_name_offset=unit(2,"mm")
+      #show_legend=in_show_legend_bool_vector,
+      #show_annotation_name=TRUE,
+      #annotation_name_offset=unit(2,"mm")
       )    
   }
   if(in_show_PIDs){
@@ -1609,58 +1739,54 @@ annotation_heatmap_exposures <-
 #'
 #' A trellis is a plot structure which allows space optimized multi-panel multi
 #' track plots. This function uses the package \pkg{gtrellis} developed by
-#' Zuguang Gu, also available at 
+#' Zuguang Gu, also available at
 #' \url{http://www.bioconductor.org/packages/release/bioc/html/gtrellis.html}.
 #' The graphics in the tracks within a gtrellis plot are mostly drawn with
-#' functions from the package \pkg{grid}. Note that for technical reasons,
-#' the column indicating the chromosome MUST have the name \emph{chr}
-#' and be the first column in the data frame supplied to the gtrellis
-#' functions. Therefore reformatting is performed in this function before
-#' calling gtrellis functions.
+#' functions from the package \pkg{grid}. Note that for technical reasons, the
+#' column indicating the chromosome MUST have the name \emph{chr} and be the
+#' first column in the data frame supplied to the gtrellis functions. Therefore
+#' reformatting is performed in this function before calling gtrellis functions.
 #'
-#' @param in_rainfall_dat
-#'  Data frame which has to contain at least columns for chromosome,
-#'  position, intermutational distance and colour information
-#' @param in_point_size
-#'  size of the points in the rainfall plot to be created has to be
-#'  provided with appropriate units, e.g. in_point_size=unit(0.5,"mm")
-#' @param in_rect_list
-#'  Optional argument, if present, will lead to highlighting of specified
-#'  regions by coloured but transparent rectangles
-#' @param in_title
-#'  Title in the figure to be created.
-#' @param in_CHROM.field
-#'  String indicating which column of \code{in_rainfall_dat} carries the
-#'  chromosome information
-#' @param in_POS.field
-#'  String indicating which column of \code{in_rainfall_dat} carries the
-#'  position information
-#' @param in_dist.field
-#'  String indicating which column of \code{in_rainfall_dat} carries the
-#'  intermutational distance information
-#' @param in_col.field
-#'  String indicating which column of \code{in_rainfall_dat} carries the
-#'  colour information encoding the nucleotide exchange
+#' @param in_rainfall_dat Data frame which has to contain at least columns for
+#'   chromosome, position, intermutational distance and colour information
+#' @param in_point_size size of the points in the rainfall plot to be created
+#'   has to be provided with appropriate units, e.g.
+#'   in_point_size=unit(0.5,"mm")
+#' @param in_rect_list Optional argument, if present, will lead to highlighting
+#'   of specified regions by coloured but transparent rectangles
+#' @param in_title Title in the figure to be created.
+#' @param in_CHROM.field String indicating which column of
+#'   \code{in_rainfall_dat} carries the chromosome information
+#' @param in_POS.field String indicating which column of \code{in_rainfall_dat}
+#'   carries the position information
+#' @param in_dist.field String indicating which column of \code{in_rainfall_dat}
+#'   carries the intermutational distance information
+#' @param in_col.field String indicating which column of \code{in_rainfall_dat}
+#'   carries the colour information encoding the nucleotide exchange
 #'
 #' @return The function doesn't return any value.
-#' 
+#'
 #' @examples
 #'  data(lymphoma_test)
 #'  choice_PID <- "4121361"
 #'  PID_df <- subset(lymphoma_test_df,PID==choice_PID)
-#'  trellis_rainfall_plot(PID_df,in_point_size=unit(0.5,"mm"))
-#'  
+#'  trellis_rainfall_plot_old(PID_df,in_point_size=unit(0.5,"mm"))
+#'
 #' @seealso \code{\link[gtrellis]{gtrellis_layout}}
 #' @seealso \code{\link[gtrellis]{add_track}}
 #' @seealso \code{\link[grid]{grid.points}}
-#' 
+#'
 #' @import gtrellis
 #' @export
 #' 
-trellis_rainfall_plot <- function(in_rainfall_dat,in_point_size=unit(1,"mm"),
-                                  in_rect_list=NULL,in_title="",
-                                  in_CHROM.field="CHROM",in_POS.field="POS",
-                                  in_dist.field="dist",in_col.field="col") {
+trellis_rainfall_plot_old <- function(in_rainfall_dat,
+                                      in_point_size=unit(1,"mm"),
+                                      in_rect_list=NULL,
+                                      in_title="",
+                                      in_CHROM.field="CHROM",
+                                      in_POS.field="POS",
+                                      in_dist.field="dist",
+                                      in_col.field="col") {
   # account for input data type
   if(inherits(in_rainfall_dat, "VRanges")) {
     if(!(in_dist.field %in% names(mcols(in_rainfall_dat)))){
@@ -1706,7 +1832,341 @@ trellis_rainfall_plot <- function(in_rainfall_dat,in_point_size=unit(1,"mm"),
   col_ind <- which(names(in_rainfall_dat)==in_col.field)
   names(in_rainfall_dat)[CHROM_ind] <- "chr"
   rainfall_dat <- in_rainfall_dat[,c(CHROM_ind,POS_ind,dist_ind,col_ind)]
-  gtrellis_layout(n_track = 1, ncol = 5, byrow = FALSE,
+  gtrellis::gtrellis_layout(n_track = 1, ncol = 5, byrow = FALSE,
+                  title=in_title,
+                  track_axis = TRUE,
+                  track_height = unit.c(unit(1, "null")), 
+                  track_ylim = c(0, 8),
+                  track_ylab = c("intermut dist"),
+                  add_name_track = TRUE, add_ideogram_track = TRUE)
+  ## draw partially transparent rectangular regions if desired
+  if(!is.null(in_rect_list)){
+    for(i in seq_len(length(in_rect_list))){
+      temp_list <- in_rect_list[[i]]
+      temp_color <- temp_list$col
+      if(inherits(temp_list$df, "data.frame")) temp_df <- temp_list$df
+      else if(inherits(temp_list$df, "GRanges")){
+        temp_df <- as.data.frame(temp_list$df)
+      }
+      temp_alpha <- temp_list$alpha
+      add_track(temp_df, track = 2, panel_fun = function(gr) {
+        grid.rect(gr[[2]], unit(0, "npc"), width=gr[[4]], 
+                  height=unit(1, "npc"), default.units = "native", 
+                  hjust=0, vjust=0, 
+                  gp = gpar(col=temp_color,fill =temp_color,alpha=temp_alpha))
+      })
+    }
+  }
+  # track for rainfall plots
+  add_track(rainfall_dat, track = 2, panel_fun = function(gr) {
+    x = gr[[2]]
+    y = log10(gr[[3]])
+    grid.points(x, y, pch = 16, size = in_point_size, gp = gpar(col = gr[[4]]))
+  }) 
+}
+
+
+#' Create a rainfall plot in a trellis structure
+#'
+#' A trellis is a plot structure which allows space optimized multi-panel multi
+#' track plots. This function uses the package \pkg{gtrellis} developed by
+#' Zuguang Gu, also available at 
+#' \url{http://www.bioconductor.org/packages/release/bioc/html/gtrellis.html}.
+#' The graphics in the tracks within a gtrellis plot are mostly drawn with
+#' functions from the package \pkg{grid}. Note that for technical reasons,
+#' the column indicating the chromosome MUST have the name \emph{chr}
+#' and be the first column in the data frame supplied to the gtrellis
+#' functions. Therefore reformatting is performed in this function before
+#' calling gtrellis functions.
+#'
+#' @param in_rainfall_dat
+#'  Data frame which has to contain at least columns for chromosome,
+#'  position, intermutational distance and colour information
+#' @param in_point_size
+#'  size of the points in the rainfall plot to be created has to be
+#'  provided with appropriate units, e.g. in_point_size=unit(0.5,"mm")
+#' @param in_rect_list
+#'  Optional argument, if present, will lead to highlighting of specified
+#'  regions by coloured but transparent rectangles
+#' @param in_title
+#'  Title in the figure to be created.
+#' @param in_CHROM.field
+#'  String indicating which column of \code{in_rainfall_dat} carries the
+#'  chromosome information
+#' @param in_POS.field
+#'  String indicating which column of \code{in_rainfall_dat} carries the
+#'  position information
+#' @param in_dist.field
+#'  String indicating which column of \code{in_rainfall_dat} carries the
+#'  intermutational distance information
+#' @param in_col.field
+#'  String indicating which column of \code{in_rainfall_dat} carries the
+#'  colour information encoding the nucleotide exchange
+#' @param ...
+#'  Arguments passed on to \code{\link[gtrellis]{gtrellis_layout}}
+#'
+#' @return The function doesn't return any value.
+#' 
+#' @examples
+#'  data(lymphoma_test)
+#'  choice_PID <- "4121361"
+#'  PID_df <- subset(lymphoma_test_df,PID == choice_PID)
+#'  trellis_rainfall_plot(PID_df,in_point_size = unit(0.5, "mm"),
+#'                          in_CHROM.field="CHROM",in_POS.field="POS",
+#'                          in_dist.field="dist",in_col.field="col")
+#'  
+#' @seealso \code{\link[gtrellis]{gtrellis_layout}}
+#' @seealso \code{\link[gtrellis]{add_track}}
+#' @seealso \code{\link[grid]{grid.points}}
+#' 
+#' @import gtrellis
+#' @export
+#' 
+temp_trellis_rainfall_plot <- function(in_rainfall_dat,in_point_size=unit(1,"mm"),
+                                       in_rect_list=NULL,in_title="",
+                                       in_CHROM.field="CHROM",in_POS.field="POS",
+                                       in_dist.field="dist",in_col.field="col",
+                                       ...) {
+  # account for input data type
+  if(inherits(in_rainfall_dat, "VRanges")) {
+    if(!(in_dist.field %in% names(mcols(in_rainfall_dat)))){
+      in_rainfall_dat <- annotate_intermut_dist_PID(in_rainfall_dat)
+    }
+    choice_column_vector <- c("seqnames", "start", "ref", "alt",
+                              "dist", in_col.field)
+    in_rainfall_dat <- as.data.frame(in_rainfall_dat)
+    colum_names <- intersect(names(in_rainfall_dat),choice_column_vector)
+    in_rainfall_dat <- in_rainfall_dat[,colum_names]
+    names(in_rainfall_dat) <- 
+      gsub("dist", in_dist.field, names(in_rainfall_dat))
+    names(in_rainfall_dat) <- 
+      gsub("seqnames", in_CHROM.field, names(in_rainfall_dat))
+    names(in_rainfall_dat) <- 
+      gsub("start", in_POS.field, names(in_rainfall_dat))
+    names(in_rainfall_dat) <- gsub("ref", "REF", names(in_rainfall_dat))
+    names(in_rainfall_dat) <- gsub("alt", "ALT", names(in_rainfall_dat))
+  } else if(inherits(in_rainfall_dat, "data.frame")){
+    if(!(in_dist.field %in% names(in_rainfall_dat))){
+      in_rainfall_dat <- 
+        annotate_intermut_dist_PID(in_rainfall_dat, 
+                                   in_CHROM.field = in_CHROM.field,
+                                   in_POS.field = in_POS.field)
+      names(in_rainfall_dat) <- 
+        gsub("dist", in_dist.field, names(in_rainfall_dat))
+    }
+  } else cat("YAPSA:::trellis_rainfall_plot::warning: Input is neither ",
+             "a VRanges object nor a data frame")
+  # attribute nucleotide exchanges
+  if(!(in_col.field %in% names(in_rainfall_dat))){
+    in_rainfall_dat$change <- attribute_nucleotide_exchanges(in_rainfall_dat)
+    exchange_colour_vector <- 
+      c("blue", "black", "red", "purple", "orange", "green")
+    names(exchange_colour_vector) <- c("CA", "CG", "CT", "TA", "TC", "TG")
+    in_rainfall_dat$col <- exchange_colour_vector[in_rainfall_dat$change]
+    names(in_rainfall_dat) <- gsub("col", in_col.field, names(in_rainfall_dat))
+  }
+  my_alpha <- 0.1
+  CHROM_ind <- which(names(in_rainfall_dat)==in_CHROM.field)
+  POS_ind <- which(names(in_rainfall_dat)==in_POS.field)
+  dist_ind <- which(names(in_rainfall_dat)==in_dist.field)
+  col_ind <- which(names(in_rainfall_dat)==in_col.field)
+  names(in_rainfall_dat)[CHROM_ind] <- "chr"
+  rainfall_dat <- in_rainfall_dat[,c(CHROM_ind,POS_ind,dist_ind,col_ind)]
+  gtrellis_layout(...)
+  ## draw partially transparent rectangular regions if desired
+  if(!is.null(in_rect_list)){
+    for(i in seq_len(length(in_rect_list))){
+      temp_list <- in_rect_list[[i]]
+      temp_color <- temp_list$col
+      if(inherits(temp_list$df, "data.frame")) temp_df <- temp_list$df
+      else if(inherits(temp_list$df, "GRanges")){
+        temp_df <- as.data.frame(temp_list$df)
+      }
+      temp_alpha <- temp_list$alpha
+      add_track(temp_df, track = 2, panel_fun = function(gr) {
+        grid.rect(gr[[2]], unit(0, "npc"), width=gr[[4]], 
+                  height=unit(1, "npc"), default.units = "native", 
+                  hjust=0, vjust=0, 
+                  gp = gpar(col=temp_color,fill =temp_color,alpha=temp_alpha))
+      })
+    }
+  }
+  # track for rainfall plots
+  add_track(rainfall_dat, track = 2, panel_fun = function(gr) {
+    x = gr[[2]]
+    y = log10(gr[[3]])
+    grid.points(x, y, pch = 16, size = in_point_size, gp = gpar(col = gr[[4]]))
+  }) 
+}
+
+
+preprocess_VRanges <- function(in_rainfall_dat, in_CHROM.field, in_POS.field, 
+                               in_dist.field, in_col.field){
+  if(!(in_dist.field %in% names(mcols(in_rainfall_dat)))){
+    in_rainfall_dat <- annotate_intermut_dist_PID(in_rainfall_dat)
+  }
+  choice_column_vector <- c("seqnames", "start", "ref", "alt",
+                            "dist", in_col.field)
+  in_rainfall_dat <- as.data.frame(in_rainfall_dat)
+  colum_names <- intersect(names(in_rainfall_dat), choice_column_vector)
+  in_rainfall_dat <- in_rainfall_dat[,colum_names]
+  names(in_rainfall_dat) <- 
+    gsub("dist", in_dist.field, names(in_rainfall_dat))
+  names(in_rainfall_dat) <- 
+    gsub("seqnames", in_CHROM.field, names(in_rainfall_dat))
+  names(in_rainfall_dat) <- 
+    gsub("start", in_POS.field, names(in_rainfall_dat))
+  names(in_rainfall_dat) <- gsub("ref", "REF", names(in_rainfall_dat))
+  names(in_rainfall_dat) <- gsub("alt", "ALT", names(in_rainfall_dat))
+  return(in_rainfall_dat)
+}
+
+preprocess_data.frame <- function(in_rainfall_dat,
+                                  in_CHROM.field, 
+                                  in_POS.field, 
+                                  in_dist.field){
+  if(!(in_dist.field %in% names(in_rainfall_dat))){
+    in_rainfall_dat <- 
+      annotate_intermut_dist_PID(in_rainfall_dat, 
+                                 in_CHROM.field = in_CHROM.field,
+                                 in_POS.field = in_POS.field)
+    names(in_rainfall_dat) <- 
+      gsub("dist", in_dist.field, names(in_rainfall_dat))
+  }
+  return(in_rainfall_dat)
+}
+
+add_rectangles_track <- function(in_rect_list, track, in_show_labels = FALSE){
+  for(i in seq_len(length(in_rect_list))){
+    temp_list <- in_rect_list[[i]]
+    temp_color <- temp_list$col
+    if(inherits(temp_list$df, "data.frame")) temp_df <- temp_list$df
+    else if(inherits(temp_list$df, "GRanges")){
+      temp_df <- as.data.frame(temp_list$df)
+    }
+    temp_alpha <- temp_list$alpha
+    add_track(temp_df, track = track, panel_fun = function(gr) {
+      grid.rect(gr[[2]], unit(0, "npc"), width=gr[[4]], 
+                height=unit(1, "npc"), default.units = "native", 
+                hjust=0, vjust=0, 
+                gp = gpar(col=temp_color,fill =temp_color,alpha=temp_alpha))
+      if(in_show_labels){
+        grid.text(rownames(gr), gr[[2]], unit(0, "npc"), rot = 90,
+                  default.units = "native", just = "bottom")
+      }
+    })
+  }
+}
+
+add_rainfalls_track <- function(rainfall_dat, track, in_point_size){
+  add_track(rainfall_dat, track = track, panel_fun = function(gr) {
+    x = gr[[2]]
+    y = log10(gr[[3]])
+    grid.points(x, y, pch = 16, size = in_point_size, gp = gpar(col = gr[[4]]))
+  }) 
+}
+
+#'Create a rainfall plot in a trellis structure
+#'
+#'A trellis is a plot structure which allows space optimized multi-panel multi
+#'track plots. This function uses the package \pkg{gtrellis} developed by
+#'Zuguang Gu, also available at
+#'\url{http://www.bioconductor.org/packages/release/bioc/html/gtrellis.html}.
+#'The graphics in the tracks within a gtrellis plot are mostly drawn with
+#'functions from the package \pkg{grid}. Note that for technical reasons, the
+#'column indicating the chromosome MUST have the name \emph{chr} and be the
+#'first column in the data frame supplied to the gtrellis functions. Therefore
+#'reformatting is performed in this function before calling gtrellis functions.
+#'
+#'@param in_rainfall_dat Data frame which has to contain at least columns for
+#'  chromosome, position, intermutational distance and colour information
+#'@param in_point_size size of the points in the rainfall plot to be created has
+#'  to be provided with appropriate units, e.g. in_point_size=unit(0.5,"mm")
+#'@param in_rect_list Optional argument, if present, will lead to highlighting
+#'  of specified regions by coloured but transparent rectangles
+#'@param in_title Title in the figure to be created.
+#'@param in_CHROM.field String indicating which column of \code{in_rainfall_dat}
+#'  carries the chromosome information
+#'@param in_POS.field String indicating which column of \code{in_rainfall_dat}
+#'  carries the position information
+#'@param in_dist.field String indicating which column of \code{in_rainfall_dat}
+#'  carries the intermutational distance information
+#'@param in_col.field String indicating which column of \code{in_rainfall_dat}
+#'  carries the colour information encoding the nucleotide exchange
+#'
+#'@return The function doesn't return any value.
+#'
+#'
+#'@return The function doesn't return any value.
+#'
+#' @examples
+#'  data(lymphoma_test)
+#'  choice_PID <- "4121361"
+#'  PID_df <- subset(lymphoma_test_df,PID==choice_PID)
+#'  trellis_rainfall_plot(PID_df,in_point_size=unit(0.5,"mm"))
+#'
+#'
+#'@seealso \code{\link[gtrellis]{gtrellis_layout}}
+#'@seealso \code{\link[gtrellis]{add_track}}
+#'@seealso \code{\link[grid]{grid.points}}
+#'
+#'@import gtrellis
+#'@export
+#'
+trellis_rainfall_plot <- function(in_rainfall_dat,
+                                  in_point_size=unit(1,"mm"),
+                                  in_rect_list=NULL,
+                                  in_title="",
+                                  in_CHROM.field="CHROM",
+                                  in_POS.field="POS",
+                                  in_dist.field="dist",
+                                  in_col.field="col") {
+  # account for input data type
+  if(inherits(in_rainfall_dat, "VRanges")) {
+    if(!(in_dist.field %in% names(mcols(in_rainfall_dat)))){
+      in_rainfall_dat <- annotate_intermut_dist_PID(in_rainfall_dat)
+    }
+    choice_column_vector <- c("seqnames", "start", "ref", "alt",
+                              "dist", in_col.field)
+    in_rainfall_dat <- as.data.frame(in_rainfall_dat)
+    colum_names <- intersect(names(in_rainfall_dat),choice_column_vector)
+    in_rainfall_dat <- in_rainfall_dat[,colum_names]
+    names(in_rainfall_dat) <- 
+      gsub("dist", in_dist.field, names(in_rainfall_dat))
+    names(in_rainfall_dat) <- 
+      gsub("seqnames", in_CHROM.field, names(in_rainfall_dat))
+    names(in_rainfall_dat) <- 
+      gsub("start", in_POS.field, names(in_rainfall_dat))
+    names(in_rainfall_dat) <- gsub("ref", "REF", names(in_rainfall_dat))
+    names(in_rainfall_dat) <- gsub("alt", "ALT", names(in_rainfall_dat))
+  } else if(inherits(in_rainfall_dat, "data.frame")){
+    if(!(in_dist.field %in% names(in_rainfall_dat))){
+      in_rainfall_dat <- 
+        annotate_intermut_dist_PID(in_rainfall_dat, 
+                                   in_CHROM.field = in_CHROM.field,
+                                   in_POS.field = in_POS.field)
+      names(in_rainfall_dat) <- 
+        gsub("dist", in_dist.field, names(in_rainfall_dat))
+    }
+  } else cat("YAPSA:::trellis_rainfall_plot::warning: Input is neither ",
+             "a VRanges object nor a data frame")
+  # attribute nucleotide exchanges
+  if(!(in_col.field %in% names(in_rainfall_dat))){
+    in_rainfall_dat$change <- attribute_nucleotide_exchanges(in_rainfall_dat)
+    exchange_colour_vector <- 
+      c("blue", "black", "red", "purple", "orange", "green")
+    names(exchange_colour_vector) <- c("CA", "CG", "CT", "TA", "TC", "TG")
+    in_rainfall_dat$col <- exchange_colour_vector[in_rainfall_dat$change]
+    names(in_rainfall_dat) <- gsub("col", in_col.field, names(in_rainfall_dat))
+  }
+  my_alpha <- 0.1
+  CHROM_ind <- which(names(in_rainfall_dat)==in_CHROM.field)
+  POS_ind <- which(names(in_rainfall_dat)==in_POS.field)
+  dist_ind <- which(names(in_rainfall_dat)==in_dist.field)
+  col_ind <- which(names(in_rainfall_dat)==in_col.field)
+  names(in_rainfall_dat)[CHROM_ind] <- "chr"
+  rainfall_dat <- in_rainfall_dat[,c(CHROM_ind,POS_ind,dist_ind,col_ind)]
+  gtrellis::gtrellis_layout(n_track = 1, ncol = 5, byrow = FALSE,
                   title=in_title,
                   track_axis = TRUE,
                   track_height = unit.c(unit(1, "null")), 
@@ -1736,22 +2196,25 @@ trellis_rainfall_plot <- function(in_rainfall_dat,in_point_size=unit(1,"mm"),
   }) 
 }
 
-
 #' Plot the spectra of nucleotide exchanges
 #'
 #' Plots the spectra of nucleotide exchanges in their triplet contexts. If
 #' several columns are present in the input data frame, the spectra are plotted
 #' for every column separately.
 #'
-#' @param in_catalogue_df
-#'  Numerical data frame encoding the exchange spectra to be displayed, either
-#'  a mutational catalogue \code{V} or a signatures matrix \code{W}.
-#' @param in_colour_vector
-#'  Specifies the colours of the 6 nucleotide exchanges if non-null.
-#' @param in_show_triplets
-#'  Whether or not to show the triplets on the x-axis
-#' @param in_show_axis_title
-#'  Whether or not to show the name of the y-axis
+#' @param in_catalogue_df Numerical data frame encoding the exchange spectra to
+#'   be displayed, either a mutational catalogue \code{V} or a signatures matrix
+#'   \code{W}.
+#' @param in_colour_vector Specifies the colours of the 6 nucleotide exchanges
+#'   if non-null.
+#' @param in_show_triplets Whether or not to show the triplets on the x-axis
+#' @param in_show_axis_title Whether or not to show the name of the y-axis
+#' @param in_scales Argument passed on to \code{\link[ggplot2]{facet_grid}}
+#' @param in_refLine If non-null, value on the y-axis at which a horizontal line
+#'   is to be drawn
+#' @param in_refAlpha Transparency of the horizontal line if it is to be drawn
+#' @param in_background Option to provide a background theme, e.g.
+#'   \code{\link[ggplot2]{theme_grey}}
 #'
 #' @return The generated barplot - a ggplot2 plot
 #'
@@ -1760,15 +2223,19 @@ trellis_rainfall_plot <- function(in_rainfall_dat,in_point_size=unit(1,"mm"),
 #'
 #' @seealso \code{\link[ggplot2]{geom_bar}}
 #' @seealso \code{\link[ggplot2]{facet_grid}}
-#' 
+#'
 #' @import ggplot2
 #' @import reshape2
 #' @export
 #' 
 plotExchangeSpectra <- function(in_catalogue_df,
-                                in_colour_vector=NULL,
-                                in_show_triplets=FALSE,
-                                in_show_axis_title=FALSE){
+                                in_colour_vector = NULL,
+                                in_show_triplets = FALSE,
+                                in_show_axis_title = FALSE,
+                                in_scales = "free_x",
+                                in_refLine = NULL,
+                                in_refAlpha = 0.5,
+                                in_background = NULL){
   .e <- environment()
   in_catalogue_df$triplet_exchange <- rownames(in_catalogue_df)
   in_catalogue_df$nuc_exchange <- gsub(" .+$","",
@@ -1780,19 +2247,25 @@ plotExchangeSpectra <- function(in_catalogue_df,
   names(my_palette) <- c("C>A","C>G","C>T","T>A","T>C","T>G")
   if(!is.null(in_colour_vector)) my_palette <- in_colour_vector
   p <- ggplot(catalogue_df_melt,environment=.e) +
-    geom_bar(aes_string(x="triplet",y="value",fill="nuc_exchange"),
-             stat='identity') +
-    scale_fill_manual(name="exchange",values=my_palette) +
-    facet_grid(variable~nuc_exchange,scales="free_x")
+    geom_bar(aes_string(x = "triplet", y = "value", fill = "nuc_exchange"),
+             stat = 'identity') +
+    scale_fill_manual(name = "exchange", values = my_palette) +
+    facet_grid(variable~nuc_exchange, scales = in_scales)
+  if(!is.null(in_background)){
+    p <- p + in_background
+  }
+  if(is.numeric(in_refLine)){
+    p <- p + geom_hline(yintercept = in_refLine, alpha = in_refAlpha)
+  }
   p1 <- p +
-    theme(axis.title.x=element_blank(),
-          axis.text.x=element_blank(),
-          axis.ticks.x=element_blank())
+    theme(axis.title.x = element_blank(),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
   if(in_show_triplets) {
     p1 <- p +
-      theme(axis.title.x=element_blank(),
-            axis.text.x=element_text(angle=90,vjust=0.5),
-            axis.ticks.x=element_blank())
+      theme(axis.title.x = element_blank(),
+            axis.text.x = element_text(angle=90,vjust=0.5),
+            axis.ticks.x = element_blank())
   }
   if(!in_show_axis_title) p1 <- p1 + theme(axis.title.y=element_blank())
   return(p1)

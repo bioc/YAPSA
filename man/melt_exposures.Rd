@@ -19,4 +19,3 @@ Melt an exposure data frame with signatures as ID variables.
  NULL
 
 }
-

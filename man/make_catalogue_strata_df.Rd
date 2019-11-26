@@ -8,40 +8,33 @@ make_catalogue_strata_df(in_stratification_lists_list,
   in_additional_stratum = NULL)
 }
 \arguments{
-\item{in_stratification_lists_list}{List of lists with entries from different (orthogonal) stratification 
-axes or SMCs}
+\item{in_stratification_lists_list}{List of lists with entries from different
+(orthogonal) stratification axes or SMCs}
 
-\item{in_additional_stratum}{Include an additionally supplied stratum in comparison in non-NULL.}
+\item{in_additional_stratum}{Include an additionally supplied stratum in
+comparison in non-NULL.}
 }
 \value{
-A list with entries
- \code{strata_df},
- \code{number_of_SMCs},
- \code{number_of_strata}.
-\itemize{
- \item \code{strata_df}:
-  Pasted numerical data frame of all strata (these are going to be
-  compared e.g. by \code{\link{make_comparison_matrix}}).
- \item \code{number_of_SMCs}:
-   Number of orthogonal stratifications in
-   \code{in_stratification_lists_list} and additional ones.
- \item \code{number_of_strata}:
-   Cumulative number of strata (sum over the numbers of strata of
-   the different stratifications in \code{in_stratification_lists_list})
-   and additional ones.
-}
+A list with entries \code{strata_df}, \code{number_of_SMCs},
+  \code{number_of_strata}. \itemize{ \item \code{strata_df}: Pasted numerical
+  data frame of all strata (these are going to be compared e.g. by
+  \code{\link{make_comparison_matrix}}). \item \code{number_of_SMCs}: Number
+  of orthogonal stratifications in \code{in_stratification_lists_list} and
+  additional ones. \item \code{number_of_strata}: Cumulative number of strata
+  (sum over the numbers of strata of the different stratifications in
+  \code{in_stratification_lists_list}) and additional ones. }
 }
 \description{
-For a comparison of the strata from different orthogonal stratification
-axes, i.e. othogonal SMCs, the strata have to be grouped and reformatted.
-This function does this task for the comparison by cosine similarity of
-mutational catalogues. Output of this function is the basis for applying
+For a comparison of the strata from different orthogonal stratification axes,
+i.e. othogonal SMCs, the strata have to be grouped and reformatted. This
+function does this task for the comparison by cosine similarity of mutational
+catalogues. Output of this function is the basis for applying
 \code{\link{make_comparison_matrix}}. It is called by the wrapper function
 \code{\link{run_comparison_catalogues}}.
 }
 \examples{
  NULL
- 
+
 }
 \seealso{
 \code{\link{plot_strata}}
@@ -50,4 +43,3 @@ mutational catalogues. Output of this function is the basis for applying
 
 \code{\link{run_comparison_catalogues}}
 }
-

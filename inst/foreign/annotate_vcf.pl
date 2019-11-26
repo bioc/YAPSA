@@ -2,7 +2,7 @@
 
 ###############################################################################
 #                                                                 
-#  Copyright 2014-2016  Matthias Schlesner and Daniel Huebschmann.
+#  Copyright 2014-2019  Matthias Schlesner and Daniel Huebschmann.
 #   
 #  This file is part of YAPSA.
 #

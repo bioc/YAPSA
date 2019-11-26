@@ -160,7 +160,7 @@ references:
   container-title: Nature
   id: Alex2013
   issued:
-    month: August
+    month: 8
     volume: 500
     year: 2013
   publisher: Nature Publishing Group
@@ -453,8 +453,8 @@ V_{(\cdot j)}^{k}|| \quad \forall j,k \\
 \quad \forall i,j,k \\
 \textrm{and the additional contraint:} \quad 
 \sum_{k=1}^{s} H^{k} = \widetilde{H} \\
-\end{aligned}
-$$
+\end{aligned}$$
+
 
 Applying `SMC` that way, the initial LCD decomposition of the unstratified 
 mutational catalogue is omitted and it's result replaced by the exposures 
@@ -518,7 +518,8 @@ kable(head(lymphoma_Nature2013_df))
 Here, we have selected only the variants characterized as `subs` (those are the
 single nucleotide variants we are interested in for the mutational signatures 
 analysis, small indels are filtered out by this step), so we are left with 
-`r dim(lymphoma_Nature2013_df)[1]` variants or rows. Note that there are `r length(unique(lymphoma_Nature2013_df$PID))` different samples:
+`r dim(lymphoma_Nature2013_df)[1]` variants or rows. Note that there are
+`r length(unique(lymphoma_Nature2013_df$PID))` different samples:
 
 ```{r PID_info}
 unique(lymphoma_Nature2013_df$PID)
@@ -570,10 +571,10 @@ Now we can select one sample and make the rainfall plot. The plot function used
 here relies on the package `r Biocpkg("gtrellis")` by Zuguang Gu 
 [@gtrellis2015].
 
-```{r make_rainfall_plot, fig.cap="Example rainfall plot in a trellis structure."}
+```{r make_rainfall_plot, fig.cap="Rainfall plot in a trellis structure."}
 choice_PID <- "4121361"
 PID_df <- subset(lymphoma_Nature2013_df,PID==choice_PID)
-trellis_rainfall_plot(PID_df,in_point_size=unit(0.5,"mm"))
+#trellis_rainfall_plot(PID_df,in_point_size=unit(0.5,"mm"))
 ```
 
 This shows a rainfall plot typical for a lymphoma sample with clusters of 
@@ -583,13 +584,14 @@ increased mutation density e.g. at the immunoglobulin loci.
 
 ## Loading the signature information
 
-As stated [above](#LCD), one of the functions in the YAPSA package (`LCD`) is 
-designed to do mutational signatures analysis with known signatures. There are 
-(at least) two possible sources for signature data: i) the ones published 
-initially by Alexandrov et al. [@Alex2013], and ii) an updated and curated 
-current set of mutational signatures is maintained by Ludmil Alexandrov at <http://cancer.sanger.ac.uk/cosmic/signatures>. The following three subsections
+As stated [above](#LCD), one of the functions in the YAPSA package (`LCD`) is
+designed to do mutational signatures analysis with known signatures. There are
+(at least) two possible sources for signature data: i) the ones published
+initially by Alexandrov et al. [@Alex2013], and ii) an updated and curated
+current set of mutational signatures is maintained by Ludmil Alexandrov at
+<http://cancer.sanger.ac.uk/cosmic/signatures>. The following three subsections
 describe how you can load the data from these resources. Alternatively, you can
-bypass the three following subsections because the signature datasets are also 
+bypass the three following subsections because the signature datasets are also
 included in this package:
 
 ```{r, load_stored_sig_data}
@@ -640,7 +642,6 @@ number_of_Alex_validated_sigs <- dim(AlexInitialValid_sig_df)[2]
 ```
 
 We are left with `r number_of_Alex_validated_sigs` signatures.
-
 
 ### Loading the updated set of mutational signatures
 
@@ -813,8 +814,12 @@ COSMIC_subgroups_df <-
 
 The resulting signature exposures can be plotted using custom plotting 
 functions. First as absolute exposures:
+```{r caption_barplot, echo=FALSE}
+cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
+        catalogues, no cutoff for the LCD (Linear Combination Decomposition)"
+```
 
-```{r exposures_barplot_LCD, fig.width=6, fig.height=5, fig.cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational catalogues, no cutoff for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_LCD, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = lymphomaNature2013_COSMICExposures_df,
   in_subgroups_df = COSMIC_subgroups_df)
@@ -824,8 +829,12 @@ Here, as no colour information was given to the plotting function
 `exposures_barplot`, the identified signatures are coloured in a rainbow 
 palette. If you want to assign colours to the signatures, this is possible via
 a data structure of type `sigInd_df`.
+```{r caption_barplot_2, echo=FALSE}
+cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, no cutoff for the LCD (Linear Combination Decomposition)"
+```
 
-```{r exposures_barplot_LCD_sig_ind, fig.width=6, fig.height=5, fig.cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational catalogues, no cutoff for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_LCD_sig_ind, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = lymphomaNature2013_COSMICExposures_df,
   in_signatures_ind_df = current_sigInd_df,
@@ -864,8 +873,12 @@ COSMIC_subgroups_df <-
 ```
 
 And if we plot this, we obtain:
+```{r caption_barplot_3, echo=FALSE}
+cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, no cutoff for the LCD (Linear Combination Decomposition)."
+```
 
-```{r exposures_barplot_abs_cutoffZero, fig.width=6, fig.height=5, fig.cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational catalogues, no cutoff for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_abs_cutoffZero, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffZero_LCDlist$exposures,
   in_signatures_ind_df = CosmicValid_cutoffZero_LCDlist$out_sig_ind_df,
@@ -878,8 +891,12 @@ have a contribution to this cohort are displayed in
 the legend.
 
 Of course, also relative exposures may be plotted:
+```{r caption_barplot_4, echo=FALSE}
+cap="Relative exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, no cutoff for the LCD (Linear Combination Decomposition)."
+```
 
-```{r exposures_barplot_rel_cutoffZero, fig.width=6, fig.height=5, fig.cap="Relative exposures of the COSMIC signatures in the lymphoma mutational catalogues, no cutoff for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_rel_cutoffZero, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffZero_LCDlist$norm_exposures,
   in_signatures_ind_df = CosmicValid_cutoffZero_LCDlist$out_sig_ind_df,
@@ -920,7 +937,12 @@ kable(CosmicValid_cutoffGen_LCDlist$out_sig_ind_df, row.names=FALSE,
 
 Again we can plot absolute exposures:
 
-```{r exposures_barplot_abs_cutoffGen, fig.width=6, fig.height=4, fig.cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."}
+```{r caption_barplot_5, echo=FALSE}
+cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
+```
+
+```{r exposures_barplot_abs_cutoffGen, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffGen_LCDlist$exposures,
   in_signatures_ind_df = CosmicValid_cutoffGen_LCDlist$out_sig_ind_df,
@@ -928,8 +950,12 @@ exposures_barplot(
 ```
 
 And relative exposures:
+```{r caption_barplot_6, echo=FALSE}
+cap="Relative exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
+```
 
-```{r exposures_barplot_rel_cutoffGen, fig.width=6, fig.height=4, fig.cap="Relative exposures of the COSMIC signatures in the lymphoma mutational catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_rel_cutoffGen, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffGen_LCDlist$norm_exposures,
   in_signatures_ind_df = CosmicValid_cutoffGen_LCDlist$out_sig_ind_df,
@@ -963,8 +989,12 @@ CosmicValid_cutoffSpec_LCDlist <- LCD_complex_cutoff(
 ```
 
 Plotting absolute exposures for visualization:
+```{r caption_barplot_7, echo=FALSE}
+cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
+```
 
-```{r exposures_barplot_abs_cutoffSpec, fig.width=6, fig.height=4, fig.cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_abs_cutoffSpec, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffSpec_LCDlist$exposures,
   in_signatures_ind_df = CosmicValid_cutoffSpec_LCDlist$out_sig_ind_df,
@@ -972,8 +1002,12 @@ exposures_barplot(
 ```
 
 And relative exposures:
+```{r caption_barplot_8, echo=FALSE}
+cap="Relative exposures of the COSMIC signatures in the lymphoma mutational
+    catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
+```
 
-```{r exposures_barplot_rel_cutoffSpec, fig.width=6, fig.height=4, fig.cap="Relative exposures of the COSMIC signatures in the lymphoma mutational catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."}
+```{r exposures_barplot_rel_cutoffSpec, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffSpec_LCDlist$norm_exposures,
   in_signatures_ind_df = CosmicValid_cutoffSpec_LCDlist$out_sig_ind_df,
@@ -993,8 +1027,12 @@ processes, the exposure vectors of the samples can be compared. The YAPSA
 package provides a custom function for this task: `complex_heatmap_exposures`, 
 which uses the package `r Biocpkg("ComplexHeatmap")` by Zuguang Gu 
 [@ComplexHeatmap2015]. It produces output as follows:
+```{r caption_heatmap, echo=FALSE}
+cap="Clustering of Samples and Signatures based on the relative exposures of
+    the COSMIC signatures in the lymphoma mutational catalogues."
+```
 
-```{r apply_heatmap_exposures, fig.width=6, fig.height=4, fig.cap="Clustering of Samples and Signatures based on the relative exposures of the COSMIC signatures in the lymphoma mutational catalogues."}
+```{r apply_heatmap_exposures, fig.width=6, fig.height=4, fig.cap=cap}
 complex_heatmap_exposures(CosmicValid_cutoffGen_LCDlist$norm_exposures,
                           COSMIC_subgroups_df,
                           CosmicValid_cutoffGen_LCDlist$out_sig_ind_df,
@@ -1006,8 +1044,12 @@ complex_heatmap_exposures(CosmicValid_cutoffGen_LCDlist$norm_exposures,
 
 If you are interested only in the clustering and not in the heatmap 
 information, you could also use `hclust_exposures`:
+```{r caption_hclust, echo=FALSE}
+cap="Clustering of the Samples based on the relative exposures of the
+    COSMIC signatures in the lymphoma mutational catalogues."
+```
 
-```{r apply_hclust_exposures, fig.width=6, fig.height=3, fig.cap="Clustering of the Samples based on the relative exposures of the COSMIC signatures in the lymphoma mutational catalogues."}
+```{r apply_hclust_exposures, fig.width=6, fig.height=3, fig.cap=cap}
 hclust_list <- 
   hclust_exposures(CosmicValid_cutoffGen_LCDlist$norm_exposures,
                    COSMIC_subgroups_df,
@@ -1018,8 +1060,12 @@ hclust_list <-
 The dendrogram produced by either the function `complex_heatmap_exposures` or 
 the function `hclust_exposures` can be cut to yield signature exposure specific
 subgroups of the PIDs.
+```{r caption_heatmap_2, echo=FALSE}
+cap=paste0("PIDs labelled by the clusters extracted from the
+            signature analysis.")
+```
 
-```{r cluster_PIDs_sig_info, fig.width=6, fig.height=4, fig.cap=paste0("PIDs labelled by the clusters extracted from the signature analysis.")}
+```{r cluster_PIDs_sig_info, fig.width=6, fig.height=4, fig.cap=cap}
 cluster_vector <- cutree(hclust_list$hclust,k=4)
 COSMIC_subgroups_df$cluster <- cluster_vector
 subgroup_colour_vector <- rainbow(length(unique(COSMIC_subgroups_df$cluster)))
@@ -1059,8 +1105,12 @@ kable(temp_df, caption=paste0("Strata for the SMC of mutation density"))
 ```
 
 We now have everything at hand to carry out a stratified signature analysis:
+```{r caption_SMC, echo=FALSE}
+cap="SMC (Stratification of the Mutational Catalogue)
+        based on mutation density."
+```
 
-```{r SMC_mut_density, results="hide", warning=FALSE, fig.width=8, fig.height=7, fig.cap="SMC (Stratification of the Mutational Catalogue) based on mutation density."}
+```{r SMC, results="hide",warning=FALSE,fig.width=8,fig.height=7,fig.cap=cap}
 strata_order_ind <- c(1,3,2)
 mut_density_list <- run_SMC(lymphoma_Nature2013_df,
                             CosmicValid_cutoffGen_LCDlist$signatures,

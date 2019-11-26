@@ -1,27 +1,55 @@
 Package: YAPSA
 Type: Package
-Title: Yet Another Package for Signature Analysis
-Version: 1.13.0
-Date: 2015-08-04
-Author: Daniel Huebschmann, Zuguang Gu, Matthias Schlesner
+Title: Yet Another Package for Signature Analysis 
+Version: 1.13.1
+Date: 2019-11-26
+Author: Daniel Huebschmann, Lea Jopp-Saile, Zuguang Gu and Matthias Schlesner
 Maintainer: Daniel Huebschmann <huebschmann.daniel@googlemail.com>
-Imports: lsei, SomaticSignatures, VariantAnnotation, GenomeInfoDb,
-        reshape2, gridExtra, corrplot, dendextend, GetoptLong,
-        circlize, gtrellis, PMCMR, ComplexHeatmap, KEGGREST, grDevices
-Depends: R (>= 3.3.0), GenomicRanges, ggplot2, grid
-Description: This package provides functions and routines useful in the
-        analysis of somatic signatures (cf. L. Alexandrov et al.,
-        Nature 2013). In particular, functions to perform a signature
-        analysis with known signatures (LCD = linear combination
-        decomposition) and a signature analysis on stratified
-        mutational catalogue (SMC = stratify mutational catalogue) are
-        provided.
+Imports:
+    lsei,
+    SomaticSignatures,
+    VariantAnnotation,
+    GenomeInfoDb,
+    reshape2,
+    gridExtra,
+    corrplot,
+    dendextend,
+    GetoptLong,
+    circlize,
+    gtrellis,
+    doParallel,
+    PMCMR,
+    ggbeeswarm,
+    ComplexHeatmap,
+    KEGGREST,
+    grDevices, 
+    Biostrings,
+    BSgenome.Hsapiens.UCSC.hg19,
+    magrittr,
+    pracma,
+    dplyr, 
+    utils
+Depends:
+    R (>= 3.6.0),
+    GenomicRanges,
+    ggplot2,
+    grid
+Description: This package provides functions and routines useful in
+    the analysis of somatic signatures (cf. L. Alexandrov et al., Nature
+    2013 and L. Alexandrov et al., Bioaxiv
+    2018). In particular, functions to perform a signature analysis with
+    known signatures (LCD = linear combination decomposition) and a
+    signature analysis on stratified mutational catalogue (SMC = stratify
+    mutational catalogue) are provided to enable SNV and INDEL signature analysis. 
 License: GPL-3
-Suggests: BSgenome.Hsapiens.UCSC.hg19, testthat, BiocStyle, knitr,
-        rmarkdown
+Suggests:
+    testthat,
+    BiocStyle,
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr
 LazyLoad: yes
 biocViews: Sequencing, DNASeq, SomaticMutation, Visualization,
-        Clustering, GenomicVariation, StatisticalMethod,
-        BiologicalQuestion
-RoxygenNote: 5.0.1
+    Clustering, GenomicVariation, StatisticalMethod, BiologicalQuestion
+RoxygenNote: 6.1.1
+Encoding: UTF-8

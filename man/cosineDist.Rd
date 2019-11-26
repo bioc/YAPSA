@@ -25,4 +25,3 @@ cosineDist(c(1,0),c(1,1))
 1-cos(pi/4)
 
 }
-

@@ -23,4 +23,3 @@ sd(A)
 stderrmean(A)
  
 }
-

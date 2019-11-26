@@ -11,10 +11,9 @@ data(exchange_colour_vector)
 A named character vector
 }
 \description{
-Vector attributing colours to nucleotide exchanges used when displaying SNV
-information, e.g. in a rainfall plot.
+Vector attributing colours to nucleotide exchanges used when displaying 
+SNV information, e.g. in a rainfall plot.
 }
 \author{
 Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
 }
-

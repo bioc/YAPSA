@@ -12,34 +12,28 @@ test_gene_list_in_exposures(in_gene_list, in_exposure_df, in_mut_table,
 
 \item{in_exposure_df}{Data frame with the signature exposures}
 
-\item{in_mut_table}{Data frame or table of mutations (derived from vcf-format)}
+\item{in_mut_table}{Data frame or table of mutations (derived from
+vcf-format)}
 
-\item{in_gene.field}{Name of the column in which the gene names are to be looked up}
+\item{in_gene.field}{Name of the column in which the gene names are to be
+looked up}
 
 \item{in_p_cutoff}{Significance threshold}
 }
 \value{
-A list with entries
- \code{pvals},
- \code{exposure_df},
- \code{number_of_mutated},
-\itemize{
- \item \code{pvals}:
-   p-values of the t-tests performed on mutated vs. unmutated PIDs
- \item \code{exposure_df}:
-   Transposed input exposures data frame with additional annotations
-   for mutation status
- \item \code{number_of_mutated}:
-   Number of PIDs carrying a mutation
-}
+A list with entries \code{pvals}, \code{exposure_df},
+  \code{number_of_mutated}, \itemize{ \item \code{pvals}: p-values of the
+  t-tests performed on mutated vs. unmutated PIDs \item \code{exposure_df}:
+  Transposed input exposures data frame with additional annotations for
+  mutation status \item \code{number_of_mutated}: Number of PIDs carrying a
+  mutation }
 }
 \description{
 For all signatures found in a project, this function tests whether PIDs
-having mutations in a specified list of genes of interest have
-significantly higher exposures.
+having mutations in a specified list of genes of interest have significantly
+higher exposures.
 }
 \examples{
  NULL
 
 }
-

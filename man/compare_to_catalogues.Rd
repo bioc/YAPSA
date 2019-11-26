@@ -9,8 +9,8 @@ compare_to_catalogues(in_index_df, in_comparison_list)
 \arguments{
 \item{in_index_df}{Data frame containing the mutational catalogue of interest}
 
-\item{in_comparison_list}{List of data frames (ideally named) containing the reference mutational
-catalogues}
+\item{in_comparison_list}{List of data frames (ideally named) containing the
+reference mutational catalogues}
 }
 \value{
 A similarity dataframe
@@ -24,4 +24,3 @@ puplication) by cosine similarities
  NULL
 
 }
-

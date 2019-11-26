@@ -9,47 +9,42 @@ create_mutation_catalogue_from_VR(in_vr, in_refGenome, in_wordLength,
   adapt_rownames = 1)
 }
 \arguments{
-\item{in_vr}{A VRanges object constructed from a vcf-like file of a whole cohort. The 
-first columns are those of a standard vcf file, followed by an arbitrary
-number of custom or used defined columns. One of these can carry a PID
-(patient or sample identifyier) and one can carry subgroup information.}
+\item{in_vr}{A VRanges object constructed from a vcf-like file of a whole
+cohort. The first columns are those of a standard vcf file, followed by an
+arbitrary number of custom or used defined columns. One of these can carry
+a PID (patient or sample identifyier) and one can carry subgroup
+information.}
 
-\item{in_refGenome}{The reference genome handed over to 
-\code{\link[SomaticSignatures]{mutationContext}}
-and used to extract the motif context of the variants in \code{in_vr}.}
+\item{in_refGenome}{The reference genome handed over to
+\code{\link[SomaticSignatures]{mutationContext}} and used to extract the
+motif context of the variants in \code{in_vr}.}
 
-\item{in_wordLength}{The size of the motifs to be extracted by 
+\item{in_wordLength}{The size of the motifs to be extracted by
 \code{\link[SomaticSignatures]{mutationContext}}}
 
-\item{in_PID.field}{Indicates the name of the column in which the PID (patient or sample
-identifier) is encoded}
+\item{in_PID.field}{Indicates the name of the column in which the PID
+(patient or sample identifier) is encoded}
 
 \item{in_verbose}{Verbose if \code{in_verbose=1}}
 
-\item{in_rownames}{Optional parameter to specify rownames of the mutational catalogue \code{V}
-i.e. the names of the features.}
+\item{in_rownames}{Optional parameter to specify rownames of the mutational
+catalogue \code{V} i.e. the names of the features.}
 
-\item{adapt_rownames}{Rownames of the output \code{matrix} will be adapted if 
+\item{adapt_rownames}{Rownames of the output \code{matrix} will be adapted if
 \code{adapt_rownames=1}}
 }
 \value{
-A list with entries
- \code{matrix},
- \code{frame},
-\itemize{
- \item \code{matrix}:
-   The mutational catalogue \code{V}
- \item \code{frame}:
-   Additional and meta information on rownames (features), colnames (PIDs)
-   and subgroup attribution.
-}
+A list with entries \code{matrix}, \code{frame}, \itemize{ \item
+  \code{matrix}: The mutational catalogue \code{V} \item \code{frame}:
+  Additional and meta information on rownames (features), colnames (PIDs) and
+  subgroup attribution. }
 }
 \description{
-This function creates a mutational catalogue from a VRanges Object by
-first calling \code{\link[SomaticSignatures]{mutationContext}} to establish
-the motif context of the variants in the input VRanges and then calling
-\code{\link[SomaticSignatures]{motifMatrix}} to build the
-mutational catalogue \code{V}.
+This function creates a mutational catalogue from a VRanges Object by first
+calling \code{\link[SomaticSignatures]{mutationContext}} to establish the
+motif context of the variants in the input VRanges and then calling
+\code{\link[SomaticSignatures]{motifMatrix}} to build the mutational
+catalogue \code{V}.
 }
 \examples{
  library(BSgenome.Hsapiens.UCSC.hg19)
@@ -77,7 +72,7 @@ mutational catalogue \code{V}.
  other_list <- create_mutation_catalogue_from_VR(
    other_vr,in_refGenome=BSgenome.Hsapiens.UCSC.hg19,
    in_wordLength=word_length,in_PID.field="PID",
-   in_verbose=1,in_rownames=rownames(AlexCosmicValid_sig_df)) 
+   in_verbose=1,in_rownames=rownames(AlexCosmicValid_sig_df))
  dim(other_list$matrix)
  head(other_list$matrix)
 
@@ -87,4 +82,3 @@ mutational catalogue \code{V}.
 
 \code{\link[SomaticSignatures]{motifMatrix}}
 }
-

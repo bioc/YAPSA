@@ -11,62 +11,58 @@ create_mutation_catalogue_from_df(this_df, this_refGenome_Seqinfo = NULL,
   this_verbose = 1, this_rownames = c(), this_adapt_rownames = 1)
 }
 \arguments{
-\item{this_df}{A data frame constructed from a vcf-like file of a whole cohort. The 
-first columns are those of a standard vcf file, followed by an arbitrary
-number of custom or used defined columns. One of these can carry a PID
-(patient or sample identifyier) and one can carry subgroup information.}
+\item{this_df}{A data frame constructed from a vcf-like file of a whole
+cohort. The first columns are those of a standard vcf file, followed by an
+arbitrary number of custom or used defined columns. One of these can carry
+a PID (patient or sample identifyier) and one can carry subgroup
+information.}
 
-\item{this_refGenome_Seqinfo}{A seqInfo object, referring to the reference genome used.
-Argument passed on to \code{\link{makeGRangesFromDataFrame}} and thus 
-indirectly to \code{\link{makeGRangesFromDataFrame}}.}
+\item{this_refGenome_Seqinfo}{A seqInfo object, referring to the reference
+genome used. Argument passed on to \code{\link{makeGRangesFromDataFrame}}
+and thus indirectly to \code{\link{makeGRangesFromDataFrame}}.}
 
-\item{this_seqnames.field}{Indicates the name of the column in which the chromosome is encoded}
+\item{this_seqnames.field}{Indicates the name of the column in which the
+chromosome is encoded}
 
-\item{this_start.field}{Indicates the name of the column in which the start coordinate is
-encoded}
+\item{this_start.field}{Indicates the name of the column in which the start
+coordinate is encoded}
 
-\item{this_end.field}{Indicates the name of the column in which the end coordinate is
-encoded}
+\item{this_end.field}{Indicates the name of the column in which the end
+coordinate is encoded}
 
-\item{this_PID.field}{Indicates the name of the column in which the PID (patient or sample
-identifier) is encoded}
+\item{this_PID.field}{Indicates the name of the column in which the PID
+(patient or sample identifier) is encoded}
 
-\item{this_subgroup.field}{Indicates the name of the column in which the subgroup information
-is encoded}
+\item{this_subgroup.field}{Indicates the name of the column in which the
+subgroup information is encoded}
 
-\item{this_refGenome}{The reference genome handed over to 
-\code{\link{create_mutation_catalogue_from_VR}}
-and indirectly to \code{\link[SomaticSignatures]{mutationContext}}
-and used to extract the motif context of the variants in \code{in_vr}.}
+\item{this_refGenome}{The reference genome handed over to
+\code{\link{create_mutation_catalogue_from_VR}} and indirectly to
+\code{\link[SomaticSignatures]{mutationContext}} and used to extract the
+motif context of the variants in \code{in_vr}.}
 
-\item{this_wordLength}{The size of the motifs to be extracted by 
+\item{this_wordLength}{The size of the motifs to be extracted by
 \code{\link[SomaticSignatures]{mutationContext}}}
 
 \item{this_verbose}{Verbose if \code{this_verbose=1}}
 
-\item{this_rownames}{Optional parameter to specify rownames of the mutational catalogue \code{V}
-i.e. the names of the features.}
+\item{this_rownames}{Optional parameter to specify rownames of the mutational
+catalogue \code{V} i.e. the names of the features.}
 
-\item{this_adapt_rownames}{Rownames of the output \code{matrix} will be adapted if 
-\code{this_adapt_rownames=1}}
+\item{this_adapt_rownames}{Rownames of the output \code{matrix} will be
+adapted if \code{this_adapt_rownames=1}}
 }
 \value{
-A list with entries
- \code{matrix} and
- \code{frame}
- obtained from \code{\link{create_mutation_catalogue_from_VR}}:
-\itemize{
- \item \code{matrix}:
-   The mutational catalogue \code{V}
- \item \code{frame}:
-   Additional and meta information on rownames (features), colnames (PIDs)
-   and subgroup attribution.
-}
+A list with entries \code{matrix} and \code{frame} obtained from
+  \code{\link{create_mutation_catalogue_from_VR}}: \itemize{ \item
+  \code{matrix}: The mutational catalogue \code{V} \item \code{frame}:
+  Additional and meta information on rownames (features), colnames (PIDs) and
+  subgroup attribution. }
 }
 \description{
 This function creates a mutational catalogue from a data frame. It is a
-wrapper function for \code{\link{create_mutation_catalogue_from_VR}}:
-it first creates a VRanges object from the data frame by
+wrapper function for \code{\link{create_mutation_catalogue_from_VR}}: it
+first creates a VRanges object from the data frame by
 \code{\link{makeVRangesFromDataFrame}} and then passes this object on to the
 above mentioned custom function.
 }
@@ -89,4 +85,3 @@ above mentioned custom function.
 
 \code{\link{create_mutation_catalogue_from_VR}}
 }
-

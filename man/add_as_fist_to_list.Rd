@@ -21,4 +21,3 @@ Works for all types of lists and inputs
  NULL
 
 }
-

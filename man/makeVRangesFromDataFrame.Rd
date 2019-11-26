@@ -11,32 +11,35 @@ makeVRangesFromDataFrame(in_df, in_keep.extra.columns = TRUE,
   verbose_flag = 1)
 }
 \arguments{
-\item{in_df}{A big dataframe constructed from a vcf-like file of a whole cohort. The 
-first columns are those of a standard vcf file, followed by an arbitrary
-number of custom or user defined columns. One of these can carry a PID
-(patient or sample identifyier) and one can carry subgroup information.}
+\item{in_df}{A big dataframe constructed from a vcf-like file of a whole
+cohort. The first columns are those of a standard vcf file, followed by an
+arbitrary number of custom or user defined columns. One of these can carry
+a PID (patient or sample identifyier) and one can carry subgroup
+information.}
 
-\item{in_keep.extra.columns}{in_seqinfo
-Argument passed on to \code{\link{makeGRangesFromDataFrame}}}
+\item{in_keep.extra.columns}{in_seqinfo Argument passed on to
+\code{\link{makeGRangesFromDataFrame}}}
 
 \item{in_seqinfo}{A seqInfo object, referring to the reference genome used.
 Argument passed on to \code{\link{makeGRangesFromDataFrame}}}
 
-\item{in_seqnames.field}{Indicates the name of the column in which the chromosome is encoded}
+\item{in_seqnames.field}{Indicates the name of the column in which the
+chromosome is encoded}
 
-\item{in_start.field}{Indicates the name of the column in which the start coordinate is
-encoded}
+\item{in_start.field}{Indicates the name of the column in which the start
+coordinate is encoded}
 
-\item{in_end.field}{Indicates the name of the column in which the end coordinate is
-encoded}
+\item{in_end.field}{Indicates the name of the column in which the end
+coordinate is encoded}
 
-\item{in_PID.field}{Indicates the name of the column in which the PID (patient or sample
-identifier) is encoded}
+\item{in_PID.field}{Indicates the name of the column in which the PID
+(patient or sample identifier) is encoded}
 
-\item{in_subgroup.field}{Indicates the name of the column in which the subgroup information
-is encoded}
+\item{in_subgroup.field}{Indicates the name of the column in which the
+subgroup information is encoded}
 
-\item{in_strand.field}{Indicates the name of the column in which the strandedness is encoded}
+\item{in_strand.field}{Indicates the name of the column in which the
+strandedness is encoded}
 
 \item{verbose_flag}{Verbose if 1}
 }
@@ -60,4 +63,3 @@ using \code{\link{makeGRangesFromDataFrame}} from the package
 \seealso{
 \code{\link{makeGRangesFromDataFrame}}
 }
-

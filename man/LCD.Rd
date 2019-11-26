@@ -8,35 +8,35 @@ LCD(in_mutation_catalogue_df, in_signatures_df, in_per_sample_cutoff = 0)
 }
 \arguments{
 \item{in_mutation_catalogue_df}{A numeric data frame \code{V} with \code{n}
-rows and \code{m} columns, \code{n} being the number of features and 
+rows and \code{m} columns, \code{n} being the number of features and
 \code{m} being the number of samples}
 
 \item{in_signatures_df}{A numeric data frame \code{W} with \code{n} rows and
 \code{l} columns, \code{n} being the number of features and \code{l} being
 the number of signatures}
 
-\item{in_per_sample_cutoff}{A numeric value less than 1. Signatures from within \code{W}
-with an exposure per sample less than \code{in_cutoff} will be
-discarded.}
+\item{in_per_sample_cutoff}{A numeric value less than 1. Signatures from
+within \code{W} with an exposure per sample less than \code{in_cutoff} will
+be discarded.}
 }
 \value{
 The exposures \code{H}, a numeric data frame with \code{l} rows and
-         \code{m} columns, \code{l} being the number of signatures and
-         \code{m} being the number of samples
+ \code{m} columns, \code{l} being the number of signatures and \code{m} being
+ the number of samples
 }
 \description{
 \code{LCD} performs a mutational signatures decomposition of a given
-mutational catalogue \code{V} with known signatures \code{W} by 
-solving the minimization problem \eqn{min(||W*H - V||)} 
-with additional constraints of non-negativity on H where W and V
-are known
+mutational catalogue \code{V} with known signatures \code{W} by solving the
+minimization problem \eqn{min(||W*H - V||)} with additional constraints of
+non-negativity on H where W and V are known
 }
 \examples{
+
 ## define raw data
-W_prim <- matrix(c(1,2,3,4,5,6),ncol=2) 
+W_prim <- matrix(c(1,2,3,4,5,6),ncol=2)
 W_prim_df <- as.data.frame(W_prim)
 W_df <- YAPSA:::normalize_df_per_dim(W_prim_df,2) # corresponds to the sigs
-W <- as.matrix(W_df) 
+W <- as.matrix(W_df)
 ## 1. Simple case: non-negativity already in raw data
 H <- matrix(c(2,5,3,6,1,9,1,2),ncol=4)
 H_df <- as.data.frame(H) # corresponds to the exposures
@@ -64,4 +64,3 @@ exposures <- as.matrix(exposures_df)
 \seealso{
 \code{\link[lsei]{lsei}}
 }
-

@@ -7,19 +7,20 @@
 merge_exposures(in_exposures_list, in_signatures_df)
 }
 \arguments{
-\item{in_exposures_list}{List of data frames (carrying information on exposures).}
+\item{in_exposures_list}{List of data frames (carrying information on
+exposures).}
 
-\item{in_signatures_df}{Data frame \code{W} in which the columns represent the signatures.}
+\item{in_signatures_df}{Data frame \code{W} in which the columns represent
+the signatures.}
 }
 \value{
 A data frame with the merged exposures.
 }
 \description{
-Merges with the special feature of preserving the signatures and signature 
+Merges with the special feature of preserving the signatures and signature
 order.
 }
 \examples{
  NULL
 
 }
-

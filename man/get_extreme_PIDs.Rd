@@ -12,18 +12,17 @@ get_extreme_PIDs(in_exposures_df, in_quantile = 0.03)
 \item{in_quantile}{Quantile for the amount of extreme PIDs to be selected.}
 }
 \value{
-A data frame with 4 rows per signature (high PIDs, high
- exposures, low PIDs, low exposures); the number of columns depends on
- the quantile chosen.
+A data frame with 4 rows per signature (high PIDs, high exposures,
+  low PIDs, low exposures); the number of columns depends on the quantile
+  chosen.
 }
 \description{
 For all signatures found in a project, this function returns the sample
-identifiers (PIDs) with extremely high or extremely low exposures of
-the respective signatures.
+identifiers (PIDs) with extremely high or extremely low exposures of the
+respective signatures.
 }
 \examples{
  data(lymphoma_cohort_LCD_results)
  get_extreme_PIDs(lymphoma_Nature2013_COSMIC_cutoff_exposures_df,0.05)
 
 }
-

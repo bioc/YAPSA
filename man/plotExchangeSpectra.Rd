@@ -5,17 +5,31 @@
 \title{Plot the spectra of nucleotide exchanges}
 \usage{
 plotExchangeSpectra(in_catalogue_df, in_colour_vector = NULL,
-  in_show_triplets = FALSE, in_show_axis_title = FALSE)
+  in_show_triplets = FALSE, in_show_axis_title = FALSE,
+  in_scales = "free_x", in_refLine = NULL, in_refAlpha = 0.5,
+  in_background = NULL)
 }
 \arguments{
-\item{in_catalogue_df}{Numerical data frame encoding the exchange spectra to be displayed, either
-a mutational catalogue \code{V} or a signatures matrix \code{W}.}
+\item{in_catalogue_df}{Numerical data frame encoding the exchange spectra to
+be displayed, either a mutational catalogue \code{V} or a signatures matrix
+\code{W}.}
 
-\item{in_colour_vector}{Specifies the colours of the 6 nucleotide exchanges if non-null.}
+\item{in_colour_vector}{Specifies the colours of the 6 nucleotide exchanges
+if non-null.}
 
 \item{in_show_triplets}{Whether or not to show the triplets on the x-axis}
 
 \item{in_show_axis_title}{Whether or not to show the name of the y-axis}
+
+\item{in_scales}{Argument passed on to \code{\link[ggplot2]{facet_grid}}}
+
+\item{in_refLine}{If non-null, value on the y-axis at which a horizontal line
+is to be drawn}
+
+\item{in_refAlpha}{Transparency of the horizontal line if it is to be drawn}
+
+\item{in_background}{Option to provide a background theme, e.g.
+\code{\link[ggplot2]{theme_grey}}}
 }
 \value{
 The generated barplot - a ggplot2 plot
@@ -34,4 +48,3 @@ for every column separately.
 
 \code{\link[ggplot2]{facet_grid}}
 }
-
