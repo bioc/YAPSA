@@ -14,8 +14,6 @@
 \title{Cutoffs for a supervised analysis of mutational signatures.}
 \usage{
 data(cutoffs)
-
-data(cutoffs_pcawg)
 }
 \description{
 Series of data frames with signature-specific cutoffs. All values represent
@@ -64,6 +62,4 @@ including artifact signatures, trained on absolute exposures.
 }
 \author{
 Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
-
-Lea Jopp-Saile \email{huebschmann.daniel@googlemail.com}
 }

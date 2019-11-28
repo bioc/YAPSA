@@ -2,21 +2,21 @@
 % Please edit documentation in R/data.R
 \name{MutCat_indel_df}
 \alias{MutCat_indel_df}
-\title{Example mutational catalog for the INDEL vignette}
+\title{Example mutational catalog for the Indel vignette}
 \usage{
 data(GenomeOfNl_MutCat)
 }
 \value{
-A data fame in the layout of a mutational catalog
+A data fame in the layout of a Indel mutational catalog
 }
 \description{
 \code{MutCat_indel_df}: A data frame in the format of a mutation catalog. 
-The mutational catalog contains INDEL variants from the 
+The mutational catalog contains Indel variants from the 
 \code{GenomeOfNl_raw} data. Variants were random sampled for 15 artificial
-patient for the purpose to have a INDEL mutational catalog and have to
+patient for the purpose to have a Indel mutational catalog and have to
 show the functionality of the package. The results of the mutational 
 catalog should not be interpreted fot they biological relevance. 
-Mutational catalog was creased with 
+Mutational catalog was created with 
 \code{create_indel_mutation_catalogue_from_df} function.
 }
 \examples{

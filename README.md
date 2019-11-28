@@ -1,6 +1,6 @@
 # YAPSA
-Daniel Huebschmann  
-26/08/2015  
+Daniel Huebschmann and Lea Jopp-Saile 
+20/05/2019 
 
 
 # Citation
@@ -16,20 +16,30 @@ accepted there and a suitable citation is provided.
 
 The concept of mutational signatures was introduced in a series of papers by 
 Ludmil Alexandrov, Serena Nik-Zainal, Michael Stratton and others (for precise 
-citations please refer to the vignette of the package). The general 
-approach is as follows:
+citations please refer to the vignette of the package). The concept was initialy 
+only valid for SNV signatures and in 2018 extedended to allow also the analysis 
+of INDEL mutational sigantures. The general approach is as follows:
 
-1. The SNVs are categorized by their nucleotide exchange. In total there are 
-`4 x 3 = 12` different nucleotide exchanges, but if summing over reverse 
-complements only `12 / 2 = 6` different categories are left. For every SNV 
-detected, the motif context around the position of the SNV is extracted. This 
-may be a trinucleotide context if taking one base upstream and one base 
-downstream of the position of the SNV, but larger motifs may be taken as well 
-(e.g. pentamers). Taking into account the motif context increases combinatorial 
-complexity: in the case of the trinucleotide context, there are 
-`4 x 6 x 4 = 96` different variant categories. These categories are 
-called **features** in the following text. The number of features will be 
-called `n`.
+1.
+  *The SNVs are categorized by their nucleotide exchange. In total there are 
+  `4 x 3 = 12` different nucleotide exchanges, but if summing over reverse 
+  complements only `12 / 2 = 6` different categories are left. For every SNV 
+  detected, the motif context around the position of the SNV is extracted. This 
+  may be a trinucleotide context if taking one base upstream and one base 
+  downstream of the position of the SNV, but larger motifs may be taken as well 
+  (e.g. pentamers). Taking into account the motif context increases combinatorial 
+  complexity: in the case of the trinucleotide context, there are 
+  `4 x 6 x 4 = 96` different variant categories. These categories are 
+  called **features** in the following text. The number of features will be 
+  called `n`.
+  
+  *The INDELs are categorized bt their insertion and deletion and the immediate
+  sequence context. In total there are 83 differnet categories, features. In total
+  there are 47 delition freatures and 36 inserion freatures. For each INDEL the 
+  sequence context is extracted and the number of motive repetition determined. 
+  In the case of microhomology delition only a partial repetition of the sequence
+  context is considert.  
+  
 2. A cohort consists of different samples with the number of samples denoted by 
 `m`. For each sample we can count the occurences of each feature, yielding an 
 `n`-dimensional vector (`n` being the number of features) per sample. For a 

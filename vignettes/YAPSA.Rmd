@@ -1,9 +1,9 @@
 ---
-title: "YAPSA"
+title: "1. Usage of YAPSA"
 author: "Daniel Huebschmann"
 date: "26/08/2015"
 vignette: >
-  %\VignetteIndexEntry{YAPSA}
+  %\VignetteIndexEntry{1. Usage of YAPSA}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 output:
@@ -489,7 +489,7 @@ analysis by Alexandrov et al. [@Alex2013]
 data("lymphoma_Nature2013_raw")
 ```
 
-This created a data frame with `r dim(lymphoma_Nature2013_raw_df)[1]` rows. It 
+This created a dataframe with `r dim(lymphoma_Nature2013_raw_df)[1]` rows. It 
 is equivalent to executing the R code
 
 ```{r load_lymphoma_ftp, eval=FALSE}
@@ -615,7 +615,7 @@ AlexInitialArtif_sig_df <- read.csv(Alex_signatures_path,header=TRUE,sep="\t")
 kable(AlexInitialArtif_sig_df[c(1:9),c(1:4)])
 ```
 
-We will now reformat the data frame:
+We will now reformat the dataframe:
 
 ```{r reformat_old_sigs}
 Alex_rownames <- paste(AlexInitialArtif_sig_df[,1],
@@ -630,7 +630,7 @@ kable(AlexInitialArtif_sig_df[c(1:9),c(1:6)],
       caption="Exemplary data from the initial Alexandrov signatures.")
 ```
 
-This results in a data frame for signatures, containing `r number_of_Alex_sigs`
+This results in a dataframe for signatures, containing `r number_of_Alex_sigs`
 signatures as column vectors. It is worth noting that in the initial 
 publication, only a subset of these `r number_of_Alex_sigs` signatures were 
 validated by an orthogonal sequencing technology. So we can filter down:
@@ -667,7 +667,7 @@ kable(AlexCosmicValid_sig_df[c(1:9),c(1:6)],
       caption="Exemplary data from the updated Alexandrov signatures.")
 ```
 
-This results in a data frame containing `r number_of_Alex_COSMIC_sigs` 
+This results in a dataframe containing `r number_of_Alex_COSMIC_sigs` 
 signatures as column vectors. For reasons of convenience and comparability with
 the initial signatures, we reorder the features. To this end, we adhere to the 
 convention chosen in the initial publication by Alexandrov et al. [@Alex2013] 
@@ -689,11 +689,11 @@ row names.
 ### Preparation for later analysis
 
 For every set of signatures, the functions in the YAPSA package require an 
-additional data frame containing meta information about the signatures. In that
-data frame you can specify the order in which the signatures are going to be 
+additional dataframe containing meta information about the signatures. In that
+dataframe you can specify the order in which the signatures are going to be 
 plotted and the colours asserted to the different signatures. In the following 
-subsection we will set up such a data frame. However, the respective data 
-frames are also stored in the package. If loaded by `data(sigs)` the following 
+subsection we will set up such a dataframe. However, the respective dataframes
+are also stored in the package. If loaded by `data(sigs)` the following 
 code block can be bypassed.
 
 ```{r, build_sig_ind_df}
@@ -793,8 +793,9 @@ kable(lymphomaNature2013_mutCat_df[c(1:9),c(5:10)])
 
 The `LCD` function performs the decomposition of a mutational catalogue into a 
 priori known signatures and the respective exposures to these signatures as 
-described in the second section of this vignette. We use the "new" signatures 
-from the COSMIC website.
+described in the second section of this vignette. We use the signatures from
+[@Alex2013] from the COSMIC website
+(<https://cancer.sanger.ac.uk/cosmic/signatures_v2>).
 
 ```{r LCD, warning=FALSE}
 current_sig_df <- AlexCosmicValid_sig_df
@@ -822,6 +823,7 @@ cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
 ```{r exposures_barplot_LCD, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = lymphomaNature2013_COSMICExposures_df,
+  in_signatures_ind_df = current_sigInd_df,
   in_subgroups_df = COSMIC_subgroups_df)
 ```
 

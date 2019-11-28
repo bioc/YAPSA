@@ -3,10 +3,10 @@
 \docType{data}
 \name{exampleINDEL_YAPSA}
 \alias{exampleINDEL_YAPSA}
-\title{Data structures used in examples, INDEL tests and the INDEL signature
+\title{Data structures used in examples, Indel tests and the Indel signature
 vignette of the YAPSA package.}
 \description{
-Data structures used in examples, INDEL tests and the INDEL signature
+Data structures used in examples, Indel tests and the Indel signature
 vignette of the YAPSA package.
 }
 \references{

@@ -217,13 +217,13 @@ NULL
 NULL
 
 
-#' Data for PCAWG INDEL signatures (COSMIC v3)
+#' Data for PCAWG Indel signatures (COSMIC v3)
 #'
-#' \code{PCAWG_SP_ID_sigs_df}: Data frame with INDEL signatures published by
+#' \code{PCAWG_SP_ID_sigs_df}: Data frame with Indel signatures published by
 #' Alexandrov et al. (Biorxiv 2018) which were decomposed with the method
 #' SigProfiler. There are 17 Sigantures reported but as supervised signatures
 #' are only valid for whole genome sequencing data analysis. In whole genome
-#' sequencing data the INDEL signature ID15 was not discribed and thus is not
+#' sequencing data the Indel signature ID15 was not discribed and thus is not
 #' part of this data set. In total 83 features are described. The categorization
 #' consideres the size of the insertion and delition, the motif, and the
 #' sequence context. Hereby the number of repetition or patial repetition of the
@@ -237,7 +237,7 @@ NULL
 NULL
 
 
-#' Meta-info for PCAWG INDEL signatures
+#' Meta-info for PCAWG Indel signatures
 #' 
 #' \code{PCAWG_SP_ID_sigInd_df}: Meta-information for 
 #' \code{PCAWG_SP_ID_sigs_df} 
@@ -261,7 +261,7 @@ NULL
 #' 
 NULL
 
-#' Data structures used in examples, INDEL tests and the INDEL signature
+#' Data structures used in examples, Indel tests and the Indel signature
 #' vignette of the YAPSA package.
 #' 
 #' @docType data
@@ -343,7 +343,7 @@ NULL
 #' 
 NULL
 
-#' Example data for the INDEL vignette
+#' Example data for the Indel vignette
 #' 
 #' \code{GenomeOfNl_raw}: A data frame contains the gemiline varinats of 
 #' the dutch population.  carrying point mutation 
@@ -367,15 +367,37 @@ NULL
 #' 
 NULL
 
-#' Example mutational catalog for the INDEL vignette
+#' Example mutational catalog for the SNV vignette
+#' #' 
+#' \code{lymphomaNature2013_mutCat_df}: A data frame in the format of a SNV mutation catalog. 
+#' The mutational catalog contains SNV variants from the 
+#' \code{lymphoma_Nature2013_raw_df} data. Mutational catalog was created with 
+#' \code{create_mutation_catalogue_from_df} function.
+#' 
+#' @name lymphomaNature2013_mutCat_df
+#' @usage data(lymphomaNature2013_mutCat_df)
+#' @references paste0("ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/",
+#' "somatic_mutation_data/Lymphoma B-cell/",
+#' "Lymphoma B-cell_clean_somatic_mutations_",
+#' "for_signature_analysis.txt")
+#' @return  A data fame in the layout of a SNV mutational catalog
+#' 
+#' @examples
+#' data(lymphomaNature2013_mutCat_df)
+#' head(lymphomaNature2013_mutCat_df)
+#' dim(lymphomaNature2013_mutCat_df)
+#' 
+NULL
+
+#' Example mutational catalog for the Indel vignette
 #' 
 #' \code{MutCat_indel_df}: A data frame in the format of a mutation catalog. 
-#' The mutational catalog contains INDEL variants from the 
+#' The mutational catalog contains Indel variants from the 
 #' \code{GenomeOfNl_raw} data. Variants were random sampled for 15 artificial
-#' patient for the purpose to have a INDEL mutational catalog and have to
+#' patient for the purpose to have a Indel mutational catalog and have to
 #' show the functionality of the package. The results of the mutational 
 #' catalog should not be interpreted fot they biological relevance. 
-#' Mutational catalog was creased with 
+#' Mutational catalog was created with 
 #' \code{create_indel_mutation_catalogue_from_df} function.
 #' 
 #' @name MutCat_indel_df
@@ -383,7 +405,7 @@ NULL
 #' @references Mutational catalog created form release version 5 of the Genome 
 #' of NL 
 #' \url{http://www.nlgenome.nl/?page_id=9}
-#' @return  A data fame in the layout of a mutational catalog
+#' @return  A data fame in the layout of a Indel mutational catalog
 #' 
 #' @examples
 #' data(GenomeOfNl_MutCat)
@@ -487,7 +509,7 @@ NULL
 NULL
 
 #' @docType data
-#' @name cutoffs
+#' @name cutoffs_pcawg
 #' @usage data(cutoffs_pcawg)
 #' @author Lea Jopp-Saile \email{huebschmann.daniel@@googlemail.com}
 #' 
@@ -614,7 +636,7 @@ NULL
 #' 
 NULL
 
-#' Opt. cutoffs, PCAWG INDEL signatures, only validated signatures
+#' Opt. cutoffs, PCAWG Indel signatures, only validated signatures
 #' 
 #' \code{cutoffPCAWG_ID_WGS_Pid_df}: Optimal cutoffs for 
 #' \code{\link{PCAWG_SP_ID_sigs_df}}, i.e. initially published signatures, 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/data.R
 \name{GenomeOfNl_raw}
 \alias{GenomeOfNl_raw}
-\title{Example data for the INDEL vignette}
+\title{Example data for the Indel vignette}
 \usage{
 data(GenomeOfNl_raw)
 }

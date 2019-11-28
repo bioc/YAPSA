@@ -44,11 +44,11 @@ data frame
 \code{PCAWG_SP_SBS_sigInd_Real_df}: Meta-information for 
 \code{PCAWG_SP_SBS_sigs_Real_df}
 
-\code{PCAWG_SP_ID_sigs_df}: Data frame with INDEL signatures published by
+\code{PCAWG_SP_ID_sigs_df}: Data frame with Indel signatures published by
 Alexandrov et al. (Biorxiv 2018) which were decomposed with the method
 SigProfiler. There are 17 Sigantures reported but as supervised signatures
 are only valid for whole genome sequencing data analysis. In whole genome
-sequencing data the INDEL signature ID15 was not discribed and thus is not
+sequencing data the Indel signature ID15 was not discribed and thus is not
 part of this data set. In total 83 features are described. The categorization
 consideres the size of the insertion and delition, the motif, and the
 sequence context. Hereby the number of repetition or patial repetition of the
