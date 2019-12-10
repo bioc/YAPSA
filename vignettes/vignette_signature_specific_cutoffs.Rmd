@@ -1,9 +1,9 @@
 ---
-title: "2. Signature analysis with signature-specific cutoffs"
+title: "2. Signature-specific cutoffs"
 author: "Lea Jopp-Saile and Daniel Hübschmann"
 date: "27/11/2019"
 vignette: >
-  %\VignetteIndexEntry{2. Signature analysis with signature-specific cutoffs}
+  %\VignetteIndexEntry{2. Signature-specific cutoffs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 output: 
@@ -274,108 +274,175 @@ opts_chunk$set(fig.show='asis')
 
 # Introduction {#introduction}
 
-The vignette `1. Usage of YAPSA` describes the general usage of YAPSA as a tool
-to perform supervised mutational signature analysis. Calling of mutational
-signature in YAPSA is performs with a Non-Negative Least Square (NNLS) algorithm
-using  **l**inear **c**ombination **d**ecomposition (`LCD`) function based on
-the function `lsei` from the package `r CRANpkg("lsei")`[@lsei_package2015]. The
-LCD algorithm is highly sensitive and specific resulting in a large number of
-false-positive called signatures. The performance of the algorithm can be
-improved with trained signature-specific cutoffs, reducing the number of falsely
-called signatures. 
-
-LCD determines the contribution of signature in a three-step computational
-process 
+The vignette 
+[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html) 
+describes the general usage of YAPSA as a tool
+to perform supervised analyses of mutational signatures. Calling of mutational
+signature in YAPSA is performed with a Non-Negative Least Square (NNLS) 
+algorithm implemented in the function  **l**inear **c**ombination 
+**d**ecomposition (`LCD`) function based on the function `lsei` from the package 
+`r CRANpkg("lsei")` [@lsei_package2015]. The function `LCD` can take 
+signature-specific cutoffs as optional arguments. When choosing optimal cutoffs,
+this can lead to an increase in sensitivity and specificity as compared to NNLS 
+alone. In such a context, `LCD` then determines the exposure, i.e., the 
+contribution of signature to the mutational load of a samples, in a three-step 
+computational process: 
 
 1. Find an NNLS solution with all supplied signatures using LCD
 1. Identify those signatures which have a contribution higher than a
 signature-specific cutoff
 1. Rerun NNLS based on the selected subset of signatures
 
-Mutational signatures stem from an NMF analysis and their signals are not
-orthogonal. This causes overlapping of the signature signal and a difference in
-detectability. These two aspects are taken into account by the training process
-of signature-specific cutoffs. The training of signature-specific cutoffs was
-performed before-hand and values stored as a dataframes alongside with the
-numerical values of the contributions of the different features to the
-signatures. 
+Mutational signatures as provided by 
+http://cancer.sanger.ac.uk/cosmic/signatures have been extracted by 
+Non-negative Matrix Factorization (NMF). Due to the constraint of 
+non-negativity, these signatures cannot be orthogonal. However, orthogonality 
+is a prerequisite or at least beneficial for least squares algorithms. This 
+lack of orthogonality leads to potential overlapping of the signature in a 
+deconvolution.
+
+Different signatures have different detectability. Those with high detectability
+will occur as false positive calls more often. In order to account for the 
+different detectability, we introduced the concept of signature-specific 
+cutoffs: a signature which leads to many false positive calls has to cross a 
+higher threshold than a signature which rarely leads to false positive calls. 
+For YAPSA, we have computed optimal signature cutoffs by a modfied Reciever 
+Operating Characteristic (ROC) analysis on the same data as 
+it had been used for the initial NMF analyses with the extraction of the 
+published mutational signatures ([@Alex2013] and [@Alex2018]). 
+Numeric values for these cutoffs are stored in dataframes accessible after 
+loading the package YAPSA.  
+
+In the implementation of the package `r CRANpkg("ROCR")` [@ROCR_package2005], a 
+modified ROC analysis is parametrized by defining cost terms for punishing 
+false-negative ($cost_{FN}$) and false-positive ($cost_{FP}$) findings 
+separately. In the following, we will call the ratio between the cost for a 
+false-negative finding divided by the cost for a false positive finding the 
+$cost_{factor}$ ($cost_{factor} = cost_{FN}/cost_{FP}$). Separate ROC analyses 
+were performed for every signature. For every signature, the global minimum
+of the cost function defines the optimal value for the signature-specific 
+cutoff. However, the shape of the cost function and hence the position of its 
+minimum depend on $cost_{factor}$. Therefore there is one set of optimal 
+signature-specific cutoffs per chosen value of $cost_{factor}$ 
+([cf. below](#OptimalCutoffs)).
+
+After having computed the optimal signature-specific cutoffs for a range of 
+values for $cost_{factor}$, we applied an additional criterion in order to get 
+an optimal value for $cost_{factor}$: minimization of the overall number of 
+false attributions. Using this criterion, for the Alexandrov COSMIC signatures 
+(`AC1 - AC30`), the optimal value for $cost_{factor}$ was determined to be $6$.
 
 
-The signature-specific cutoffs integrated into YAPSA were trained by an
-optimizing procedure using a modified Receiver Operating Characteristic (ROC)
-[@ROCR_package2005]. Hereby, an NNLS algorithm using LCD was trained to yield a
-maximum overlap with de novo NMF analysis by Alexandrov et al. on a cross-entity
-collection of cancer samples. A cost function of the ROC analysis was defined by
-cost terms punishing false-negative and false-positive findings separately. The
-ratio between the cost for a false-negative divided by the cost for a false
-positive was called the cost factor
-(cost factor=(False-positive findings)/(False-negative findings)).
-Individual ROC analyses were performed for every signature. The global minimum
-of the cost function defines the signature-specific cutoff value. The shape of
-the function and hence its minimum is depended on the cost factor. Through an
-optimization procedure using varying punishing costs for false-positive findings
-and constant punishing cost of one for false-negative findings, the minimum of
-the relative false attribution was determined. Based on the cost factor the
-optimal cutoff values were computed. 
+# Overview of the data {#DataOverview}
 
+## Signatures
 
-# Data overview
+In YAPSA, the patterns of nucleotide exchanges in their triplet context 
+constituting the mutational signatures are stored in data frames which can be 
+loaded as follows (more information provided by the help function, cf. 
+([1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html))
+for an overview of how these data frames can be re-created from data available 
+online):
 
-In total YAPSA comes with 15 signature dataframes, which can be loaded as
-followed (more information provided by the help function):
 ```{r load signatures}
 data(sigs)
 data(sigs_pcawg)
 ```
 
-The command `data(sigs)` will load eight signatures dataframes, whereas four
-dataframes containing the mutational signatures themselves and the remaining
-four data contain additional information on the signatures. The eight signature
-dataframes are comprised of:
+The first command, `data(sigs)`, loads eight dataframes into the workspace. 
+Among these, four contain the patterns of nucleotide exchanges in their triplet 
+context, i.e., the mutational signatures themselves, and the remaining
+four dataframes contain additional information on the signatures, including a 
+naming and numbering convention, a description of the asserted underlying 
+mutational process and a choice of generic colour coding. In particular, these 
+eight signature dataframes are:
 
-* Two signature and two additonal information dataframes with SNV Alexandrov
-COSMIC signatures (<https://cancer.sanger.ac.uk/cosmic/signatures_v2>),
-downloaded on January 15th, 2016): `AlexCosmicArtif_sig_df`,
-`AlexCosmicValid_sig_df`, `AlexCosmicArtif_sigInd_df` and
-`AlexCosmicValid_sigInd_df`
+* Two signature and two additonal information dataframes containing SNV 
+Alexandrov COSMIC signatures (available at 
+<https://cancer.sanger.ac.uk/cosmic/signatures_v2>, downloaded on January 
+15th, 2016): 
+    * `AlexCosmicArtif_sig_df` and `AlexCosmicArtif_sigInd_df`,
+    * `AlexCosmicValid_sig_df` and `AlexCosmicValid_sigInd_df`
 
-* Two signature and two additonal information dataframes dataframes with SNV
-Alexadrov Initial signatures (as available at ???): `AlexInitialArtif_sig_df`,
-`AlexInitialValid_sig_df`, `AlexInitialArtif_sigInd_df` and
-`AlexInitialValid_sigInd_df`
+* Two signature and two additonal information dataframes containing SNV
+Alexadrov Initial signatures (the signatures presented in the initial 
+publication [@Alex2013]): 
+    * `AlexInitialArtif_sig_df` and `AlexInitialArtif_sigInd_df`,
+    * `AlexInitialValid_sig_df` and `AlexInitialValid_sigInd_df`
+    
+Of note, all data provided in YAPSA follows a consistent naming convention:
 
-The command `data(sigs_pcawg)` will load six signatures dataframes, whereas
-three dataframes containing the mutational signatures themselves and the
-remaining three data contain additional information on the signatures. The six
-signature dataframes are comprised of:
+* Names containing `Valid` or `Real` refer to those subsets of signatures which 
+have been identified by NMF in the respective discovery analyses and validated 
+using orthogonal sequencing technologies.
+* Names containing `Artif` refer to extended sets of signatures including also 
+those signatures which have later been ascribed to be artifact signatures 
+(reflecting, among others, sequencing errors).
 
-* Two signature and two additional information dataframes with SNV Alexandrov
-PCAWG signatures (<https://cancer.sanger.ac.uk/cosmic/signatures_v3>),
-downloaded on August 16th, 2018): `PCAWG_SP_SBS_sigs_Artif_df`,
-`PCAWG_SP_SBS_sigs_Real_df`, `PCAWG_SP_SBS_sigInd_Artif_df` and
-`PCAWG_SP_SBS_sigInd_Real_df`
+The second command in the above code block, `data(sigs_pcawg)`, loads six 
+additional dataframes into the workspace, three dataframes containing 
+mutational signatures themselves and three dataframes containing additional 
+information on the signatures. In particular, these six dataframes are:
 
-* One signature and oen additional information dataframe with Indel Alexandrov
-PCAWG signature (<https://cancer.sanger.ac.uk/cosmic/signatures_v3>), downloaded
-on August 16th, 2018): `PCAWG_SP_ID_sigs_df`, `PCAWG_SP_ID_sigInd_df`
+* Two signature and two additional information dataframes containing SNV 
+Alexandrov PCAWG signatures (available at 
+<https://cancer.sanger.ac.uk/cosmic/signatures_v3>, downloaded on August 16th, 
+2018): 
+    * `PCAWG_SP_SBS_sigs_Artif_df` and `PCAWG_SP_SBS_sigInd_Artif_df`,
+    * `PCAWG_SP_SBS_sigs_Real_df` and `PCAWG_SP_SBS_sigInd_Real_df`
 
-For each of the signature dataframe at least one corresponding
-signature-specific cutoff dataframe is available. Cutoff dataframes can be
-loaded equivalent to the signatures
+* One signature and one additional information dataframe containing Indel 
+Alexandrov PCAWG signatures (also available at 
+<https://cancer.sanger.ac.uk/cosmic/signatures_v3>, downloaded
+on August 16th, 2018): 
+    * `PCAWG_SP_ID_sigs_df` and `PCAWG_SP_ID_sigInd_df`
+
+As of december 2019 and to our knowledge, it is a unique feature of YAPSA to 
+include PCAWG mutational signatures. Of note, a 
+[separate vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html) describes the usage of and analysis with Indel signatures.
+
+
+## Optimal cutoffs {#OptimalCutoffs}
+
+For each of the signature dataframes, corresponding dataframes storing 
+numerical values of the signature-specific cutoffs are available. The cutoff 
+dataframes can be loaded to the workspace analogously to the signatures 
+themselves:
+
 ```{r load cutoffs}
 data(cutoffs)
 data(cutoffs_pcawg)
 ```
 
-The command `data(cutoffs)` will load for the four COSMIC and initial Alexandrov
-signature frames two corresponding cutoff dataframes, e.g. For
-`AlexCosmicValid_sig_df` the corresponding cutoff dataframes are
-`cutoffCOSMICValid_abs_df` and `cutoffCOSMICValid_rel_df`. Absolute (abs)
-signature-specific cutoffs should be used for the analysis of whole genome
-sequencing (WGS) data, whereas relative (rel) signature-specific cutoffs are
-valid for the analysis of whole exome sequencing (WES) data. The two different
-cutoffs account for the different maximal feature occurrence between WGS and WES
-data.  
+The command `data(cutoffs)` loads cutoff dataframes corresponding to the four 
+Alexandrov COSMIC and Alexandrov initial sets of signatures. In the following, 
+an additional naming convention is introduced: 
+
+* Absolute (abs) signature-specific cutoffs were computed using an ROC analysis 
+performed on absolute exposures as provided by the initial NMF analysis
+* Relative (rel) signature-specific cutoffs were computed using on ROC analysis 
+performed on relative, i.e., normalized exposures as provided by the initial 
+NMF analysis.
+
+This double training has proven to be both useful and necessary in order to 
+account for the heterogeneity of the underlying training data: on one hand, a 
+training with absolute exposures weighs all mutations equally, however a whole 
+genome sequenced (WGS) sample gets a much higher weight due to the high number 
+of mutations detected in it than a whole exome sequenced (WES sample). On the 
+other hand, a training with relative or normalized signature exposures weighs 
+all samples equally, but at the cost of having different weights for mutations 
+originating from samples of different mutation count. Based on these 
+considerations, cutoffs derived from the training with absolute exposures 
+should be used for the supervised analysis of WGS data, whereas cutoffs trained 
+on relative exposures are better suited for the analysis of WES data. The two 
+different sets of cutoffs thus account for the different maximal feature 
+occurrence between WGS and WES data. The correspondence between signatures and 
+cutoffs is as follows:
+
+* For `AlexCosmicValid_sig_df`, the corresponding cutoff dataframes are
+`cutoffCOSMICValid_abs_df` and `cutoffCOSMICValid_rel_df`.  
+* For `AlexCosmicArtif_sig_df`, the corresponding cutoff dataframes are
+`cutoffCOSMICArtif_abs_df` and `cutoffCOSMICArtif_rel_df`.
 
 With `data(cutoffs_pcawg)` the signature-specific cutoff dataframes for the
 PCAWG signatures are loaded. In this case, only one dataframe with cutoffs per
@@ -383,16 +450,23 @@ signature dataframe is available. Signature-specific cutoffs are valid for WGS
 and WES data analysis as differences in the feature occurrence is taken into
 account during the training procedure.
 
-Each dataframes contains several rows, corresponding to the different cost
-factors. The cost factor which determines the optimal cutoff value is listed in
-the table below. 
+In the provided dataframes with numerical values for optimal signature-specific 
+cutoffs, the columns correspond to the different signatures of the chosen 
+signature set, whereas the rows encode different values of $cost_{factor}$ 
+(cf. [introduction](#introduction)). For an actual analysis of mutational signatures, only one 
+optimal cutoff value per signature is required, i.e., the user has to choose 
+one row from the chosen cutoff dataframe. As already explained above, optimal 
+values for $cost_{factor}$ have also been determined. These are listed in the 
+table below. Unless a user has a specific wish to use a different 
+$cost_{factor}$, it is generally recommended to use these default parameter 
+choices.
 
-cutoff dataframe   | cost factor
+cutoff dataframe   | optimal cost factor
 ------- | -----
-cutoffInitialValid_abs_df | ?
-cutoffInitialValid_rel_df | ?
-cutoffInitialArtif_abs_df | ?
-cutoffInitialArtif_rel_df | ?
+cutoffInitialValid_abs_df | 6
+cutoffInitialValid_rel_df | 6
+cutoffInitialArtif_abs_df | 6
+cutoffInitialArtif_rel_df | 6
 cutoffCosmicValid_abs_df | 6
 cutoffCosmicValid_rel_df | 6
 cutoffCosmicArtif_abs_df | 6
@@ -404,39 +478,61 @@ cutoffPCAWG_ID_WGS_Pid_df | 3
 : (\#tab:Table:) Overview of signature specific cutoffs and the cost factor to
 obtain the optimal cutoffs.
 
-# Example
-The `1. Usage of YAPSA` shows how to obtain a mutational catalog ($V$) from a
-vcf file, which is in the following loaded from the provided data. More details
-on the data set are provided in `1. The usage of YAPSA` vignette.
+Thus, if a user wants to do an analysis with the Alexandrov COSMIC signatures, 
+discarding the artifact signatures, on WGS data, he/she would use the following 
+code snippet:
+
+```{r cutoff example}
+data(cutoffs)
+current_cutoff_vector <- cutoffCosmicValid_abs_df[6, ]
+current_cutoff_vector
+```
+
+
+
+# Application example
+
+The vignette 
+[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html) 
+shows how to obtain a mutational catalog ($V$) from a
+vcf file. Here, for the sake of simplicits, we just use an example data set 
+stored in the software package. 
 
 ```{r load data}
-#load("/Users/jopp-saile/software/yapsa-bioconductor/data/lymphomaNature2013_mutCat_df.rda")
 data(lymphomaNature2013_mutCat_df)
 ```
 
 The mutational catalog $V$ together with the signatures $V$ and the
 corresponding signature-specific cutoffs can be used to determine the signature
-contribution ($H$) per sample or cohort. 
-The function `LCD_complex_cutoff_combined` allows computing the signature
-contribution per patient identifier (PID), sample and the consensus of both
-analysis respectively.
+exposures (corresponding to the matrix $H$ in the naming convention influenced 
+by NMF) per sample or cohort. This is done by the function 
+`LCD_complex_cutoff_combined`.
 
-In `1. The usage of YAPSA` signature contribution was determined without a
-signature-specific cutoff (zero cutoff vector). In the following, the aim is to
-identify the significant contribution of validated COSMIC signatures.
+In the examples provided in 
+[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+signature exposures were determined (i) with a zero cutoff vector, i.e. without
+signature-specific cutoffs or (ii) with a manually chosen but not necessarily 
+optimal cutoff. In contrast, in the following, we will perform an analysis of 
+mutational signatures using optimal cutoffs and compare the results to an 
+analysis without any cutoffs.
 
 ```{r set variables }
 current_sig_df <- AlexCosmicValid_sig_df
 current_sigInd_df <- AlexCosmicValid_sigInd_df
 ```
 
-Creating a zero cutoff vector:
+
+## Comparison: analysis without any cutoffs {#comparisonZeroCutoffs}
+
+For the purpose of comparison, we first create a zero cutoff vector:
+
 ```{r cutoff vector}
 current_cutoff_vector <- rep(0, dim(AlexCosmicValid_sig_df)[2])
 ```
 
-Identification of the signature contiburion of validaded COSMIC signatures with
-a zero cutoff vector using LCD analysis.
+Next, we compute the exposures to the mutational signatures using LCD analysis 
+and this zero cutoff vector:
+
 ```{r lymphoma_cohort_LCD_results}
 lymphoma_COSMICExposures_zero_df <-
   LCD_complex_cutoff_combined(
@@ -444,12 +540,14 @@ lymphoma_COSMICExposures_zero_df <-
     in_cutoff_vector = current_cutoff_vector, 
     in_signatures_df = current_sig_df, 
     in_sig_ind_df = current_sigInd_df)
-
 ```
+
 The function returns an object with the results per cohort, per PID and the
 consensus between both analyses.
 
-Annotation of a subgroup to each PID allows to them per subgroup
+Annotation of a subgroup to each PID allows to group the samples per subgroup 
+upon visualization:
+
 ```{r subrgroup annotation}
 data(lymphoma_PID)
 colnames(lymphoma_PID_df) <- "SUBGROUP"
@@ -465,9 +563,11 @@ cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
         for the LCD"
 ```
 
-Exposures of a cohort-wide analysis identified with LCD and a zero-cutoff vector
-are represented in a stacked barplot per patient. Patients have a small
-contribution to multiple signatures.
+We select the cohort-wide analysis for visualization and make use of the custom 
+plotting function `exposures_barplot()` in order to display signature exposures 
+as stacked barplots. Note the occurrence of multiple signatures with partially 
+very low exposures.
+
 ```{r exposures_zero, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
 result_cohort <- lymphoma_COSMICExposures_zero_df$cohort
 exposures_barplot(
@@ -476,22 +576,26 @@ exposures_barplot(
   in_subgroups_df = COSMIC_subgroups_df)        
 ```
 
-The zero-cutoff vector will now be replaced with the signature-specific cutoff
-vector. After the initial LCD analysis only signatures that contribute higher
-then their signature specific cutoff value will be considered, causing a
-reduction of the overall number of detected signatures.
 
+## Making use of optimal signature-specific cutoffs {#optimalSpecificCutoffs}
+
+The zero-cutoff vector will now be replaced by the signature-specific cutoff
+vector. After the initial LCD analysis only signatures that contribute higher
+then their signature specific cutoff value will be considered, leading to a
+reduction of the overall number of detected signatures.
 
 Based on \@ref(tab:Table1) we know that for the validated COSMIC Signatures the
 optimal cutoffs are the once computed with a cost factor of six. 
+
 ```{r set signature-specific cutoff}
 current_cutoff_df <- cutoffCosmicValid_abs_df
 current_cost_factor <- 6
 current_cutoff_vector <- current_cutoff_df[current_cost_factor,]
 ```
 
-Identification of the signature contribution of validated COSMIC signatures with
-a zero cutoff vector using LCD analysis.
+We again compute signature exposures, but this time using the vector of optimal 
+signature-specific cutoffs:
+
 ```{r LCD with cutoffs}
 lymphoma_COSMICExposures_cutoffs_df <-
   LCD_complex_cutoff_combined(
@@ -501,9 +605,9 @@ lymphoma_COSMICExposures_cutoffs_df <-
       in_sig_ind_df = current_sigInd_df)
 ```
 
-Exposures of a cohort-wide analysis identefied with LCD and signature-specific
-cutoffs are represented in a stacked barplot per patient. Patients have small
-contibution to multiple signatures.
+And again proceeding to a visualization (of note, the sample subgrouping 
+information can be used as in the previous subsection):
+
 ```{r caption_barplot, echo=FALSE}
 cap <- "Absolute exposures of the COSMIC signatures in the lymphoma mutational
         catalogs, signature-specific cutoffs with a cost factor of 6 used
@@ -518,7 +622,11 @@ exposures_barplot(
   in_subgroups_df = COSMIC_subgroups_df)               
 ```
 
-It can be clearly shown that the number of identified signatures are less, as
-the number of false-positive detected signatures are reduced. 
+We note that the number of identified signatures is smaller. 
+Those signatures which had been identified in 
+[the analysis without any cutoffs](#comparisonZeroCutoffs) but not in 
+[the analysis with optimal cutoffs](#optimalSpecificCutoffs) can be considered 
+false positive calls. 
+
 
 # Reference

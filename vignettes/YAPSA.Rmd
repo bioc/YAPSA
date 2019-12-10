@@ -489,7 +489,7 @@ analysis by Alexandrov et al. [@Alex2013]
 data("lymphoma_Nature2013_raw")
 ```
 
-This created a dataframe with `r dim(lymphoma_Nature2013_raw_df)[1]` rows. It 
+This creates a dataframe with `r dim(lymphoma_Nature2013_raw_df)[1]` rows. It 
 is equivalent to executing the R code
 
 ```{r load_lymphoma_ftp, eval=FALSE}
@@ -597,10 +597,6 @@ included in this package:
 ```{r, load_stored_sig_data}
 data(sigs)
 ```
-
-However, the curated set of signatures might change in the future, therefore it
-is recommended to rebuild it from the above mentioned website as described in 
-the following subsections.
 
 
 ### Loading the initial set of signatures
@@ -746,6 +742,11 @@ AlexCosmicValid_sigInd_df$index <- seq_len(dim(AlexCosmicValid_sigInd_df)[1])
 AlexCosmicValid_sigInd_df$colour <- COSMIC_signature_colour_vector
 AlexCosmicValid_sigInd_df$process <- COSMIC_bio_process_vector
 ```
+
+YAPSA can also perform analyses based on other sets of mutational signatures. 
+Details can be found in additional vignettes on 
+[signature-specifc cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html) and 
+[Indel signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html).
 
 
 ## Performing an LCD analysis
@@ -1018,7 +1019,9 @@ exposures_barplot(
 
 Note that the signatures extracted with the signature-specific cutoffs are the 
 same in the example displayed here. Depending on the analyzed cohort and the 
-choice of cutoffs, the extracted signatures may vary considerably.
+choice of cutoffs, the extracted signatures may vary considerably. A unique 
+feature of YAPSA is that it also provides optimal signature-specific cutoffs, a 
+topic explained in a separate [vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html).
 
 
 
