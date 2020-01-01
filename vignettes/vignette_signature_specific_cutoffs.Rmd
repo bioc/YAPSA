@@ -534,7 +534,7 @@ Next, we compute the exposures to the mutational signatures using LCD analysis
 and this zero cutoff vector:
 
 ```{r lymphoma_cohort_LCD_results}
-lymphoma_COSMICExposures_zero_df <-
+lymphoma_COSMIC_zero_listsList <-
   LCD_complex_cutoff_combined(
     in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
     in_cutoff_vector = current_cutoff_vector, 
@@ -554,7 +554,7 @@ colnames(lymphoma_PID_df) <- "SUBGROUP"
 lymphoma_PID_df$PID <- rownames(lymphoma_PID_df)
 COSMIC_subgroups_df <- 
   make_subgroups_df(lymphoma_PID_df,
-                    lymphoma_COSMICExposures_zero_df$cohort$exposures)
+                    lymphoma_COSMIC_zero_listsList$cohort$exposures)
 ```
 
 ```{r caption_barplot_2, echo=FALSE}
@@ -569,7 +569,7 @@ as stacked barplots. Note the occurrence of multiple signatures with partially
 very low exposures.
 
 ```{r exposures_zero, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
-result_cohort <- lymphoma_COSMICExposures_zero_df$cohort
+result_cohort <- lymphoma_COSMIC_zero_listsList$cohort
 exposures_barplot(
   in_exposures_df = result_cohort$exposures,
   in_signatures_ind_df = result_cohort$out_sig_ind_df,
@@ -597,7 +597,7 @@ We again compute signature exposures, but this time using the vector of optimal
 signature-specific cutoffs:
 
 ```{r LCD with cutoffs}
-lymphoma_COSMICExposures_cutoffs_df <-
+lymphoma_COSMIC_listsList <-
   LCD_complex_cutoff_combined(
       in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
       in_cutoff_vector = current_cutoff_vector, 
@@ -615,7 +615,7 @@ cap <- "Absolute exposures of the COSMIC signatures in the lymphoma mutational
 ```
 
 ```{r exposures_cutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
-result_cohort <- lymphoma_COSMICExposures_cutoffs_df$cohort
+result_cohort <- lymphoma_COSMIC_listsList$cohort
 exposures_barplot(
   in_exposures_df = result_cohort$exposures,
   in_signatures_ind_df = result_cohort$out_sig_ind_df,

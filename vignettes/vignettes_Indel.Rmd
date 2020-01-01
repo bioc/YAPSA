@@ -1,9 +1,9 @@
 ---
-title: "3. Indel signature analysis"
+title: "5. Indel signature analysis"
 author: "Lea Jopp-Saile and Daniel Huebschmann"
 date: "28/01/2019"
 vignette: >
-  %\VignetteIndexEntry{3. Indel signature analysis}
+  %\VignetteIndexEntry{5. Indel signature analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 output: 
@@ -577,7 +577,7 @@ The exposures, i.e., the contributions of the different signatures to the
 mutational catalog of every sample, can be visualized with the function
 `exposures_barplot()`. All the functionalities which are available for
 SNV mutational signatures, such as the annotation of subgroups (cf. 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html)) 
+[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_confidenceIntervals.html)) 
 are also available for the Indel mutational signatures.
 
 ```{r caption_exposure, echo=FALSE}
@@ -595,9 +595,10 @@ exposures_barplot(current_LCDlistsList$perPID$exposures,
 # Confidence Intervals
 
 In order to assess trustworthiness of the computed exposures, YAPSA provides 
-the calculation of confidence intervals (CIs). Analogously to CIs for SNV 
-mutational signatures, the CIs for Indel mutational signatures are computed 
-using the concept of profile likelihood.
+the calculation of confidence intervals (CIs). Analogously to 
+[CIs for SNV mutational signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+the CIs for Indel mutational signatures are computed using the concept of 
+profile likelihood.
 
 ```{r caption_CI, echo=FALSE}
 cap <- "Confidence interval calculation for exposures to Indel mutational 
