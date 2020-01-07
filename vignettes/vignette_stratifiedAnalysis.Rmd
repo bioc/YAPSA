@@ -181,11 +181,84 @@ opts_chunk$set(echo=TRUE)
 opts_chunk$set(fig.show='asis')
 ```
 
-# Introduction: Confidence Intervals {#introduction}
+# Introduction {#introduction}
 
-ABC
+For many biological questions, it is of relevance to group mutations, or more 
+specifically single nucleotide variants (SNVs), into different **strata** or 
+categories. These strata may be defined by genomic coordinate or other measures 
+derived therefrom and annotated to the variants, e.g., replication timing, 
+chromatin state, coding vs. non-coding part of the genome etc. Other choices of 
+stratification are also possible, as shown below for the example of mutation 
+density as stratification axis.
 
-# Recap: compute signature exposures
+It is noteworthy to say that it would be neither sufficient nor appropriate to 
+perform completely separate and independent NNLS analyses of mutational 
+signatures on the different strata. This artificially reduces the statistical 
+power provided by the higher number of SNVs in the unstratified setting. 
+Instead, the results of the unstratified analysis should be used as input and 
+supplied to a constrained analysis for the strata.
+
+In YAPSA, these strata or categories have to be exclusive, i.e. one SNV must be 
+in one and only one category. The number of strata will be denoted by $s$. For 
+example one could evaluate whether an SNV falls into a region of high, 
+intermediate or low mutation density by applying meaningful cutoffs on 
+intermutation distance. Following this choice, there are three strata: high, 
+intermediate and low mutation density. If we have already performed an analysis 
+of mutational signatures for the whole (unstratified) mutational catalogue of
+the cohort, we have identified a set of signatures of interest and the 
+corresponding exposures. We now could ask the question if some of the 
+signatures are enriched or depleted in one or the other stratum, yielding a 
+strata-specific signature enrichment and depletion pattern. In YAPSA, the 
+function `SMC` (Stratification of the Mutational Catalogue) solves the 
+stratified optimization problem:
+
+(@SMC_formula) $$
+\begin{aligned}
+\min_{H_{(\cdot j)}^k \in \mathbb{R}^l}||W \cdot H_{(\cdot j)}^{k} - 
+V_{(\cdot j)}^{k}|| \quad \forall j,k \\
+\textrm{under the constraint of non-negativity:} \quad H_{(ij)}^{k} >= 0 
+\quad \forall i,j,k \\
+\textrm{and the additional contraint:} \quad \sum_{k=1}^{s} H^{k} = H \\
+\textrm{where H is defined by the optimization:} \quad \min_{H_{(\cdot j)} 
+\in \mathbb{R}^l}||W \cdot H_{(\cdot j)} - V_{(\cdot j)}|| \quad \forall j \\
+\textrm{also under the constraint of non-negativity:} \quad H_{(ij)} >= 0 
+\quad \forall i,j \quad \textrm{and} \quad V = \sum_{k=1}^{s} V^{k}
+\end{aligned}
+$$
+
+As defined in 
+[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+$j$ is the index over samples, $m$ is the number of samples, $i$ 
+is the index over signatures and $l$ is the number of signatures. In addition, 
+$k$ is the index over strata and $s$ is the number of strata. Note that the 
+last two lines of equation (@SMC_formula) correspond to equation 
+(@LCD_formula). The very last part of equation (@SMC_formula) reflects the 
+additivity of the stratified mutational catalogues $V^{k}$ which is due to the 
+fact that by definition the sets of SNVs they were constructed from (i.e. the 
+strata) are exclusive.
+
+The SMC-procedure can also be applied when an NMF analysis has been performed 
+and the exposures $\widetilde{H}$ of this NMF analysis should be used as input 
+and constraint for the SMC. It then solves the task:
+
+(@SMC_NMF_input_formula) $$
+\begin{aligned}
+\min_{H_{(\cdot j)}^k \in \mathbb{R}^l}||W \cdot H_{(\cdot j)}^{k} - 
+V_{(\cdot j)}^{k}|| \quad \forall j,k \\
+\textrm{under the constraint of non-negativity:} \quad H_{(ij)}^{k} >= 0 
+\quad \forall i,j,k \\
+\textrm{and the additional contraint:} \quad 
+\sum_{k=1}^{s} H^{k} = \widetilde{H} \\
+\end{aligned}$$
+
+
+Applying `SMC` that way, the initial LCD decomposition of the unstratified 
+mutational catalogue is omitted and it's result replaced by the exposures 
+extracted by the NMF analysis.
+
+
+
+# Recap: compute signature exposures (without stratification)
 
 In the following section, we briefly recapitulate the analysis of SNV 
 mutational signatures on an example data set as performed in 

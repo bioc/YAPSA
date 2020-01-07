@@ -254,6 +254,74 @@ references:
   issued:
     year: 2015
   title: 'ComplexHeatmap: Making Complex Heatmaps'
+- author:
+  - family: Raue
+    given: Andreas
+  - family: Kreutz 
+    given: C.
+  - family: Maiwald 
+    given: T.
+  - family: Bachmann 
+    given: J.
+  - family: Schilling
+    given: M.
+  - family: Klingmüller
+    given: U.
+  - family: Timmer
+    given: J.
+  container-title: Bioinformatics
+  id: Raue_Bioinformatics2009
+  issued:
+      year: 2009
+  title: >
+    'Structural and practical identifiability analysis of partially observed 
+    dynamical models by exploiting the profile likelihood.'
+- author:
+  - family: Alexandrov
+    given: LB
+  - family: Kim
+    given: J
+  - family: Haradhvala
+    given: NJ
+  - family: Huang
+    given: MN
+  - family: Ng
+    given: AW
+  - family: Boot
+    given: A
+  - family: Covington
+    given: KR
+  - family: Gordenin
+    given: DA
+  - family: Bergstrom
+    given: E
+  - family: Lopez-Bigas
+    given: N
+  - family: Klimczak
+    given: LJ
+  - family: McPherson
+    given: JR
+  - family: Morganella
+    given: S
+  - family: Sabarinathan
+    given: R
+  - family: Wheeler
+    given: DA
+  - family: Mustonen
+    given: V
+  - family: Getz
+    given: G
+  - family: Rozen
+    given: SG
+  - family: Stratton
+    given: MR
+  container-title: bioarxiv
+  id: Alex2018
+  issued:
+    month: 05
+    year: 2018
+  publisher: bioarxiv
+  title: 'The Repertoire of Mutational Signatures in Human Cancer'
 ---
 
   
@@ -347,10 +415,8 @@ to perform this task. The advantage of this method is that there are **no
 constraints on the cohort size**, so `LCD` can be run for as little as one 
 sample and thus be used e.g. for signature analysis in personalized oncology. 
 In contrast to NMF, `LCD` is very fast and requires very little computational 
-resources. The YAPSA package provides additional functions for signature 
-analysis, e.g. for stratifying the mutational catalogue to determine signature 
-exposures in different strata, part of which will be discussed later in this 
-vignette.
+resources. YAPSA has some other unique functionalities, which are briefly 
+mentioned below and described in detail in separate vignettes.
 
 
 ## Linear Combination Decomposition (LCD) {#LCD}
@@ -398,67 +464,52 @@ function `whichSignatures` in `r CRANpkg("deconstructSigs")` is that
 `LCD_complex_cutoff` accepts different cutoffs and signature-specific cutoffs 
 (accounting for potentially different detectability of different signatures), 
 whereas in `whichSignatures` in `r CRANpkg("deconstructSigs")` a general fixed 
-cutoff is set to be 0.06. Furthermore, YAPSA has a function for a stratified 
-analysis as described in the following paragraph.
+cutoff is set to be 0.06. In the following, we briefly mention other features 
+of the software package YAPSA and refer to the corresponding vignettes for 
+detailed descriptions.
+
+## Signature-specific cutoffs
+
+One special characteristic of YAPSA is that it provides the opportunity to 
+perform analyses of mutational signtures with signature-specific cutoffs. 
+Different signatures have different detectability. Those with high detectability
+will occur as false positive calls more often. In order to account for the 
+different detectability, we introduced the concept of signature-specific 
+cutoffs: a signature which leads to many false positive calls has to cross a 
+higher threshold than a signature which rarely leads to false positive calls. 
+While this vignette introduces [how to work with signature-specific cutoffs in 
+general](#sigSpecCutoffs), optimal signature-specific cutoffs are presented in 
+[2. Signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html).
+
+## Confidence intervals for mutational signature exposures
+
+In order to evaluate the confidence of computed exposures to mutational 
+signatures, YAPSA provides 95% confidence intervals (CIs). The computation 
+relies on the concept of profile likelihood [@Raue_Bioinformatics2009]. Details 
+can be found in 
+[3. Confidence Intervals](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_confidenceIntervals.html).
 
 ## Stratification of the Mutational Catalogue (SMC)
 
 For some questions it is useful to assign the SNVs detected in the samples of a
-cohort to categories. In the following these categories have to be exclusive, 
-i.e. one SNV must be in one and only one category. The categories will be 
-called **strata** in the following and the procedure **stratification**. The 
-number of strata will be denoted by $s$. For example one could evaluate whether
-an SNV falls into a region of high, intermediate or low mutation density by 
-applying meaningful cutoffs on intermutation distance. Following the above 
-convention, there are three strata: high, intermediate and low mutation 
-density. If we have already performed an analysis of mutational signatures for 
-the whole mutational catalogue of the cohort, we have identified a set of 
-signatures of interest and the corresponding exposures. We now could ask the 
-question if some of the signatures are enriched or depleted in one or the other
-stratum, yielding a strata-specific signature enrichment and depletion pattern.
-The function `SMC` (Stratification of the Mutational Catalogue) solves the 
-stratified optimization problem:
+cohort to categories. We call an analysis of enrichment and depletion patterns 
+of the mutational signatures in the different strata a *stratified* analysis. 
+Of note, this is different from performing completely separate and independent 
+NNLS analyses of mutational signatures on the different strata. Instead, the 
+results of the unstratified analysis are used as input for a constrained 
+analysis for the strata. Details can be found in 
+[4. Stratified Analysis of Mutational Signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_stratifiedAnalysis.html)
 
-(@SMC_formula) $$
-\begin{aligned}
-\min_{H_{(\cdot j)}^k \in \mathbb{R}^l}||W \cdot H_{(\cdot j)}^{k} - 
-V_{(\cdot j)}^{k}|| \quad \forall j,k \\
-\textrm{under the constraint of non-negativity:} \quad H_{(ij)}^{k} >= 0 
-\quad \forall i,j,k \\
-\textrm{and the additional contraint:} \quad \sum_{k=1}^{s} H^{k} = H \\
-\textrm{where H is defined by the optimization:} \quad \min_{H_{(\cdot j)} 
-\in \mathbb{R}^l}||W \cdot H_{(\cdot j)} - V_{(\cdot j)}|| \quad \forall j \\
-\textrm{also under the constraint of non-negativity:} \quad H_{(ij)} >= 0 
-\quad \forall i,j \quad \textrm{and} \quad V = \sum_{k=1}^{s} V^{k}
-\end{aligned}
-$$
+## Indel signatures
 
-Remember that $j$ is the index over samples, $m$ is the number of samples, $i$ 
-is the index over signatures, $l$ is the number of signatures, $k$ is the index
-over strata and $s$ is the number of strata. Note that the last two lines of 
-equation (@SMC_formula) correspond to equation (@LCD_formula). The very last 
-part of equation (@SMC_formula) reflects the additivity of the stratified 
-mutational catalogues $V^{k}$ which is due to the fact that by definition the 
-sets of SNVs they were constructed from (i.e. the strata) are exclusive.
-
-The SMC-procedure can also be applied when an NMF analysis has been performed 
-and the exposures $\widetilde{H}$ of this NMF analysis should be used as input 
-and constraint for the SMC. It then solves the task:
-
-(@SMC_NMF_input_formula) $$
-\begin{aligned}
-\min_{H_{(\cdot j)}^k \in \mathbb{R}^l}||W \cdot H_{(\cdot j)}^{k} - 
-V_{(\cdot j)}^{k}|| \quad \forall j,k \\
-\textrm{under the constraint of non-negativity:} \quad H_{(ij)}^{k} >= 0 
-\quad \forall i,j,k \\
-\textrm{and the additional contraint:} \quad 
-\sum_{k=1}^{s} H^{k} = \widetilde{H} \\
-\end{aligned}$$
-
-
-Applying `SMC` that way, the initial LCD decomposition of the unstratified 
-mutational catalogue is omitted and it's result replaced by the exposures 
-extracted by the NMF analysis.
+Recently a new and extended set of mutational signatures was published by the 
+Pan Cancer Analysis of Whole Genomes (PCAWG) consortium [@Alex2018]. In 
+addition to an extended set of SNV mutational signatures, that analysis 
+for the first time had sufficient statistical power to also extract 17 Indel 
+signatures, based on a classification of Indels into 83 categories or features. 
+YAPSA also offers functionality to perform supervised analyses of mutational 
+signatures on these Indel signatures, details can be found in
+[5. Indel signature analysis](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html)
 
   
 # Example: a cohort of B-cell lymphomas
@@ -966,7 +1017,7 @@ exposures_barplot(
 ```
 
 
-### LCD analysis with signature-specific cutoffs
+### LCD analysis with signature-specific cutoffs {#sigSpecCutoffs}
 
 When using `LCD_complex_cutoff`, we have to supply a vector of cutoffs with as 
 many entries as there are signatures. In the analysis carried out above, these 
