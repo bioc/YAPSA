@@ -205,7 +205,8 @@ opts_chunk$set(fig.show='asis')
 
 # Introduction: Confidence Intervals {#introduction}
 
-In order to assess confidence in the setting of ODE modeling, the concept of 
+In order to assess confidence in the setting of modeling in ordinary 
+differential equations (ODEs), the concept of 
 profile likelihood was introduced [@Raue_Bioinformatics2009]. In YAPSA, this 
 concept was adapted to the computation of confidence intervals (CIs) for the 
 exposures to mutational signatures (@Alex2013). To determine the CI for a 
@@ -217,7 +218,9 @@ initial and the alternative model and a likelihood ratio test is being computed.
 
 In the context of mutational signatures, this corresponds to the determination 
 of the CI for the exposure of one given mutational signature exposure. To this 
-end, this exposure value is perturbed and the exposures to the remaining 
+end, this exposure value is perturbed, i.e., $H_{uv}$, the exposure to 
+signature $u$ in sample $v$, is changed by a small value 
+$H_{uv} \rightarrow H_{uv} + \epsilon_{uv}$, and the exposures to the remaining 
 signatures are computed again by non-negative least squares, yielding an 
 alternative data model with one degree of freedom less than the initial model. 
 Then, as described above, log-likelihoods are computed from the distribution of 
@@ -280,7 +283,7 @@ exposures_barplot(
 # Compute the confidence intervals
 
 In order to assess trustworthiness of the computed exposures, YAPSA provides 
-the calculation of confidence intervals (CIs). Analogously to CIs for SNV 
+the calculation of CIs. Analogously to CIs for SNV 
 mutational signatures, the CIs for Indel mutational signatures are computed 
 using the concept of profile likelihood. This is performed by the function 
 `variateExp()`. 

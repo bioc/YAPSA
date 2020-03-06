@@ -9,163 +9,6 @@ vignette: >
 output: 
   BiocStyle::html_document:
     toc: yes
-
-references:
-- author:
-  - family: Alexandrov
-    given: LB
-  - family: Nik-Zainal
-    given: S
-  - family: Wedge
-    given: DC
-  - family: Aparicio
-    given: SA
-  - family: Behjati
-    given: S
-  - family: Biankin
-    given: AV
-  - family: Bignell
-    given: GR
-  - family: Bolli
-    given: N
-  - family: Borg
-    given: A
-  - family: Borresen-Dale
-    given: AL
-  - family: Boyault
-    given: S
-  - family: Burkhardt
-    given: B
-  - family: Butler
-    given: AP
-  - family: Caldas
-    given: C
-  - family: Davies
-    given: HR
-  - family: Desmedt
-    given: C
-  - family: Eils
-    given: R
-  - family: Eyfjörd
-    given: JE
-  - family: Greaves
-    given: M
-  - family: Hosoda
-    given: F
-  - family: Hutter
-    given: B
-  - family: Ilicic
-    given: T
-  - family: Imbeaud
-    given: S
-  - family: Imielinski
-    given: M
-  - family: Jäger
-    given: N
-  - family: Jones
-    given: DT
-  - family: Jones
-    given: D
-  - family: Knappskog
-    given: S
-  - family: Kool
-    given: M
-  - family: Lakhani
-    given: SR
-  - family: Lopez-Otin
-    given: C
-  - family: Martin
-    given: S
-  - family: Munshi
-    given: NC
-  - family: Nakamura
-    given: H
-  - family: Northcott
-    given: PA
-  - family: Pajic
-    given: M
-  - family: Papaemmanuil
-    given: E
-  - family: Paradiso
-    given: A
-  - family: Pearson
-    given: JV
-  - family: Puente
-    given: XS
-  - family: Raine
-    given: K
-  - family: Ramakrishna
-    given: M
-  - family: Richardson
-    given: AL
-  - family: Richter
-    given: J
-  - family: Rosenstiel
-    given: P
-  - family: Schlesner
-    given: M
-  - family: Schumacher
-    given: TN
-  - family: Span
-    given: PN
-  - family: Teague
-    given: JW
-  - family: Tokoti
-    given: Y
-  - family: Tutt
-    given: AN
-  - family: Valdes-Mas
-    given: R
-  - family: van Buuren
-    given: MM
-  - family: van't Veer
-    given: L
-  - family: Vincent-Salomon
-    given: A
-  - family: Waddell
-    given: N
-  - family: Yates
-    given: LR
-  - family: Australian Pancreatic Cancer Initiative
-    given: 
-  - family: ICGC Breast Cancer Consortium
-    given: 
-  - family: ICGC MMML-Seq Consortium
-    given: 
-  - family: ICGC PedBrain
-    given: 
-  - family: Zucman-Rossi
-    given: J
-  - family: Futreal
-    given: PA
-  - family: McDermott
-    given: U
-  - family: Lichter
-    given: P
-  - family: Meyerson
-    given: M
-  - family: Grimmond
-    given: SM
-  - family: Siebert
-    given: R
-  - family: Campo
-    given: E
-  - family: Shibata
-    given: T
-  - family: Pfister
-    given: SM
-  - family: Campbell
-    given: PJ
-  - family: Stratton
-    given: MR
-  container-title: Nature
-  id: Alex2013
-  issued:
-    month: 08
-    volume: 500
-    year: 2013
-  publisher: Nature Publishing Group
-  title: 'Signatures of Mutational Processes in Cancer'
 ---
 
 ```{r load_style, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
@@ -184,8 +27,8 @@ opts_chunk$set(fig.show='asis')
 # Introduction {#introduction}
 
 For many biological questions, it is of relevance to group mutations, or more 
-specifically single nucleotide variants (SNVs), into different **strata** or 
-categories. These strata may be defined by genomic coordinate or other measures 
+specifically, single nucleotide variants (SNVs), into different **strata** or 
+categories. These strata may be defined by genomic coordinates or other measures 
 derived therefrom and annotated to the variants, e.g., replication timing, 
 chromatin state, coding vs. non-coding part of the genome etc. Other choices of 
 stratification are also possible, as shown below for the example of mutation 
@@ -231,8 +74,8 @@ As defined in
 $j$ is the index over samples, $m$ is the number of samples, $i$ 
 is the index over signatures and $l$ is the number of signatures. In addition, 
 $k$ is the index over strata and $s$ is the number of strata. Note that the 
-last two lines of equation (@SMC_formula) correspond to equation 
-(@LCD_formula). The very last part of equation (@SMC_formula) reflects the 
+last two lines of equation (@SMC_formula) correspond to the unstratified 
+optimization problem. The very last part of equation (@SMC_formula) reflects the 
 additivity of the stratified mutational catalogues $V^{k}$ which is due to the 
 fact that by definition the sets of SNVs they were constructed from (i.e. the 
 strata) are exclusive.
@@ -480,14 +323,10 @@ for(i in seq_len(dim(stat_mut_density_list$kruskal_df)[1])){
 From this analysis, we can see that a distinct signature enrichment and 
 depletion pattern emerges:
 
-1. Stratum of high mutation density: Enrichment of signatures AC5 (significant)
-and AC9, depletion of signatures AC1 (significant), AC2, AC8 (significant) and 
-AC17
+1. Stratum of high mutation density: Enrichment of signatures AC5 and depletion 
+of signatures AC1 (significant) and AC17
 2. Background: signature distribution very similar to the one of the complete 
 mutational catalogue (first row)
 3. Stratum of intermediate mutation density: intermediate signature enrichment 
 and depletion pattern between the strata of high mutation density and 
 background. 
-
-
-# References 

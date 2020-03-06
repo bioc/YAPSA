@@ -262,7 +262,7 @@ opts_chunk$set(fig.show='asis')
 # Introduction: PCAWG signatures {#introduction}
 
 In May 2018 a new and extended set of mutational signatures was published as a 
-preprint by the Pan Cancer Analysis of Whole Genomes (PCAWG) consortium 
+preprint by the Pan-Cancer Analysis of Whole Genomes (PCAWG) consortium 
 [@Alex2018]. In the following, we refer to that set of signatures as the PCAWG 
 signatures. The underlying data is the largest available cohort of sequenced 
 (Whole Genome Sequencing (WGS) and Whole Exome Sequencing (WES)) cancer 
@@ -332,13 +332,13 @@ Of note, microhomology is defined by partial sequence similarity between the
 motif of the respective Indel and the immediate neighbouring sequence context. 
 In the following, we illustrate the microhomology classification with an 
 example. We take a deletion of the motif **ATGCGA**, being more than 5 bp in 
-lengthm with microhomology, i.e., partially repetitive context of 4 bp at the 
+length with microhomology, i.e., partially repetitive context of 4 bp at the 
 breakpoint junction with the motifs **ATGC** upstream and **GCGA** downstream 
 of the deletion. The annotated feature category is then **MH\_5+\_4bp**. 
 
-In YAPSA, the function `plotExchangeSpectra_indel` can be used to plot the 
+In YAPSA, the function `plotExchangeSpectra_indel()` can be used to plot the 
 nucleotide exchange spectra of samples and/or signatures. The representation is 
-analogous to the function `plotExchangeSpectra` for SNV mutational signatures, 
+analogous to the function `plotExchangeSpectra()` for SNV mutational signatures, 
 while the colors and feature annotation is taken from [@Alex2018].
 
 ```{r caption_spectra, echo=FALSE}
@@ -386,8 +386,8 @@ made, it is of sole technical and demonstrative purpose.
 
 ## Loading example data
 
-We first load the example data, which is stored in the the software package 
-YAPSA. The file \texttt{GenomeOfNl_raw.rda} has been filtered to only contain 
+We first load the example data, which is stored in the software package 
+YAPSA. The file $\texttt{GenomeOfNl_raw.rda}$ has been filtered to only contain 
 Indel variant calls.
 
 ```{r load_GoNL}
@@ -396,7 +396,8 @@ GenomeOfNl_raw <- GenomeOfNl_raw[, c(1,2,4,5)]
 ```
 
 Optional columns are being removed from the loaded data, which results in a 
-vcf-like dataframe with `r dim(GenomeOfNl_raw)[1]` variants.
+vcf-like (analogous to the variant calling format) dataframe with 
+`r dim(GenomeOfNl_raw)[1]` variants.
 The binary file above was created with the following R code:
 
 ```{r load_GoNL_raw}
@@ -428,9 +429,9 @@ if(load_data_new){
 }
 ```
 
-The obtained dataframe corresponds to a modified variant calling format (vcf). 
-We will later use it in order to build a mutational catalog for supervised 
-analysis of mutational signatures with PCAWG Indel signatures.
+The obtained dataframe will later be used it in order to build a mutational 
+catalog for supervised analysis of mutational signatures with PCAWG Indel 
+signatures.
 
 ```{r shows_top_of_df, echo=FALSE}
 kable(head(GenomeOfNl_raw), caption="Head of VCF file 
@@ -439,11 +440,11 @@ kable(head(GenomeOfNl_raw), caption="Head of VCF file
 
 ## Data Preprocessing 
 
-The `GenomeOfNl_raw` has no patient identifier information annotated. However, 
-for the purpose of demonstrating the use of YAPSA Indel signature analysis, 
+`GenomeOfNl_raw` does not contain any patient identifier information. 
+For the purpose of demonstrating the use of YAPSA Indel signature analysis, 
 such an information on patient identity is necessary. To do so, 15 synthetic 
-patient identifiers (PIDs) were generated and 50 +/- 20 Indels were random 
-sampled from the `GenomeOfNl_raw` dataframe per PID.
+patient identifiers (PIDs) were generated and 50 +/- 20 Indels per PID were 
+randomly sampled from the data frame `GenomeOfNl_raw`.
 
 ```{r randomize_data_set, warning= FALSE}
 seed = 2
@@ -508,8 +509,8 @@ this class of functions has been extended in order to make this supervised
 signature analysis available to Indel mutational signatures. As previously 
 described for 
 [SNV mutational signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
-the deconvolution is based on a non-negative least squares algorithm. In order 
-to reduce false positive calls, 
+the deconvolution is based on a non-negative least squares (NNLS) algorithm. In 
+order to reduce false positive calls, 
 [signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html) 
 were introduced in YAPSA. Signature-specific cutoffs
 are applied after a first decomposition with NNLS, and only signatures with 
@@ -543,7 +544,7 @@ defining cost terms for punishing false-negative ($cost_{FN}$) and
 false-positive ($cost_{FP}$) findings separately, but the shape and minima of 
 the cost functions depend only on the ratio between the cost for a 
 false-negative finding divided by the cost for a false positive finding, the 
-$cost_{factor}$ ($cost_{factor} = cost_{FN}/cost_{FP}$). Therefore there is one 
+$cost_{factor}$ ($cost_{factor} = cost_{FN}/cost_{FP}$). Therefore, there is one 
 set of optimal signature-specific cutoffs per chosen value of $cost_{factor}$.
 
 Optimal signature-specific cutoffs are stored in data frames within the software 
@@ -611,9 +612,9 @@ confidence_intervals_ID <- confidence_indel_only_calulation(
 plot(confidence_intervals_ID$p_complete_PCAWG_ID)
 ```
 
-Note: With `confidence_indel_only_calulation` only for INDELs the confidence
-intervals are calculated. To calculated the confidence interval for SNV and
-INDEL please use `confidence_indel_calulation` and the mutational catalog with
-SNV and INDEL counts respectively
+Note: With `confidence_indel_only_calulation()` only for INDELs the confidence
+intervals are calculated. To calculate the confidence intervals for SNVs and
+INDELs please use the function `confidence_indel_calulation()` and supply the 
+mutational catalogs of both SNV and INDEL counts.
 
 # References 

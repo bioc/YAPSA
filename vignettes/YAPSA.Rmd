@@ -359,7 +359,7 @@ information of the genomic coordinates of the variants.
 3. The mutational catalogue $V$ is quite big and still carries a lot of 
 complexity. For many analyses a  reduction of complexity is desirable. One way 
 to achieve such a complexity reduction is a matrix decomposition: we would like
-to find two smaller matrices $W$ and $H$ which if multiplied would span a high 
+to find two smaller matrices $W$ and $H$ which, if multiplied, would span a high 
 fraction of the complexity of the big matrix $V$ (the mutational catalogue). 
 Remember that $V$ is an $n \times m$ -dimensional matrix, $n$ being the number 
 of features and $m$ being the number of samples. $W$ in this setting is an 
@@ -371,28 +371,27 @@ signatures are $n$-dimensional vectors (with $n$ being the number of features),
 while the exposures are $l$-dimensional vectors ($l$ being the number of 
 signatures). Note that as we are dealing with count data, we would like to have
 only positive entries in $W$ and $H$. A mathematical method which is able to do
-such a decomposition is the **NMF** (**nonnegative matrix factorization**). It 
-basically solves the problem as illustrated in the following figure (Image 
+such a decomposition is the **NMF** (**non-negative matrix factorization**). It 
+basically solves the problem as illustrated in the following figure (image 
 taken from <https://en.wikipedia.org/wiki/Non-negative_matrix_factorization>):
 
 ![NMF](NMF.png)
 
-Of course the whole concept only leads to a reduction in complexity if $l < n$,
-i.e. if the number of signatures is smaller than the number of features, as 
-indicated in the above figure. Note that the NMF itself solves the above 
-problem for a given number of signatures $l$. The framework of Ludmil 
-Alexandrov et al. [@Alex2013] performs not only the NMF decomposition itself, 
-but also identifies the appropriate number of signatures by an iterative 
-procedure.
+Note that the NMF itself solves the above problem for a given number of 
+signatures $l$. In order to achieve a reduction in complexity, the number of 
+signatures has to be smaller than the number of features ($l < $n), as 
+indicated in the above figure. The framework of Ludmil Alexandrov et al. 
+[@Alex2013] performs not only the NMF decomposition itself, but also identifies 
+the appropriate number of signatures by an iterative procedure.
 
 Another software, the Bioconductor package `r Biocpkg("SomaticSignatures")` to 
-perform analyses of mutational signatures is available [@Gehring_article2015] 
-which allows the matrix decomposition to be performed by NMF and alternatively 
+perform analyses of mutational signatures, is available [@Gehring_article2015]. 
+It allows the matrix decomposition to be performed by NMF and alternatively 
 by PCA (principal component analysis). Both methods have in common that they 
 can be used for **discovery**, i.e. for the **extraction of new signatures**. 
-However, they only work well if the analyzed data set has a minimum size, i.e. 
-a minimum number of samples and minimum numbers of counts per feature per 
-sample.
+However, they only work well if the analyzed data set has sufficient 
+statistical power, i.e. a sufficient number of samples and sufficient numbers 
+of counts per feature per sample.
 
 The package YAPSA introduced here is complementary to these existing software
 packages. It is designed for a supervised analysis of mutational signatures,
@@ -437,10 +436,10 @@ $$
 
 Remember that $j$ is the index over samples, $m$ is the number of samples, 
 $i$ is the index over signatures and $l$ is the number of signatures. `LCD` 
-uses the function `lsei` from the package `r CRANpkg("lsei")` 
-[@lsei_package2015]. Note that the optimization 
-procedure is carried out for every $V_{(\cdot j)}$, i.e. for every column of 
-$V$ separately. Of course $W$ is constant, i.e. the same for every 
+uses a non-negative least squares (NNLS) algorithm (from the R package  
+`r CRANpkg("nnls")` ) to solve this optimization problem. Note that the 
+optimization procedure is carried out for every $V_{(\cdot j)}$, i.e. for every 
+column of $V$ separately. Of course $W$ is constant, i.e. the same for every 
 $V_{(\cdot j)}$.
 
 This procedure is highly sensitive: as soon as a signature has a contribution 
@@ -453,7 +452,7 @@ only those signatures which have a cumulative (over the cohort) normalized
 exposure greater than this cutoff. In fact it runs the LCD-procedure twice: 
 once to find initial exposures, summing over the cohort and excluding the ones 
 with too low a contribution as described just above, and a second time doing 
-the analysis only with the signatures left over. Beside the exposures H 
+the analysis only with the signatures left over. Beside the exposures $H$ 
 corresponding to this reduced set of signatures, the function 
 `LCD_complex_cutoff` also returns the reduced set of signatures itself.
 
@@ -492,12 +491,13 @@ can be found in
 ## Stratification of the Mutational Catalogue (SMC)
 
 For some questions it is useful to assign the SNVs detected in the samples of a
-cohort to categories. We call an analysis of enrichment and depletion patterns 
-of the mutational signatures in the different strata a *stratified* analysis. 
-Of note, this is different from performing completely separate and independent 
-NNLS analyses of mutational signatures on the different strata. Instead, the 
-results of the unstratified analysis are used as input for a constrained 
-analysis for the strata. Details can be found in 
+cohort to categories. We call an analysis of mutational signatures which takes 
+into account these strata a *stratified* analysis, which has the potential to
+reveal enrichment and depletion patterns. Of note, this is different from 
+performing completely separate and independent NNLS analyses of mutational 
+signatures on the different strata. Instead, the results of the unstratified 
+analysis are used as input for a constrained analysis for the strata. Details 
+can be found in 
 [4. Stratified Analysis of Mutational Signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_stratifiedAnalysis.html)
 
 ## Indel signatures
@@ -515,7 +515,7 @@ signatures on these Indel signatures, details can be found in
 # Example: a cohort of B-cell lymphomas
 
 We will now apply some functions of the YAPSA package to Whole Genome 
-Sequencing datasets published in Alexandrov et al. [-@Alex2013] First we have 
+Sequencing datasets published in Alexandrov et al. [-@Alex2013]. First we have 
 to load this data and get an overview ([first subsection](#example-data)). Then
 we will load data on published signatures 
 ([second subsection](#loading-the-signature-information)). Only in the 
@@ -554,7 +554,7 @@ lymphoma_Nature2013_raw_df <- read.csv(file=lymphoma_Nature2013_ftp_path,
 ```
 
 The format is inspired by the vcf format with one line per called variant. Note
-that the files provided at that url have no header information, therefore we 
+that the files provided at that URL have no header information, therefore we 
 have to add some. We will also slightly adapt the data structure:
 
 ```{r adapt_data}
@@ -567,7 +567,7 @@ kable(head(lymphoma_Nature2013_df))
 ```
 
 Here, we have selected only the variants characterized as `subs` (those are the
-single nucleotide variants we are interested in for the mutational signatures 
+SNVs we are interested in for the mutational signatures 
 analysis, small indels are filtered out by this step), so we are left with 
 `r dim(lymphoma_Nature2013_df)[1]` variants or rows. Note that there are
 `r length(unique(lymphoma_Nature2013_df$PID))` different samples:
@@ -796,7 +796,7 @@ AlexCosmicValid_sigInd_df$process <- COSMIC_bio_process_vector
 
 YAPSA can also perform analyses based on other sets of mutational signatures. 
 Details can be found in additional vignettes on 
-[signature-specifc cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html) and 
+[signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html) and 
 [Indel signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html).
 
 
@@ -875,7 +875,6 @@ cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
 ```{r exposures_barplot_LCD, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = lymphomaNature2013_COSMICExposures_df,
-  in_signatures_ind_df = current_sigInd_df,
   in_subgroups_df = COSMIC_subgroups_df)
 ```
 
@@ -904,7 +903,7 @@ in this cohort:
 rowSums(lymphomaNature2013_COSMICExposures_df)
 ```
 
-This can be overcome by using `LCD_complex_cutoff`. Is requires an additional 
+This can be overcome by using `LCD_complex_cutoff`. It requires an additional 
 parameter: `in_cutoff_vector`; this is already the more general framework which
 will be explained in more detail in the following section.
 
@@ -1114,8 +1113,8 @@ hclust_list <-
 ```
 
 The dendrogram produced by either the function `complex_heatmap_exposures` or 
-the function `hclust_exposures` can be cut to yield signature exposure specific
-subgroups of the PIDs.
+the function `hclust_exposures` can be cut to yield signature exposures specific
+to subgroups of PIDs.
 ```{r caption_heatmap_2, echo=FALSE}
 cap=paste0("PIDs labelled by the clusters extracted from the
             signature analysis.")
