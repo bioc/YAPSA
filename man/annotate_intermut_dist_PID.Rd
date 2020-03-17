@@ -4,8 +4,13 @@
 \alias{annotate_intermut_dist_PID}
 \title{Annotate the intermutation distance of variants per PID}
 \usage{
-annotate_intermut_dist_PID(in_dat, in_CHROM.field = "CHROM",
-  in_POS.field = "POS", in_mode = "min", in_verbose = FALSE)
+annotate_intermut_dist_PID(
+  in_dat,
+  in_CHROM.field = "CHROM",
+  in_POS.field = "POS",
+  in_mode = "min",
+  in_verbose = FALSE
+)
 }
 \arguments{
 \item{in_dat}{VRanges object or data frame which carries (at least) one

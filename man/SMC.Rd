@@ -4,9 +4,18 @@
 \alias{SMC}
 \title{Stratification of a Mutational Catalogue}
 \usage{
-SMC(df_list, this_signatures_df, in_all_exposures_df, number_of_strata,
-  number_of_sigs, name_list, this_subgroups_df, mutation_catalogue_all_df,
-  cohort_method_flag, in_verbose = 1)
+SMC(
+  df_list,
+  this_signatures_df,
+  in_all_exposures_df,
+  number_of_strata,
+  number_of_sigs,
+  name_list,
+  this_subgroups_df,
+  mutation_catalogue_all_df,
+  cohort_method_flag,
+  in_verbose = 1
+)
 }
 \arguments{
 \item{df_list}{A list of \code{s} stratified mutational catalogues \code{Vi}

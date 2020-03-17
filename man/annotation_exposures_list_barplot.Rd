@@ -5,12 +5,21 @@
 \title{Plot the exposures of a cohort with different layers of annotation for 
 SNV and INDEL signatures}
 \usage{
-annotation_exposures_list_barplot(in_exposures_list,
-  in_signatures_ind_list, in_subgroups_list, in_annotation_list,
-  ylab = NULL, title = "", in_indel_sigs = FALSE,
-  in_labels = FALSE, in_barplot_borders = TRUE,
-  in_column_anno_borders = FALSE, in_annotation_legend_side = "right",
-  in_padding = unit(c(2, 20, 2, 2), "mm"), in_annotation = NULL)
+annotation_exposures_list_barplot(
+  in_exposures_list,
+  in_signatures_ind_list,
+  in_subgroups_list,
+  in_annotation_list,
+  ylab = NULL,
+  title = "",
+  in_indel_sigs = FALSE,
+  in_labels = FALSE,
+  in_barplot_borders = TRUE,
+  in_column_anno_borders = FALSE,
+  in_annotation_legend_side = "right",
+  in_padding = unit(c(2, 20, 2, 2), "mm"),
+  in_annotation = NULL
+)
 }
 \arguments{
 \item{in_exposures_list}{A list of numerical data frame encoding the

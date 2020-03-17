@@ -4,9 +4,15 @@
 \alias{create_mutation_catalogue_from_VR}
 \title{Create a Mutational Catalogue from a VRanges Object}
 \usage{
-create_mutation_catalogue_from_VR(in_vr, in_refGenome, in_wordLength,
-  in_PID.field = "PID", in_verbose = 0, in_rownames = c(),
-  adapt_rownames = 1)
+create_mutation_catalogue_from_VR(
+  in_vr,
+  in_refGenome,
+  in_wordLength,
+  in_PID.field = "PID",
+  in_verbose = 0,
+  in_rownames = c(),
+  adapt_rownames = 1
+)
 }
 \arguments{
 \item{in_vr}{A VRanges object constructed from a vcf-like file of a whole

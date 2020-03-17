@@ -4,8 +4,12 @@
 \alias{run_comparison_catalogues}
 \title{Compare all strata from different stratifications}
 \usage{
-run_comparison_catalogues(in_stratification_lists_list,
-  output_path = NULL, in_nrect = 5, in_attribute = "")
+run_comparison_catalogues(
+  in_stratification_lists_list,
+  output_path = NULL,
+  in_nrect = 5,
+  in_attribute = ""
+)
 }
 \arguments{
 \item{in_stratification_lists_list}{List of lists with entries from different

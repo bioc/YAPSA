@@ -5,8 +5,7 @@
 \title{Plot exposures including confidence intervals for exposures of SNVs and
 INDELs}
 \usage{
-plotExposuresConfidence_indel(in_complete_df, in_subgroups_df,
-  in_sigInd_df)
+plotExposuresConfidence_indel(in_complete_df, in_subgroups_df, in_sigInd_df)
 }
 \arguments{
 \item{in_complete_df}{Melted numeric input data frame e.g. as computed by

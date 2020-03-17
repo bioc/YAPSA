@@ -4,11 +4,19 @@
 \alias{exposures_barplot}
 \title{Wrapper for enhanced_barplot}
 \usage{
-exposures_barplot(in_exposures_df, in_signatures_ind_df = NULL,
-  in_subgroups_df = NULL, in_sum_ind = NULL,
-  in_subgroups.field = "subgroup", in_title = "", in_labels = TRUE,
-  in_show_subgroups = TRUE, ylab = NULL, in_barplot_borders = TRUE,
-  in_column_anno_borders = FALSE)
+exposures_barplot(
+  in_exposures_df,
+  in_signatures_ind_df = NULL,
+  in_subgroups_df = NULL,
+  in_sum_ind = NULL,
+  in_subgroups.field = "subgroup",
+  in_title = "",
+  in_labels = TRUE,
+  in_show_subgroups = TRUE,
+  ylab = NULL,
+  in_barplot_borders = TRUE,
+  in_column_anno_borders = FALSE
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame encoding the exposures \code{H},

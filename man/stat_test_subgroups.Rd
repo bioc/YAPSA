@@ -4,8 +4,12 @@
 \alias{stat_test_subgroups}
 \title{Test for differences in average signature exposures between subgroups}
 \usage{
-stat_test_subgroups(in_exposures_df, in_subgroups_df,
-  in_subgroups.field = "subgroup", in_PID.field = "PID")
+stat_test_subgroups(
+  in_exposures_df,
+  in_subgroups_df,
+  in_subgroups.field = "subgroup",
+  in_PID.field = "PID"
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame of the exposures (i.e.

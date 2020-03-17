@@ -4,8 +4,7 @@
 \alias{round_precision}
 \title{Round to a defined precision}
 \usage{
-round_precision(x, breaks = NULL, in_precision = 0.05,
-  in_interval = c(0, 1))
+round_precision(x, breaks = NULL, in_precision = 0.05, in_interval = c(0, 1))
 }
 \arguments{
 \item{x}{Vector to be rounded}

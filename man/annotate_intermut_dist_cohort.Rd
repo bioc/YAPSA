@@ -4,9 +4,14 @@
 \alias{annotate_intermut_dist_cohort}
 \title{Annotate the intermutation distance of variants cohort-wide}
 \usage{
-annotate_intermut_dist_cohort(in_dat, in_CHROM.field = "CHROM",
-  in_POS.field = "POS", in_PID.field = NULL, in_mode = "min",
-  in_verbose = FALSE)
+annotate_intermut_dist_cohort(
+  in_dat,
+  in_CHROM.field = "CHROM",
+  in_POS.field = "POS",
+  in_PID.field = NULL,
+  in_mode = "min",
+  in_verbose = FALSE
+)
 }
 \arguments{
 \item{in_dat}{VRanges object, VRangesList, data frame or list of data frames

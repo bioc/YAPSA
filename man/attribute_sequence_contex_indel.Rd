@@ -4,9 +4,14 @@
 \alias{attribute_sequence_contex_indel}
 \title{Attribution of sequence context and size for an INDEL}
 \usage{
-attribute_sequence_contex_indel(in_dat, in_REF.field = "REF",
-  in_ALT.field = "ALT", in_verbose = FALSE, in_offsetL = 10,
-  in_offsetR = 50)
+attribute_sequence_contex_indel(
+  in_dat,
+  in_REF.field = "REF",
+  in_ALT.field = "ALT",
+  in_verbose = FALSE,
+  in_offsetL = 10,
+  in_offsetR = 50
+)
 }
 \arguments{
 \item{in_dat}{VRanges object or data frame which carries one column for the

@@ -4,8 +4,13 @@
 \alias{compare_SMCs}
 \title{Compare all strata from different stratifications}
 \usage{
-compare_SMCs(in_stratification_lists_list, in_signatures_ind_df,
-  output_path, in_nrect = 5, in_attribute = "")
+compare_SMCs(
+  in_stratification_lists_list,
+  in_signatures_ind_df,
+  output_path,
+  in_nrect = 5,
+  in_attribute = ""
+)
 }
 \arguments{
 \item{in_stratification_lists_list}{List of lists with entries from different

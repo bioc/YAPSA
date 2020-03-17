@@ -4,12 +4,21 @@
 \alias{annotation_exposures_barplot}
 \title{Plot the exposures of a cohort with different layers of annotation}
 \usage{
-annotation_exposures_barplot(in_exposures_df, in_signatures_ind_df,
-  in_subgroups_df, in_annotation_df = NULL, in_annotation_col = NULL,
-  ylab = NULL, title = "", in_labels = FALSE,
-  in_barplot_borders = TRUE, in_column_anno_borders = FALSE,
-  in_annotation_legend_side = "right", in_padding = unit(c(2, 20, 2,
-  2), "mm"), in_annotation = NULL)
+annotation_exposures_barplot(
+  in_exposures_df,
+  in_signatures_ind_df,
+  in_subgroups_df,
+  in_annotation_df = NULL,
+  in_annotation_col = NULL,
+  ylab = NULL,
+  title = "",
+  in_labels = FALSE,
+  in_barplot_borders = TRUE,
+  in_column_anno_borders = FALSE,
+  in_annotation_legend_side = "right",
+  in_padding = unit(c(2, 20, 2, 2), "mm"),
+  in_annotation = NULL
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame encoding the exposures \code{H},

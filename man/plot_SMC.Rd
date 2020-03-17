@@ -4,12 +4,24 @@
 \alias{plot_SMC}
 \title{Plot results of the Stratification of a Mutational Catalogue}
 \usage{
-plot_SMC(number_of_strata, output_path, decomposition_method,
-  number_of_sigs, name_list, exposures_strata_list, this_signatures_ind_df,
-  this_subgroups_df, in_strata_order_ind, exposures_both_rel_df_list,
-  cohort_method_flag, fig_width = 1200, fig_height = 900,
-  fig_type = "png", in_label_orientation = "turn",
-  this_sum_ind = NULL)
+plot_SMC(
+  number_of_strata,
+  output_path,
+  decomposition_method,
+  number_of_sigs,
+  name_list,
+  exposures_strata_list,
+  this_signatures_ind_df,
+  this_subgroups_df,
+  in_strata_order_ind,
+  exposures_both_rel_df_list,
+  cohort_method_flag,
+  fig_width = 1200,
+  fig_height = 900,
+  fig_type = "png",
+  in_label_orientation = "turn",
+  this_sum_ind = NULL
+)
 }
 \arguments{
 \item{number_of_strata}{Number of strata as deduced from \code{link{SMC}}}

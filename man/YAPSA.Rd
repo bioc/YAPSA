@@ -3,7 +3,6 @@
 \docType{package}
 \name{YAPSA}
 \alias{YAPSA}
-\alias{YAPSA-package}
 \title{Generate R documentation from inline comments.}
 \description{
 Yet Another Package for mutational Signature analysis

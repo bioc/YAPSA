@@ -5,13 +5,20 @@
 \title{Heatmap to cluster the PIDs on their signature 
 exposures (ComplexHeatmap)}
 \usage{
-complex_heatmap_exposures(in_exposures_df, in_subgroups_df,
-  in_signatures_ind_df, in_data_type = "norm exposures",
-  in_method = "manhattan", in_subgroup_column = "subgroup",
-  in_subgroup_colour_column = NULL, in_palette = colorRamp2(c(0, 0.2,
-  0.4, 0.6), c("white", "yellow", "orange", "red")), in_cutoff = 0,
-  in_filename = NULL, in_column_anno_borders = FALSE,
-  in_row_anno_borders = FALSE)
+complex_heatmap_exposures(
+  in_exposures_df,
+  in_subgroups_df,
+  in_signatures_ind_df,
+  in_data_type = "norm exposures",
+  in_method = "manhattan",
+  in_subgroup_column = "subgroup",
+  in_subgroup_colour_column = NULL,
+  in_palette = colorRamp2(c(0, 0.2, 0.4, 0.6), c("white", "yellow", "orange", "red")),
+  in_cutoff = 0,
+  in_filename = NULL,
+  in_column_anno_borders = FALSE,
+  in_row_anno_borders = FALSE
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame encoding the exposures \code{H},

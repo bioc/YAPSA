@@ -4,14 +4,26 @@
 \alias{run_SMC}
 \title{Wrapper function for the Stratification of a Mutational Catalogue}
 \usage{
-run_SMC(my_table, this_signatures_df, this_signatures_ind_df,
-  this_subgroups_df, column_name, refGenome,
+run_SMC(
+  my_table,
+  this_signatures_df,
+  this_signatures_ind_df,
+  this_subgroups_df,
+  column_name,
+  refGenome,
   cohort_method_flag = "all_PIDs",
   in_strata_order_ind = seq_len(length(unique(my_table[, column_name]))),
-  wordLength = 3, verbose_flag = 1, target_dir = NULL,
-  strata_dir = NULL, output_path = NULL, in_all_exposures_df = NULL,
-  in_rownames = c(), in_norms = NULL, in_label_orientation = "turn",
-  this_sum_ind = NULL)
+  wordLength = 3,
+  verbose_flag = 1,
+  target_dir = NULL,
+  strata_dir = NULL,
+  output_path = NULL,
+  in_all_exposures_df = NULL,
+  in_rownames = c(),
+  in_norms = NULL,
+  in_label_orientation = "turn",
+  this_sum_ind = NULL
+)
 }
 \arguments{
 \item{my_table}{A big dataframe constructed from a vcf-like file of a whole

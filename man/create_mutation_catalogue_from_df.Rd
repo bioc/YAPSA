@@ -4,11 +4,20 @@
 \alias{create_mutation_catalogue_from_df}
 \title{Create a Mutational Catalogue from a data frame}
 \usage{
-create_mutation_catalogue_from_df(this_df, this_refGenome_Seqinfo = NULL,
-  this_seqnames.field = "X.CHROM", this_start.field = "POS",
-  this_end.field = "POS", this_PID.field = "PID",
-  this_subgroup.field = "subgroup", this_refGenome, this_wordLength,
-  this_verbose = 1, this_rownames = c(), this_adapt_rownames = 1)
+create_mutation_catalogue_from_df(
+  this_df,
+  this_refGenome_Seqinfo = NULL,
+  this_seqnames.field = "X.CHROM",
+  this_start.field = "POS",
+  this_end.field = "POS",
+  this_PID.field = "PID",
+  this_subgroup.field = "subgroup",
+  this_refGenome,
+  this_wordLength,
+  this_verbose = 1,
+  this_rownames = c(),
+  this_adapt_rownames = 1
+)
 }
 \arguments{
 \item{this_df}{A data frame constructed from a vcf-like file of a whole

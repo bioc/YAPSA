@@ -4,9 +4,13 @@
 \alias{classify_indels}
 \title{INDEL function V1 - not compartible with AlexandrovSignatures}
 \usage{
-classify_indels(in_df, in_ALT.field = "ALT", in_REF.field = "REF",
-  in_breaks = c(-Inf, -10, -3, 0, 2, 9, Inf), in_labels = c("del3",
-  "del2", "del1", "in1", "in2", "in3"))
+classify_indels(
+  in_df,
+  in_ALT.field = "ALT",
+  in_REF.field = "REF",
+  in_breaks = c(-Inf, -10, -3, 0, 2, 9, Inf),
+  in_labels = c("del3", "del2", "del1", "in1", "in2", "in3")
+)
 }
 \arguments{
 \item{in_df}{Input data frame containing the variances in a vcf-like format}

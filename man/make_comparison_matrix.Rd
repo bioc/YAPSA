@@ -4,8 +4,13 @@
 \alias{make_comparison_matrix}
 \title{Compute a similarity matrix for different strata}
 \usage{
-make_comparison_matrix(in_strata_df, output_path = NULL, in_nrect = 5,
-  in_attribute = "", in_palette = NULL)
+make_comparison_matrix(
+  in_strata_df,
+  output_path = NULL,
+  in_nrect = 5,
+  in_attribute = "",
+  in_palette = NULL
+)
 }
 \arguments{
 \item{in_strata_df}{Numerical data frame of all strata to be compared.}

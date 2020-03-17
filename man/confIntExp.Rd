@@ -4,8 +4,14 @@
 \alias{confIntExp}
 \title{Compute confidence intervals}
 \usage{
-confIntExp(in_ind = 1, in_sigLevel = 0.05, in_delta = 1,
-  in_exposure_vector = NULL, in_verbose = FALSE, ...)
+confIntExp(
+  in_ind = 1,
+  in_sigLevel = 0.05,
+  in_delta = 1,
+  in_exposure_vector = NULL,
+  in_verbose = FALSE,
+  ...
+)
 }
 \arguments{
 \item{in_ind}{Index of the input signature to be variated.}

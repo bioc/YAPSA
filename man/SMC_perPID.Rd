@@ -4,9 +4,16 @@
 \alias{SMC_perPID}
 \title{Run SMC at a per sample level}
 \usage{
-SMC_perPID(in_dfList, in_LCDlist, in_subgroups_df, in_save_plot = TRUE,
-  in_save_dir = NULL, in_save_name = "KataegisSMCs.pdf",
-  in_verbose_flag = 0, ...)
+SMC_perPID(
+  in_dfList,
+  in_LCDlist,
+  in_subgroups_df,
+  in_save_plot = TRUE,
+  in_save_dir = NULL,
+  in_save_name = "KataegisSMCs.pdf",
+  in_verbose_flag = 0,
+  ...
+)
 }
 \arguments{
 \item{in_dfList}{Named list of vcf-like data frames, one entry per sample/PID

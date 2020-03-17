@@ -4,10 +4,14 @@
 \alias{cut_breaks_as_intervals}
 \title{Wrapper for cut}
 \usage{
-cut_breaks_as_intervals(in_vector, in_outlier_cutoffs = c(0, 3000),
+cut_breaks_as_intervals(
+  in_vector,
+  in_outlier_cutoffs = c(0, 3000),
   in_cutoff_ranges_list = list(c(60, 69), c(25, 32)),
-  in_labels = c("late", "intermediate", "early"), in_name = "",
-  output_path = NULL)
+  in_labels = c("late", "intermediate", "early"),
+  in_name = "",
+  output_path = NULL
+)
 }
 \arguments{
 \item{in_vector}{Vector of numerical continuously distributed input}

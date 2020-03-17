@@ -368,7 +368,7 @@ NULL
 NULL
 
 #' Example mutational catalog for the SNV vignette
-#' #' 
+#' 
 #' \code{lymphomaNature2013_mutCat_df}: A data frame in the format of a SNV mutation catalog. 
 #' The mutational catalog contains SNV variants from the 
 #' \code{lymphoma_Nature2013_raw_df} data. Mutational catalog was created with 
@@ -386,6 +386,26 @@ NULL
 #' data(lymphomaNature2013_mutCat_df)
 #' head(lymphomaNature2013_mutCat_df)
 #' dim(lymphomaNature2013_mutCat_df)
+#' 
+NULL
+
+#' Example mutational catalog for the exome vignette
+#' 
+#' \code{exome_mutCatRaw_df}: A data frame in the format of a SNV mutation 
+#' catalog. The mutational catalog contains SNV variants from a cohort of 
+#' small-cell lung cancer published by Rudin et al. (Nature Genetics 2012) 
+#' which was later used in the de novo discovery analysis of mutational 
+#' signatures in human cancer by Alexandrov et al. (Nature 2013).
+#' 
+#' @name exome_mutCatRaw_df
+#' @usage data(smallCellLungCancerMutCat_NatureGenetics2012)
+#' @references  \url{https://www.nature.com/articles/ng.2405}
+#' @return  A data fame in the layout of a SNV mutational catalog
+#' 
+#' @examples
+#' data(smallCellLungCancerMutCat_NatureGenetics2012)
+#' head(exome_mutCatRaw_df)
+#' dim(exome_mutCatRaw_df)
 #' 
 NULL
 

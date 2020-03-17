@@ -4,8 +4,7 @@
 \alias{deriveSigInd_df}
 \title{Derive a signature_indices_df object}
 \usage{
-deriveSigInd_df(querySigs, subjectSigs, querySigInd = NULL,
-  in_sort = FALSE)
+deriveSigInd_df(querySigs, subjectSigs, querySigInd = NULL, in_sort = FALSE)
 }
 \arguments{
 \item{querySigs}{The signatures to compare to (given signatures).}

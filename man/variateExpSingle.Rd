@@ -4,8 +4,15 @@
 \alias{variateExpSingle}
 \title{Wrapper for the likelihood ratio test}
 \usage{
-variateExpSingle(in_catalogue_vector, in_sig_df, in_exposure_vector,
-  in_ind, in_factor = 1, in_pdf = NULL, verbose = FALSE)
+variateExpSingle(
+  in_catalogue_vector,
+  in_sig_df,
+  in_exposure_vector,
+  in_ind,
+  in_factor = 1,
+  in_pdf = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{in_catalogue_vector}{Mutational catalog of the input sample.}

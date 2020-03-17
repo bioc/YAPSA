@@ -4,8 +4,12 @@
 \alias{split_exposures_by_subgroups}
 \title{Split an exposures data frame by subgroups}
 \usage{
-split_exposures_by_subgroups(in_exposures_df, in_subgroups_df,
-  in_subgroups.field = "subgroup", in_PID.field = "PID")
+split_exposures_by_subgroups(
+  in_exposures_df,
+  in_subgroups_df,
+  in_subgroups.field = "subgroup",
+  in_PID.field = "PID"
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame of the exposures (i.e.

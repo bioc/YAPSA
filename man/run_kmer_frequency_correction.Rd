@@ -4,9 +4,14 @@
 \alias{run_kmer_frequency_correction}
 \title{Provide comprehensive correction factors for kmer content}
 \usage{
-run_kmer_frequency_correction(in_ref_genome_fasta, in_target_capture_bed,
-  in_word_length, project_folder,
-  target_capture_fasta = "targetCapture.fa", in_verbose = 1)
+run_kmer_frequency_correction(
+  in_ref_genome_fasta,
+  in_target_capture_bed,
+  in_word_length,
+  project_folder,
+  target_capture_fasta = "targetCapture.fa",
+  in_verbose = 1
+)
 }
 \arguments{
 \item{in_ref_genome_fasta}{Path to the reference genome fasta file used.}

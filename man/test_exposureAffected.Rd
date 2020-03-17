@@ -4,8 +4,12 @@
 \alias{test_exposureAffected}
 \title{Test significance of association}
 \usage{
-test_exposureAffected(in_exposure_vector, in_affected_PIDs,
-  in_mutation_label = NULL, in_exposure_label = NULL)
+test_exposureAffected(
+  in_exposure_vector,
+  in_affected_PIDs,
+  in_mutation_label = NULL,
+  in_exposure_label = NULL
+)
 }
 \arguments{
 \item{in_exposure_vector}{Named vector of a phenotype (e.g. exposures to a

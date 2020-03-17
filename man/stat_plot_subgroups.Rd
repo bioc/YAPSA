@@ -4,9 +4,14 @@
 \alias{stat_plot_subgroups}
 \title{Plot averaged signature exposures per subgroup}
 \usage{
-stat_plot_subgroups(in_exposures_df, in_subgroups_df, in_signatures_ind_df,
-  in_subgroups.field = "subgroup", in_PID.field = "PID",
-  in_colour_vector = NULL)
+stat_plot_subgroups(
+  in_exposures_df,
+  in_subgroups_df,
+  in_signatures_ind_df,
+  in_subgroups.field = "subgroup",
+  in_PID.field = "PID",
+  in_colour_vector = NULL
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame of the exposures (i.e.

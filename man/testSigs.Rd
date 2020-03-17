@@ -4,8 +4,13 @@
 \alias{testSigs}
 \title{Test for significance of alternative models cohort wide}
 \usage{
-testSigs(in_catalogue_df, in_sig_df, in_exposures_df, in_factor = 0,
-  in_pdf = NULL)
+testSigs(
+  in_catalogue_df,
+  in_sig_df,
+  in_exposures_df,
+  in_factor = 0,
+  in_pdf = NULL
+)
 }
 \arguments{
 \item{in_catalogue_df}{Input numerical data frame of the mutational catalog

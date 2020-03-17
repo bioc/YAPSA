@@ -4,8 +4,7 @@
 \alias{compare_exposures}
 \title{Compares alternative exposures}
 \usage{
-compare_exposures(in_exposures1_df, in_exposures2_df,
-  deselect_flag = TRUE)
+compare_exposures(in_exposures1_df, in_exposures2_df, deselect_flag = TRUE)
 }
 \arguments{
 \item{in_exposures1_df}{Numeric data frame with exposures, ideally the

@@ -4,10 +4,16 @@
 \alias{plotExchangeSpectra_indel}
 \title{Plot the spectra of nucleotide exchanges of INDELs}
 \usage{
-plotExchangeSpectra_indel(in_catalogue_df, in_colour_vector = NULL,
-  in_show_indel = FALSE, in_show_axis_title = FALSE,
-  in_scales = "free_x", in_refLine = NULL, in_refAlpha = 0.5,
-  in_background = NULL)
+plotExchangeSpectra_indel(
+  in_catalogue_df,
+  in_colour_vector = NULL,
+  in_show_indel = FALSE,
+  in_show_axis_title = FALSE,
+  in_scales = "free_x",
+  in_refLine = NULL,
+  in_refAlpha = 0.5,
+  in_background = NULL
+)
 }
 \arguments{
 \item{in_catalogue_df}{Numerical data frame encoding the exchange spectra to

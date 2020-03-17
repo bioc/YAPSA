@@ -2,12 +2,7 @@
 % Please edit documentation in R/data.R
 \name{lymphomaNature2013_mutCat_df}
 \alias{lymphomaNature2013_mutCat_df}
-\title{Example mutational catalog for the SNV vignette
-#' 
-\code{lymphomaNature2013_mutCat_df}: A data frame in the format of a SNV mutation catalog. 
-The mutational catalog contains SNV variants from the 
-\code{lymphoma_Nature2013_raw_df} data. Mutational catalog was created with 
-\code{create_mutation_catalogue_from_df} function.}
+\title{Example mutational catalog for the SNV vignette}
 \usage{
 data(lymphomaNature2013_mutCat_df)
 }
@@ -15,8 +10,6 @@ data(lymphomaNature2013_mutCat_df)
 A data fame in the layout of a SNV mutational catalog
 }
 \description{
-Example mutational catalog for the SNV vignette
-#' 
 \code{lymphomaNature2013_mutCat_df}: A data frame in the format of a SNV mutation catalog. 
 The mutational catalog contains SNV variants from the 
 \code{lymphoma_Nature2013_raw_df} data. Mutational catalog was created with 

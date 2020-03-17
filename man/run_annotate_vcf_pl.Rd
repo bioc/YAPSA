@@ -4,10 +4,17 @@
 \alias{run_annotate_vcf_pl}
 \title{Wrapper function to annotate addition information}
 \usage{
-run_annotate_vcf_pl(in_data_file, in_anno_track_file, in_new_column_name,
-  out_file, in_data_file_type = "custom",
-  in_anno_track_file_type = "bed", in_data_CHROM.field = "CHROM",
-  in_data_POS.field = "POS", in_data_END.field = "POS")
+run_annotate_vcf_pl(
+  in_data_file,
+  in_anno_track_file,
+  in_new_column_name,
+  out_file,
+  in_data_file_type = "custom",
+  in_anno_track_file_type = "bed",
+  in_data_CHROM.field = "CHROM",
+  in_data_POS.field = "POS",
+  in_data_END.field = "POS"
+)
 }
 \arguments{
 \item{in_data_file}{Path to the input vcf-like file to be annotated}

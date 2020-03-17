@@ -4,8 +4,10 @@
 \alias{make_catalogue_strata_df}
 \title{Group strata from different stratification axes}
 \usage{
-make_catalogue_strata_df(in_stratification_lists_list,
-  in_additional_stratum = NULL)
+make_catalogue_strata_df(
+  in_stratification_lists_list,
+  in_additional_stratum = NULL
+)
 }
 \arguments{
 \item{in_stratification_lists_list}{List of lists with entries from different

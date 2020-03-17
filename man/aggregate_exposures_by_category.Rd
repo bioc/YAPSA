@@ -4,8 +4,7 @@
 \alias{aggregate_exposures_by_category}
 \title{Aggregate exposures by category}
 \usage{
-aggregate_exposures_by_category(in_exposures_df, in_sig_ind_df,
-  in_category)
+aggregate_exposures_by_category(in_exposures_df, in_sig_ind_df, in_category)
 }
 \arguments{
 \item{in_exposures_df}{Input data frame of exposures.}

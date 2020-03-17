@@ -5,14 +5,28 @@
 \alias{plot_relative_exposures}
 \title{Plot the exposures of a cohort}
 \usage{
-plot_exposures(in_exposures_df, in_signatures_ind_df,
-  in_subgroups_df = NULL, in_sum_ind = NULL,
-  in_subgroups.field = "subgroup", in_title = "", in_labels = TRUE,
-  in_show_subgroups = TRUE, legend_height = 10)
+plot_exposures(
+  in_exposures_df,
+  in_signatures_ind_df,
+  in_subgroups_df = NULL,
+  in_sum_ind = NULL,
+  in_subgroups.field = "subgroup",
+  in_title = "",
+  in_labels = TRUE,
+  in_show_subgroups = TRUE,
+  legend_height = 10
+)
 
-plot_relative_exposures(in_exposures_df, in_signatures_ind_df,
-  in_subgroups_df, in_sum_ind = NULL, in_subgroups.field = "subgroup",
-  in_title = "", in_labels = TRUE, in_show_subgroups = TRUE)
+plot_relative_exposures(
+  in_exposures_df,
+  in_signatures_ind_df,
+  in_subgroups_df,
+  in_sum_ind = NULL,
+  in_subgroups.field = "subgroup",
+  in_title = "",
+  in_labels = TRUE,
+  in_show_subgroups = TRUE
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame encoding the exposures \code{H},

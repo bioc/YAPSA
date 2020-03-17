@@ -4,10 +4,16 @@
 \alias{plotExchangeSpectra}
 \title{Plot the spectra of nucleotide exchanges}
 \usage{
-plotExchangeSpectra(in_catalogue_df, in_colour_vector = NULL,
-  in_show_triplets = FALSE, in_show_axis_title = FALSE,
-  in_scales = "free_x", in_refLine = NULL, in_refAlpha = 0.5,
-  in_background = NULL)
+plotExchangeSpectra(
+  in_catalogue_df,
+  in_colour_vector = NULL,
+  in_show_triplets = FALSE,
+  in_show_axis_title = FALSE,
+  in_scales = "free_x",
+  in_refLine = NULL,
+  in_refAlpha = 0.5,
+  in_background = NULL
+)
 }
 \arguments{
 \item{in_catalogue_df}{Numerical data frame encoding the exchange spectra to

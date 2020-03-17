@@ -4,8 +4,12 @@
 \alias{plot_strata}
 \title{Plot all strata from different stratification axes together}
 \usage{
-plot_strata(in_strata_list, in_signatures_ind_df, output_path = NULL,
-  in_attribute = "")
+plot_strata(
+  in_strata_list,
+  in_signatures_ind_df,
+  output_path = NULL,
+  in_attribute = ""
+)
 }
 \arguments{
 \item{in_strata_list}{Data structure created by \code{make_strata_df} or

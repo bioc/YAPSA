@@ -4,8 +4,14 @@
 \alias{logLikelihood}
 \title{Compute a loglikelihood ratio test}
 \usage{
-logLikelihood(in_1, in_2, df_1 = NULL, df_2 = NULL, in_pdf = NULL,
-  verbose = FALSE)
+logLikelihood(
+  in_1,
+  in_2,
+  df_1 = NULL,
+  df_2 = NULL,
+  in_pdf = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{in_1}{Residuals of model 1 of the input data.}

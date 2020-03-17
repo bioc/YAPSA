@@ -4,8 +4,12 @@
 \alias{attribute_nucleotide_exchanges}
 \title{Attribute the nucleotide exchange for an SNV}
 \usage{
-attribute_nucleotide_exchanges(in_dat, in_REF.field = "REF",
-  in_ALT.field = "ALT", in_verbose = FALSE)
+attribute_nucleotide_exchanges(
+  in_dat,
+  in_REF.field = "REF",
+  in_ALT.field = "ALT",
+  in_verbose = FALSE
+)
 }
 \arguments{
 \item{in_dat}{VRanges object or data frame which carries one column for the

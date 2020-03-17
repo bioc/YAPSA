@@ -4,11 +4,18 @@
 \alias{makeVRangesFromDataFrame}
 \title{Construct a VRanges Object from a data frame}
 \usage{
-makeVRangesFromDataFrame(in_df, in_keep.extra.columns = TRUE,
-  in_seqinfo = NULL, in_seqnames.field = "X.CHROM",
-  in_start.field = "POS", in_end.field = "POS", in_PID.field = "PID",
-  in_subgroup.field = "subgroup", in_strand.field = "strand",
-  verbose_flag = 1)
+makeVRangesFromDataFrame(
+  in_df,
+  in_keep.extra.columns = TRUE,
+  in_seqinfo = NULL,
+  in_seqnames.field = "X.CHROM",
+  in_start.field = "POS",
+  in_end.field = "POS",
+  in_PID.field = "PID",
+  in_subgroup.field = "subgroup",
+  in_strand.field = "strand",
+  verbose_flag = 1
+)
 }
 \arguments{
 \item{in_df}{A big dataframe constructed from a vcf-like file of a whole

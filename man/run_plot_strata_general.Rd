@@ -4,9 +4,14 @@
 \alias{run_plot_strata_general}
 \title{Wrapper function for \code{plot_strata}}
 \usage{
-run_plot_strata_general(in_stratification_lists_list, in_signatures_ind_df,
-  output_path = NULL, in_attribute = "",
-  in_remove_signature_ind = NULL, in_additional_stratum = NULL)
+run_plot_strata_general(
+  in_stratification_lists_list,
+  in_signatures_ind_df,
+  output_path = NULL,
+  in_attribute = "",
+  in_remove_signature_ind = NULL,
+  in_additional_stratum = NULL
+)
 }
 \arguments{
 \item{in_stratification_lists_list}{List of lists with entries from different

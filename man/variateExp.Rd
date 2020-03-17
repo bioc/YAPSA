@@ -4,8 +4,14 @@
 \alias{variateExp}
 \title{Wrapper to compute confidence intervals for a cohort}
 \usage{
-variateExp(in_catalogue_df, in_sig_df, in_exposures_df,
-  in_sigLevel = 0.05, in_delta = 0.4, in_pdf = NULL)
+variateExp(
+  in_catalogue_df,
+  in_sig_df,
+  in_exposures_df,
+  in_sigLevel = 0.05,
+  in_delta = 0.4,
+  in_pdf = NULL
+)
 }
 \arguments{
 \item{in_catalogue_df}{Input numerical data frame of the mutational catalog

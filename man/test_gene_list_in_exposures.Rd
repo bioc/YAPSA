@@ -4,8 +4,13 @@
 \alias{test_gene_list_in_exposures}
 \title{Test if mutated PIDs are enriched in signatures}
 \usage{
-test_gene_list_in_exposures(in_gene_list, in_exposure_df, in_mut_table,
-  in_gene.field = "GENE_short", in_p_cutoff = 0.05)
+test_gene_list_in_exposures(
+  in_gene_list,
+  in_exposure_df,
+  in_mut_table,
+  in_gene.field = "GENE_short",
+  in_p_cutoff = 0.05
+)
 }
 \arguments{
 \item{in_gene_list}{List with genes of interest}

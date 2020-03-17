@@ -58,5 +58,5 @@ VignetteBuilder: knitr
 LazyLoad: yes
 biocViews: Sequencing, DNASeq, SomaticMutation, Visualization,
     Clustering, GenomicVariation, StatisticalMethod, BiologicalQuestion
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Encoding: UTF-8

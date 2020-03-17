@@ -4,8 +4,13 @@
 \alias{add_annotation}
 \title{Add information to an annotation data structure}
 \usage{
-add_annotation(in_annotation_col, in_annotation_df, in_attribution_vector,
-  in_colour_vector, in_name)
+add_annotation(
+  in_annotation_col,
+  in_annotation_df,
+  in_attribution_vector,
+  in_colour_vector,
+  in_name
+)
 }
 \arguments{
 \item{in_annotation_col}{List, every element of which refers to one layer 

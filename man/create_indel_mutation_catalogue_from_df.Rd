@@ -4,8 +4,13 @@
 \alias{create_indel_mutation_catalogue_from_df}
 \title{Wrapper to create an INDEL mutational catalog from a vlf-like data frame}
 \usage{
-create_indel_mutation_catalogue_from_df(in_dat, in_signature_df,
-  in_REF.field = "REF", in_ALT.field = "ALT", in_verbose = FALSE)
+create_indel_mutation_catalogue_from_df(
+  in_dat,
+  in_signature_df,
+  in_REF.field = "REF",
+  in_ALT.field = "ALT",
+  in_verbose = FALSE
+)
 }
 \arguments{
 \item{in_dat}{A data frame constructed from a vcf-like file of a whole cohort

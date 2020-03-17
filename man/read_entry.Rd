@@ -5,11 +5,17 @@
 \alias{read_list}
 \title{Read a single vcf-like file into a single data frame}
 \usage{
-read_entry(current_ind, in_list, header = TRUE, in_header = NULL,
-  variant_type = "SNV", delete.char = NULL, ...)
+read_entry(
+  current_ind,
+  in_list,
+  header = TRUE,
+  in_header = NULL,
+  variant_type = "SNV",
+  delete.char = NULL,
+  ...
+)
 
-read_list(in_list, in_parallel = FALSE, header = TRUE,
-  in_header = NULL, ...)
+read_list(in_list, in_parallel = FALSE, header = TRUE, in_header = NULL, ...)
 }
 \arguments{
 \item{current_ind}{Index of the file to read from the list provided below.}

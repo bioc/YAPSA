@@ -4,9 +4,14 @@
 \alias{run_comparison_general}
 \title{Compare all strata from different stratifications}
 \usage{
-run_comparison_general(in_stratification_lists_list, output_path = NULL,
-  in_nrect = 5, in_attribute = "", in_remove_signature_ind = NULL,
-  in_additional_stratum = NULL)
+run_comparison_general(
+  in_stratification_lists_list,
+  output_path = NULL,
+  in_nrect = 5,
+  in_attribute = "",
+  in_remove_signature_ind = NULL,
+  in_additional_stratum = NULL
+)
 }
 \arguments{
 \item{in_stratification_lists_list}{List of lists with entries from different

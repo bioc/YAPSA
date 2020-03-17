@@ -4,11 +4,19 @@
 \alias{hclust_exposures}
 \title{Cluster the PIDs according to their signature exposures}
 \usage{
-hclust_exposures(in_exposures_df, in_subgroups_df,
-  in_method = "manhattan", in_subgroup_column = "subgroup",
-  in_palette = NULL, in_cutoff = 0, in_filename = NULL,
-  in_shift_factor = 0.3, in_cex = 0.2, in_title = "",
-  in_plot_flag = FALSE)
+hclust_exposures(
+  in_exposures_df,
+  in_subgroups_df,
+  in_method = "manhattan",
+  in_subgroup_column = "subgroup",
+  in_palette = NULL,
+  in_cutoff = 0,
+  in_filename = NULL,
+  in_shift_factor = 0.3,
+  in_cex = 0.2,
+  in_title = "",
+  in_plot_flag = FALSE
+)
 }
 \arguments{
 \item{in_exposures_df}{Numerical data frame encoding the exposures \code{H},

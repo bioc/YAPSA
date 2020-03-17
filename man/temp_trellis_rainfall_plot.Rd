@@ -4,10 +4,17 @@
 \alias{temp_trellis_rainfall_plot}
 \title{Create a rainfall plot in a trellis structure}
 \usage{
-temp_trellis_rainfall_plot(in_rainfall_dat, in_point_size = unit(1,
-  "mm"), in_rect_list = NULL, in_title = "",
-  in_CHROM.field = "CHROM", in_POS.field = "POS",
-  in_dist.field = "dist", in_col.field = "col", ...)
+temp_trellis_rainfall_plot(
+  in_rainfall_dat,
+  in_point_size = unit(1, "mm"),
+  in_rect_list = NULL,
+  in_title = "",
+  in_CHROM.field = "CHROM",
+  in_POS.field = "POS",
+  in_dist.field = "dist",
+  in_col.field = "col",
+  ...
+)
 }
 \arguments{
 \item{in_rainfall_dat}{Data frame which has to contain at least columns for chromosome,

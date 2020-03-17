@@ -4,8 +4,13 @@
 \alias{run_kmer_frequency_normalization}
 \title{Provide normalized correction factors for kmer content}
 \usage{
-run_kmer_frequency_normalization(in_ref_genome_fasta,
-  in_target_capture_bed, in_word_length, project_folder, in_verbose = 1)
+run_kmer_frequency_normalization(
+  in_ref_genome_fasta,
+  in_target_capture_bed,
+  in_word_length,
+  project_folder,
+  in_verbose = 1
+)
 }
 \arguments{
 \item{in_ref_genome_fasta}{Path to the reference genome fasta file used.}

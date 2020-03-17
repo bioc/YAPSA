@@ -4,9 +4,14 @@
 \alias{make_subgroups_df}
 \title{Make a custom data structure for subgroups}
 \usage{
-make_subgroups_df(in_vcf_like_df, in_exposures_df = NULL,
-  in_palette = NULL, in_subgroup.field = "SUBGROUP",
-  in_PID.field = "PID", in_verbose = FALSE)
+make_subgroups_df(
+  in_vcf_like_df,
+  in_exposures_df = NULL,
+  in_palette = NULL,
+  in_subgroup.field = "SUBGROUP",
+  in_PID.field = "PID",
+  in_verbose = FALSE
+)
 }
 \arguments{
 \item{in_vcf_like_df}{vcf-like data frame with point mutation calls}

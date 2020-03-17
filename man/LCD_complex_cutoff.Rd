@@ -7,31 +7,63 @@
 \alias{LCD_complex_cutoff_combined}
 \title{LCD with a signature-specific cutoff on exposures}
 \usage{
-LCD_complex_cutoff(in_mutation_catalogue_df, in_signatures_df,
-  in_cutoff_vector = NULL, in_filename = NULL, in_method = "abs",
-  in_per_sample_cutoff = 0, in_rescale = TRUE, in_sig_ind_df = NULL,
-  in_cat_list = NULL)
+LCD_complex_cutoff(
+  in_mutation_catalogue_df,
+  in_signatures_df,
+  in_cutoff_vector = NULL,
+  in_filename = NULL,
+  in_method = "abs",
+  in_per_sample_cutoff = 0,
+  in_rescale = TRUE,
+  in_sig_ind_df = NULL,
+  in_cat_list = NULL
+)
 
-LCD_complex_cutoff_perPID(in_mutation_catalogue_df, in_signatures_df,
-  in_cutoff_vector = NULL, in_filename = NULL, in_method = "abs",
-  in_rescale = TRUE, in_sig_ind_df = NULL, in_cat_list = NULL)
+LCD_complex_cutoff_perPID(
+  in_mutation_catalogue_df,
+  in_signatures_df,
+  in_cutoff_vector = NULL,
+  in_filename = NULL,
+  in_method = "abs",
+  in_rescale = TRUE,
+  in_sig_ind_df = NULL,
+  in_cat_list = NULL
+)
 
-LCD_complex_cutoff_consensus(in_mutation_catalogue_df = NULL,
-  in_signatures_df = NULL, in_cutoff_vector = NULL,
-  in_filename = NULL, in_method = "abs", in_rescale = TRUE,
-  in_sig_ind_df = NULL, in_cat_list = NULL, in_cohort_LCDlist = NULL,
-  in_perPID_LCDlist = NULL, addSigs_cohort_cutoff = 0.25,
-  addSigs_perPID_cutoff = 0.25, addSigs_relAbs_cutoff = 0.01,
-  keep.unassigned = FALSE, keep.all.cohort.sigs = TRUE,
-  in_verbose = FALSE)
+LCD_complex_cutoff_consensus(
+  in_mutation_catalogue_df = NULL,
+  in_signatures_df = NULL,
+  in_cutoff_vector = NULL,
+  in_filename = NULL,
+  in_method = "abs",
+  in_rescale = TRUE,
+  in_sig_ind_df = NULL,
+  in_cat_list = NULL,
+  in_cohort_LCDlist = NULL,
+  in_perPID_LCDlist = NULL,
+  addSigs_cohort_cutoff = 0.25,
+  addSigs_perPID_cutoff = 0.25,
+  addSigs_relAbs_cutoff = 0.01,
+  keep.unassigned = FALSE,
+  keep.all.cohort.sigs = TRUE,
+  in_verbose = FALSE
+)
 
-LCD_complex_cutoff_combined(in_mutation_catalogue_df = NULL,
-  in_signatures_df = NULL, in_cutoff_vector = NULL,
-  in_filename = NULL, in_method = "abs", in_rescale = TRUE,
-  in_sig_ind_df = NULL, in_cat_list = NULL,
-  addSigs_cohort_cutoff = 0.25, addSigs_perPID_cutoff = 0.25,
-  addSigs_relAbs_cutoff = 0.01, keep.all.cohort.sigs = TRUE,
-  in_verbose = FALSE)
+LCD_complex_cutoff_combined(
+  in_mutation_catalogue_df = NULL,
+  in_signatures_df = NULL,
+  in_cutoff_vector = NULL,
+  in_filename = NULL,
+  in_method = "abs",
+  in_rescale = TRUE,
+  in_sig_ind_df = NULL,
+  in_cat_list = NULL,
+  addSigs_cohort_cutoff = 0.25,
+  addSigs_perPID_cutoff = 0.25,
+  addSigs_relAbs_cutoff = 0.01,
+  keep.all.cohort.sigs = TRUE,
+  in_verbose = FALSE
+)
 }
 \arguments{
 \item{in_mutation_catalogue_df}{A numeric data frame \code{V} with \code{n}
