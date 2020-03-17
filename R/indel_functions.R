@@ -1411,7 +1411,7 @@ confidence_indel_only_calulation <- function(in_current_indel_df){
   
   PCAWGValidID_absCutoffVector <- cutoffPCAWG_ID_WGS_Pid_df[3, ]
   
-  current_id_catalogue_df <- data.frame(in_current_indel_df)
+  current_id_catalogue_df <- data.frame(in_current_indel_df, check.names=FALSE)
 
   PCAWGValidID_abs_LCDlist <- LCD_complex_cutoff_perPID(
     in_mutation_catalogue_df = current_id_catalogue_df,

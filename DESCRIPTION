@@ -1,7 +1,7 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.13.3
+Version: 1.13.4
 Date: 2019-11-26
 Author: Daniel Huebschmann, Lea Jopp-Saile, Carolin Andresen, Zuguang Gu and Matthias Schlesner
 Maintainer: Daniel Huebschmann <huebschmann.daniel@googlemail.com>
