@@ -62,5 +62,5 @@ exposures <- as.matrix(exposures_df)
 
 }
 \seealso{
-\code{\link[lsei]{lsei}}
+\code{\link[limSolve]{lsei}}
 }

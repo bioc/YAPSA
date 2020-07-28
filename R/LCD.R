@@ -23,7 +23,7 @@
 #'  \code{m} columns, \code{l} being the number of signatures and \code{m} being
 #'  the number of samples
 #'
-#'@seealso \code{\link[lsei]{lsei}}
+#'@seealso \code{\link[limSolve]{lsei}}
 #'
 #' @examples
 #'
@@ -55,7 +55,7 @@
 #' exposures_df <- YAPSA:::LCD(V_compl_df,W_df)
 #' exposures <- as.matrix(exposures_df)
 #'
-#'@importFrom lsei lsei
+#'@importFrom limSolve lsei
 #'
 #'@export
 #'
@@ -67,14 +67,14 @@ LCD <- function(in_mutation_catalogue_df,
   G <- diag(dim(signatures_matrix)[2])
   H <- rep(0,dim(signatures_matrix)[2])
   for (i in seq_len(ncol(in_mutation_catalogue_df))) {
-    # temp_fractions <- limSolve::lsei(A = signatures_matrix,
-    #                                  B = in_mutation_catalogue_df[,i],
-    #                                  G=G, H=H, verbose=FALSE)
-    # temp_exposures_vector <- as.vector(temp_fractions$X)
-    temp_fractions <- lsei::lsei(a = signatures_matrix, 
-                                 b = in_mutation_catalogue_df[,i],
-                                 e=G, f=H)
-    temp_exposures_vector <- round(temp_fractions,digits = 6)
+    temp_fractions <- limSolve::lsei(A = signatures_matrix,
+                                     B = in_mutation_catalogue_df[,i],
+                                     G=G, H=H, verbose=FALSE)
+    temp_exposures_vector <- as.vector(temp_fractions$X)
+    # temp_fractions <- lsei::lsei(a = signatures_matrix, 
+    #                              b = in_mutation_catalogue_df[,i],
+    #                              e=G, f=H)
+    # temp_exposures_vector <- round(temp_fractions,digits = 6)
     names(temp_exposures_vector) <- names(in_signatures_df)
     rel_exposures_vector <- temp_exposures_vector/sum(temp_exposures_vector)
     deselect_ind <- which(rel_exposures_vector<in_per_sample_cutoff)
@@ -89,7 +89,7 @@ LCD <- function(in_mutation_catalogue_df,
 }
 
 
-#' @importFrom lsei lsei
+#' @importFrom limSolve lsei
 #' 
 LCD_cutoff <- function(in_mutation_catalogue_df,in_signatures_df,
                        in_cutoff=0.01,in_filename=NULL,
@@ -227,12 +227,12 @@ LCD_cutoff <- function(in_mutation_catalogue_df,in_signatures_df,
 #'
 #'@seealso \code{\link[YAPSA]{LCD}}
 #'@seealso \code{\link[YAPSA]{aggregate_exposures_by_category}}
-#'@seealso \code{\link[lsei]{lsei}}
+#'@seealso \code{\link[limSolve]{lsei}}
 #'
 #' @examples
 #'  NULL
 #'
-#'@importFrom lsei lsei
+#'@importFrom limSolve lsei
 #'@export
 #'
 LCD_complex_cutoff <- function(in_mutation_catalogue_df,
@@ -691,7 +691,7 @@ norm_res <- function(x,b,in_matrix){
 #'
 #' @return Returns a list with all exposures and the stratified ones
 #'
-#' @importFrom lsei lsei
+#' @importFrom limSolve lsei
 #'   
 LCD_SMC <- function(in_mutation_sub_catalogue_list,
                     in_signatures_df,in_F_df=NULL){
@@ -751,17 +751,17 @@ LCD_SMC <- function(in_mutation_sub_catalogue_list,
   H <- rep(0,dim(signatures_matrix)[2])
   out_exposures_df <- data.frame()
   for (i in seq_len(ncol(pasted_mutation_catalogue_df))) {
-    # temp_fractions <- limSolve::lsei(A = signatures_matrix, 
-    #                                  B = pasted_mutation_catalogue_df[,i], 
-    #                                  E=E, F=F_df[,i], G=G, H=H)
-    temp_fractions <- lsei::lsei(a = signatures_matrix, 
-                                 b = pasted_mutation_catalogue_df[,i], 
-                                 c=E, d=F_df[,i], e=G, f=H)
-    temp_exposures_vector <- round(temp_fractions,digits = 6)
-    names(temp_exposures_vector) <- names(in_signatures_df)
+    temp_fractions <- limSolve::lsei(A = signatures_matrix,
+                                     B = pasted_mutation_catalogue_df[,i],
+                                     E=E, F=F_df[,i], G=G, H=H)
+    # temp_fractions <- lsei::lsei(a = signatures_matrix, 
+    #                              b = pasted_mutation_catalogue_df[,i], 
+    #                              c=E, d=F_df[,i], e=G, f=H)
+    # temp_exposures_vector <- round(temp_fractions,digits = 6)
+    # names(temp_exposures_vector) <- names(in_signatures_df)
     out_exposures_df[seq(1,dim(signatures_matrix)[2],1),i] <- 
-      #as.vector(temp_fractions$X)
-      as.vector(temp_exposures_vector)
+      as.vector(temp_fractions$X)
+      # as.vector(temp_exposures_vector)
     rm(temp_fractions)
   }
   out_list <- list()

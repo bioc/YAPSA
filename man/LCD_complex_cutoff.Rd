@@ -188,5 +188,5 @@ signature call set.
 
 \code{\link[YAPSA]{aggregate_exposures_by_category}}
 
-\code{\link[lsei]{lsei}}
+\code{\link[limSolve]{lsei}}
 }

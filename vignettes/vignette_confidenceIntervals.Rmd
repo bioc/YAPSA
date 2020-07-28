@@ -190,7 +190,7 @@ references:
     dynamical models by exploiting the profile likelihood.'
 ---
 
-```{r load_style, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
+```{r loadStyle, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
 library(BiocStyle)
 ```
 
@@ -236,7 +236,7 @@ mutational signatures on an example data set as performed in
 [1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html).
 We thus first load the example data stored in the package:
 
-```{r, load_stored_sig_data}
+```{r, loadStoredSigData}
 data(sigs)
 data(cutoffs)
 data("lymphomaNature2013_mutCat_df")
@@ -246,7 +246,7 @@ current_cutoff_vector <- cutoffCosmicValid_abs_df[6,]
 We then perform a supervised analysis of SNV mutational signatures using 
 [signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html):
 
-```{r LCD with cutoffs}
+```{r LCDwithCutoffs}
 lymphoma_COSMIC_listsList <-
   LCD_complex_cutoff_combined(
       in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
@@ -257,7 +257,7 @@ lymphoma_COSMIC_listsList <-
 
 We assign subgroups to the different samples:
 
-```{r subrgroup annotation}
+```{r subrgroupAnnotation}
 data(lymphoma_PID)
 colnames(lymphoma_PID_df) <- "SUBGROUP"
 lymphoma_PID_df$PID <- rownames(lymphoma_PID_df)
@@ -268,11 +268,11 @@ COSMIC_subgroups_df <-
 
 And finally plot the obtained result:
 
-```{r caption_exposures, echo=FALSE}
+```{r captionExposures, echo=FALSE}
 cap <- "Exposures to SNV mutational signatures"
 ```
 
-```{r exposures_cutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
+```{r exposuresCutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
 exposures_barplot(
   in_exposures_df = lymphoma_COSMIC_listsList$cohort$exposures,
   in_signatures_ind_df = lymphoma_COSMIC_listsList$cohort$out_sig_ind_df,
@@ -288,12 +288,12 @@ mutational signatures, the CIs for Indel mutational signatures are computed
 using the concept of profile likelihood. This is performed by the function 
 `variateExp()`. 
 
-```{r caption_CI, echo=FALSE}
-cap <- "Confidence interval calculation for exposures to Indel mutational 
+```{r captionCI, echo=FALSE}
+cap <- "Confidence interval calculation for exposures to mutational 
         signatures"
 ```
 
-```{r compute_CI, echo=TRUE, warning=FALSE}
+```{r computeCI, echo=TRUE, warning=FALSE}
 complete_df <- variateExp(
   in_catalogue_df = lymphomaNature2013_mutCat_df,
   in_sig_df = lymphoma_COSMIC_listsList$cohort$signatures,
@@ -306,7 +306,7 @@ of the function `variateExp()` is a data frame in a *long* format, because for
 every combination of a signature and a sample, several values now have to be 
 stored:
 
-```{r display_complete_df, echo=TRUE, warning=FALSE}
+```{r displayCompleteDf, echo=TRUE, warning=FALSE}
 head(complete_df, 12)
 ```
 
@@ -318,7 +318,7 @@ columns `lower` and `upper`.
 
 There also is a custom function to plot exposures with confidence intervals:
 
-```{r plot_CI, echo=TRUE, warning=FALSE, fig.width=17, fig.height=15, fig.cap=cap}
+```{r plotCI, echo=TRUE, warning=FALSE, fig.width=17, fig.height=15, fig.cap=cap}
 plotExposuresConfidence(
   in_complete_df = complete_df, 
   in_subgroups_df = COSMIC_subgroups_df,

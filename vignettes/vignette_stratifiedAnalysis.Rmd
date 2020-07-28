@@ -11,7 +11,7 @@ output:
     toc: yes
 ---
 
-```{r load_style, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
+```{r loadStyle, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
 library(BiocStyle)
 ```
 
@@ -47,7 +47,7 @@ example one could evaluate whether an SNV falls into a region of high,
 intermediate or low mutation density by applying meaningful cutoffs on 
 intermutation distance. Following this choice, there are three strata: high, 
 intermediate and low mutation density. If we have already performed an analysis 
-of mutational signatures for the whole (unstratified) mutational catalogue of
+of mutational signatures for the whole (unstratified) mutational catalog of
 the cohort, we have identified a set of signatures of interest and the 
 corresponding exposures. We now could ask the question if some of the 
 signatures are enriched or depleted in one or the other stratum, yielding a 
@@ -76,7 +76,7 @@ is the index over signatures and $l$ is the number of signatures. In addition,
 $k$ is the index over strata and $s$ is the number of strata. Note that the 
 last two lines of equation (@SMC_formula) correspond to the unstratified 
 optimization problem. The very last part of equation (@SMC_formula) reflects the 
-additivity of the stratified mutational catalogues $V^{k}$ which is due to the 
+additivity of the stratified mutational catalogs $V^{k}$ which is due to the 
 fact that by definition the sets of SNVs they were constructed from (i.e. the 
 strata) are exclusive.
 
@@ -96,7 +96,7 @@ V_{(\cdot j)}^{k}|| \quad \forall j,k \\
 
 
 Applying `SMC` that way, the initial LCD decomposition of the unstratified 
-mutational catalogue is omitted and it's result replaced by the exposures 
+mutational catalog is omitted and it's result replaced by the exposures 
 extracted by the NMF analysis.
 
 
@@ -108,7 +108,7 @@ mutational signatures on an example data set as performed in
 [1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html).
 We thus first load the example data stored in the package:
 
-```{r, load_stored_sig_data}
+```{r, loadStoredSigData}
 data(sigs)
 data(cutoffs)
 data("lymphomaNature2013_mutCat_df")
@@ -118,7 +118,7 @@ current_cutoff_vector <- cutoffCosmicValid_abs_df[6,]
 We then perform a supervised analysis of SNV mutational signatures using 
 signature-specific cutoffs:
 
-```{r LCD with cutoffs}
+```{r LCDwithCutoffs}
 lymphoma_COSMIC_listsList <-
   LCD_complex_cutoff_combined(
       in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
@@ -129,7 +129,7 @@ lymphoma_COSMIC_listsList <-
 
 We assign subgroups to the different samples:
 
-```{r subrgroup annotation}
+```{r subrgroupAnnotation}
 data(lymphoma_PID)
 colnames(lymphoma_PID_df) <- "SUBGROUP"
 lymphoma_PID_df$PID <- rownames(lymphoma_PID_df)
@@ -140,11 +140,11 @@ COSMIC_subgroups_df <-
 
 And finally plot the obtained result:
 
-```{r caption_exposures, echo=FALSE}
+```{r captionExposures, echo=FALSE}
 cap <- "Exposures to SNV mutational signatures"
 ```
 
-```{r exposures_cutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
+```{r exposuresCutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
 exposures_barplot(
   in_exposures_df = lymphoma_COSMIC_listsList$cohort$exposures,
   in_signatures_ind_df = lymphoma_COSMIC_listsList$cohort$out_sig_ind_df,
@@ -161,7 +161,7 @@ provide the highest degree of flexibility for the definition of the strata
 themselves. Therefore we have to repeat the formatting steps already performed 
 in the [first vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html). 
 
-```{r format_raw, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
+```{r formatRaw, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
 data("lymphoma_Nature2013_raw")
 names(lymphoma_PID_df) <- gsub("SUBGROUP", "subgroup", names(lymphoma_PID_df))
 names(lymphoma_Nature2013_raw_df) <- c("PID","TYPE","CHROM","START",
@@ -201,7 +201,7 @@ We will now use the intermutational distances computed above. We set cutoffs
 for the intermutational distance at 1000 and 100000 bp, leading to three 
 strata. We annotate to every variant in which stratum it falls.
 
-```{r stratify_mut_density}
+```{r stratifyMutDensity}
 lymphoma_Nature2013_df$density_cat <- cut(lymphoma_Nature2013_df$dist,
                                           c(0,1001,100001,Inf),
                                           right=FALSE,
@@ -211,7 +211,7 @@ lymphoma_Nature2013_df$density_cat <- cut(lymphoma_Nature2013_df$dist,
 
 The following table shows the distribution of variants over strata:
 
-```{r table_strata_mut_density}
+```{r tableStrataMutDensity}
 temp_df <- data.frame(table(lymphoma_Nature2013_df$density_cat))
 names(temp_df) <- c("Stratum","Cohort-wide counts")
 kable(temp_df, caption=paste0("Strata for the SMC of mutation density"))
@@ -219,7 +219,7 @@ kable(temp_df, caption=paste0("Strata for the SMC of mutation density"))
 
 We now have everything at hand to carry out a stratified signature analysis:
 
-```{r caption_SMC, echo=FALSE}
+```{r captionSMC, echo=FALSE}
 cap="SMC (Stratification of the Mutational Catalogue)
         based on mutation density."
 ```
@@ -252,11 +252,11 @@ These results can also be displayed as a dodged barplot containing the
 information of the third column of plots in the above figure, which needs 
 the execution of an additional code block for its generation:
 
-```{r caption_SMC_dodged, echo=FALSE}
+```{r captionSMCdodged, echo=FALSE}
 cap = "SMC results displayed as dodged plot."
 ```
 
-```{r SMC_dodged, results="hide",warning=FALSE,fig.width=8,fig.height=7,fig.cap=cap}
+```{r SMCdodged, results="hide",warning=FALSE,fig.width=8,fig.height=7,fig.cap=cap}
 dodged_df <- do.call(rbind, mut_density_list$cohort)
 names(dodged_df) <- gsub("variable","stratum", names(dodged_df))
 names(dodged_df) <- gsub("sig","signature", names(dodged_df))
@@ -297,7 +297,7 @@ stratification, we have to correct for multiple testing. In order to control
 the false discovery rate (FDR), the Benjamini-Hochberg correction is 
 appropriate.
 
-```{r stat_SMC_mut_density, warning=FALSE, message=FALSE}
+```{r statSMCmutDensity, warning=FALSE, message=FALSE}
 stat_mut_density_list <- stat_test_SMC(mut_density_list,in_flag="norm")
 kable(stat_mut_density_list$kruskal_df,
       caption=paste0("Results of Kruskal tests for cohort-wide exposures over",
@@ -309,7 +309,7 @@ In the following paragraph we perform post-hoc tests for those signatures where
 the Kruskal-Wallis test, as evaluated above, has given a significant result.
 \newpage
 
-```{r post_hoc_mut_density}
+```{r postHocMutDensity}
 significance_level <- 0.05
 for(i in seq_len(dim(stat_mut_density_list$kruskal_df)[1])){
   if(stat_mut_density_list$kruskal_df$Kruskal_p_val_BH[i]<significance_level){
@@ -326,7 +326,7 @@ depletion pattern emerges:
 1. Stratum of high mutation density: Enrichment of signatures AC5 and depletion 
 of signatures AC1 (significant) and AC17
 2. Background: signature distribution very similar to the one of the complete 
-mutational catalogue (first row)
+mutational catalog (first row)
 3. Stratum of intermediate mutation density: intermediate signature enrichment 
 and depletion pattern between the strata of high mutation density and 
 background. 

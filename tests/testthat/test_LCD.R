@@ -35,7 +35,7 @@ test_that(paste0("Test LCD (linear combination decomposition) ",
   exposures <- as.matrix(exposures_df)
   test_df <- rep(0,length(sign_ind))
   expect_that(exposures[sign_ind], is_identical_to(test_df))
-  expect_that(all(exposures[other_ind]<H_compl[other_ind]),is_true())
+  expect_true(all(exposures[other_ind]<H_compl[other_ind]))
 })
 
 test_that("Test LCD_cutoff with small hand made data frames", {
@@ -108,9 +108,9 @@ test_that("Test LCD_SMC with small hand made data frames", {
               is_identical_to(simple_exposures_all_df))
   ## check if the sum of the exposures of the strata equals 
   ## the result of the normal LCD
-  expect_that(exposures_strata_list$sub_exposures_list[[1]] +
+  expect_equal(exposures_strata_list$sub_exposures_list[[1]] +
                 exposures_strata_list$sub_exposures_list[[2]],
-              is_identical_to(simple_exposures_all_df))
+              simple_exposures_all_df)
   ## check if the positions not affected by the perturbation remain the same
   # comp_exposures_1_df <- exposures_strata_list$sub_exposures_list[[1]]
   # comp_exposures_1_sub_df <- comp_exposures_1_df[,other_col_ind_2+1]

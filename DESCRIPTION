@@ -1,12 +1,12 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.15.0
+Version: 1.15.1
 Date: 2019-11-26
 Author: Daniel Huebschmann, Lea Jopp-Saile, Carolin Andresen, Zuguang Gu and Matthias Schlesner
 Maintainer: Daniel Huebschmann <huebschmann.daniel@googlemail.com>
 Imports:
-    lsei,
+    limSolve,
     SomaticSignatures,
     VariantAnnotation,
     GenomeInfoDb,
@@ -58,5 +58,5 @@ VignetteBuilder: knitr
 LazyLoad: yes
 biocViews: Sequencing, DNASeq, SomaticMutation, Visualization,
     Clustering, GenomicVariation, StatisticalMethod, BiologicalQuestion
-RoxygenNote: 7.0.1
+RoxygenNote: 7.1.1
 Encoding: UTF-8

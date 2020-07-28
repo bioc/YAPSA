@@ -205,12 +205,11 @@ references:
     given: SG
   - family: Stratton
     given: MR
-  container-title: bioarxiv
-  id: Alex2018
+  container-title: Nature
+  id: Alex2020
   issued:
-    month: 05
-    year: 2018
-  publisher: bioarxiv
+    month: 02
+    year: 2020
   title: 'The Repertoire of Mutational Signatures in Human Cancer'
 - author:
   - family: Alexandrov
@@ -259,7 +258,7 @@ references:
     ROCR: visualizing classifier performance in R
 ---
 
-```{r load_style, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
+```{r loadStyle, warning=FALSE, echo=FALSE, message=FALSE, results="hide"}
 library(BiocStyle)
 ```
 
@@ -309,7 +308,7 @@ higher threshold than a signature which rarely leads to false positive calls.
 For YAPSA, we have computed optimal signature cutoffs by a modfied Reciever 
 Operating Characteristic (ROC) analysis on the same data as 
 it had been used for the initial NMF analyses with the extraction of the 
-published mutational signatures ([@Alex2013] and [@Alex2018]). 
+published mutational signatures ([@Alex2013] and [@Alex2020]). 
 Numeric values for these cutoffs are stored in dataframes accessible after 
 loading the package YAPSA.  
 
@@ -344,7 +343,7 @@ loaded as follows (more information provided by the help function, cf.
 for an overview of how these data frames can be re-created from data available 
 online):
 
-```{r load signatures}
+```{r loadSignatures}
 data(sigs)
 data(sigs_pcawg)
 ```
@@ -409,7 +408,7 @@ numerical values of the signature-specific cutoffs are available. The cutoff
 dataframes can be loaded to the workspace analogously to the signatures 
 themselves:
 
-```{r load cutoffs}
+```{r loadCutoffs}
 data(cutoffs)
 data(cutoffs_pcawg)
 ```
@@ -482,7 +481,7 @@ Thus, if a user wants to do an analysis with the Alexandrov COSMIC signatures,
 discarding the artifact signatures, on WGS data, he/she would use the following 
 code snippet:
 
-```{r cutoff example}
+```{r cutoffExample}
 data(cutoffs)
 current_cutoff_vector <- cutoffCosmicValid_abs_df[6, ]
 current_cutoff_vector
@@ -498,7 +497,7 @@ shows how to obtain a mutational catalog ($V$) from a
 vcf file. Here, for the sake of simplicits, we just use an example data set 
 stored in the software package. 
 
-```{r load data}
+```{r loadData}
 data(lymphomaNature2013_mutCat_df)
 ```
 
@@ -516,7 +515,7 @@ optimal cutoff. In contrast, in the following, we will perform an analysis of
 mutational signatures using optimal cutoffs and compare the results to an 
 analysis without any cutoffs.
 
-```{r set variables }
+```{r setVariables }
 current_sig_df <- AlexCosmicValid_sig_df
 current_sigInd_df <- AlexCosmicValid_sigInd_df
 ```
@@ -526,14 +525,14 @@ current_sigInd_df <- AlexCosmicValid_sigInd_df
 
 For the purpose of comparison, we first create a zero cutoff vector:
 
-```{r cutoff vector}
+```{r cutoffVector}
 current_cutoff_vector <- rep(0, dim(AlexCosmicValid_sig_df)[2])
 ```
 
 Next, we compute the exposures to the mutational signatures using LCD analysis 
 and this zero cutoff vector:
 
-```{r lymphoma_cohort_LCD_results}
+```{r lymphomaCohortLCD_results}
 lymphoma_COSMIC_zero_listsList <-
   LCD_complex_cutoff_combined(
     in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
@@ -548,7 +547,7 @@ consensus between both analyses.
 Annotation of a subgroup to each PID allows to group the samples per subgroup 
 upon visualization:
 
-```{r subrgroup annotation}
+```{r subrgroupAnnotation}
 data(lymphoma_PID)
 colnames(lymphoma_PID_df) <- "SUBGROUP"
 lymphoma_PID_df$PID <- rownames(lymphoma_PID_df)
@@ -557,7 +556,7 @@ COSMIC_subgroups_df <-
                     lymphoma_COSMIC_zero_listsList$cohort$exposures)
 ```
 
-```{r caption_barplot_2, echo=FALSE}
+```{r captionBarplot2, echo=FALSE}
 cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
         catalogs, signature-specific cutoffs with a cost factor of 6 used
         for the LCD"
@@ -568,7 +567,7 @@ plotting function `exposures_barplot()` in order to display signature exposures
 as stacked barplots. Note the occurrence of multiple signatures with partially 
 very low exposures.
 
-```{r exposures_zero, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
+```{r exposuresZero, warning=FALSE, fig.width=8, fig.height=6, fig.cap = cap}
 result_cohort <- lymphoma_COSMIC_zero_listsList$cohort
 exposures_barplot(
   in_exposures_df = result_cohort$exposures,
@@ -587,7 +586,7 @@ reduction of the overall number of detected signatures.
 Based on \@ref(tab:Table1) we know that for the validated COSMIC Signatures the
 optimal cutoffs are the once computed with a cost factor of six. 
 
-```{r set signature-specific cutoff}
+```{r setSignatureSpecificCutoffs}
 current_cutoff_df <- cutoffCosmicValid_abs_df
 current_cost_factor <- 6
 current_cutoff_vector <- current_cutoff_df[current_cost_factor,]
@@ -596,7 +595,7 @@ current_cutoff_vector <- current_cutoff_df[current_cost_factor,]
 We again compute signature exposures, but this time using the vector of optimal 
 signature-specific cutoffs:
 
-```{r LCD with cutoffs}
+```{r LCDwithCutoffs}
 lymphoma_COSMIC_listsList <-
   LCD_complex_cutoff_combined(
       in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
@@ -608,13 +607,13 @@ lymphoma_COSMIC_listsList <-
 And again proceeding to a visualization (of note, the sample subgrouping 
 information can be used as in the previous subsection):
 
-```{r caption_barplot, echo=FALSE}
+```{r captionBarplot, echo=FALSE}
 cap <- "Absolute exposures of the COSMIC signatures in the lymphoma mutational
         catalogs, signature-specific cutoffs with a cost factor of 6 used
         for the LCD"
 ```
 
-```{r exposures_cutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
+```{r exposuresCutoffs, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
 result_cohort <- lymphoma_COSMIC_listsList$cohort
 exposures_barplot(
   in_exposures_df = result_cohort$exposures,

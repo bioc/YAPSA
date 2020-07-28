@@ -238,22 +238,30 @@ references:
     year: 2015
   title: >
     lsei: Solving Least Squares Problems under Equality/Inequality Constraints
-- title: 'Genome Level Trellis Layout'
-  author:
+- author:
   - family: Gu
-    given: Zuguang
-  container-title: R package version 1.0.0
+    given: Z
+  - family: Eils
+    given: R
+  - family: Schlesner
+    given: M
+  container-title: Bioinformatics
   id: gtrellis2015
   issued:
-    year: 2015
+      year: 2016
+  title: 'gtrellis: an R/Bioconductor package for making genome-level Trellis graphics.'
 - author:
-  - family: Gu 
+  - family: Gu
     given: Z
-  container-title: R package version 1.4.4
-  id: ComplexHeatmap2015
+  - family: Eils
+    given: R
+  - family: Schlesner
+    given: M
+  container-title: Bioinformatics
+  id: Gu2016
   issued:
-    year: 2015
-  title: 'ComplexHeatmap: Making Complex Heatmaps'
+      year: 2016
+  title: 'Complex heatmaps reveal patterns and correlations in multidimensional genomic data'
 - author:
   - family: Raue
     given: Andreas
@@ -315,12 +323,11 @@ references:
     given: SG
   - family: Stratton
     given: MR
-  container-title: bioarxiv
-  id: Alex2018
+  container-title: Nature
+  id: Alex2020
   issued:
-    month: 05
-    year: 2018
-  publisher: bioarxiv
+    month: 02
+    year: 2020
   title: 'The Repertoire of Mutational Signatures in Human Cancer'
 ---
 
@@ -503,7 +510,7 @@ can be found in
 ## Indel signatures
 
 Recently a new and extended set of mutational signatures was published by the 
-Pan Cancer Analysis of Whole Genomes (PCAWG) consortium [@Alex2018]. In 
+Pan Cancer Analysis of Whole Genomes (PCAWG) consortium [@Alex2020]. In 
 addition to an extended set of SNV mutational signatures, that analysis 
 for the first time had sufficient statistical power to also extract 17 Indel 
 signatures, based on a classification of Indels into 83 categories or features. 
@@ -536,14 +543,14 @@ analysis by Alexandrov et al. [@Alex2013]
 
 ### Loading example data
 
-```{r load_lymphoma}
+```{r loadLymphoma}
 data("lymphoma_Nature2013_raw")
 ```
 
 This creates a dataframe with `r dim(lymphoma_Nature2013_raw_df)[1]` rows. It 
 is equivalent to executing the R code
 
-```{r load_lymphoma_ftp, eval=FALSE}
+```{r loadLymphomaFtp, eval=FALSE}
 lymphoma_Nature2013_ftp_path <- paste0(
   "ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/",
   "somatic_mutation_data/Lymphoma B-cell/",
@@ -557,13 +564,14 @@ The format is inspired by the vcf format with one line per called variant. Note
 that the files provided at that URL have no header information, therefore we 
 have to add some. We will also slightly adapt the data structure:
 
-```{r adapt_data}
+```{r adaptData}
 names(lymphoma_Nature2013_raw_df) <- c("PID","TYPE","CHROM","START",
                                        "STOP","REF","ALT","FLAG")
 lymphoma_Nature2013_df <- subset(lymphoma_Nature2013_raw_df,TYPE=="subs",
                                  select=c(CHROM,START,REF,ALT,PID))
 names(lymphoma_Nature2013_df)[2] <- "POS"
-kable(head(lymphoma_Nature2013_df))
+kable(head(lymphoma_Nature2013_df), 
+      caption = "First rows of the file containing the SNV variant calls.")
 ```
 
 Here, we have selected only the variants characterized as `subs` (those are the
@@ -572,7 +580,7 @@ analysis, small indels are filtered out by this step), so we are left with
 `r dim(lymphoma_Nature2013_df)[1]` variants or rows. Note that there are
 `r length(unique(lymphoma_Nature2013_df$PID))` different samples:
 
-```{r PID_info}
+```{r PIDinfo}
 unique(lymphoma_Nature2013_df$PID)
 ```
 
@@ -580,7 +588,7 @@ For convenience later on, we annotate subgroup information to every variant
 (indirectly through the sample it occurs in). For reasons of simplicity, we 
 also restrict the analysis to the Whole Genome Sequencing (WGS) datasets:
 
-```{r annotate_subgroup, warning=FALSE, message=FALSE}
+```{r annotateSubgroup, warning=FALSE, message=FALSE}
 lymphoma_Nature2013_df$SUBGROUP <- "unknown"
 DLBCL_ind <- grep("^DLBCL.*",lymphoma_Nature2013_df$PID)
 lymphoma_Nature2013_df$SUBGROUP[DLBCL_ind] <- "DLBCL_other"
@@ -603,7 +611,7 @@ Rainfall plots provide a quick overview of the mutational load of a sample. To
 this end we have to compute the intermutational distances. But first we still 
 do some reformatting...
 
-```{r intermut_distances, warning=FALSE, message=FALSE, results="hide"}
+```{r intermutDistances, warning=FALSE, message=FALSE, results="hide"}
 lymphoma_Nature2013_df <- translate_to_hg19(lymphoma_Nature2013_df,"CHROM")
 lymphoma_Nature2013_df$change <- 
   attribute_nucleotide_exchanges(lymphoma_Nature2013_df)
@@ -622,7 +630,7 @@ Now we can select one sample and make the rainfall plot. The plot function used
 here relies on the package `r Biocpkg("gtrellis")` by Zuguang Gu 
 [@gtrellis2015].
 
-```{r make_rainfall_plot, fig.cap="Rainfall plot in a trellis structure."}
+```{r makeRainfallPlot, fig.cap="Rainfall plot in a trellis structure."}
 choice_PID <- "4121361"
 PID_df <- subset(lymphoma_Nature2013_df,PID==choice_PID)
 #trellis_rainfall_plot(PID_df,in_point_size=unit(0.5,"mm"))
@@ -645,7 +653,7 @@ describe how you can load the data from these resources. Alternatively, you can
 bypass the three following subsections because the signature datasets are also
 included in this package:
 
-```{r, load_stored_sig_data}
+```{r, loadStoredSigData}
 data(sigs)
 ```
 
@@ -655,7 +663,7 @@ data(sigs)
 We first load the (older) set of signatures as published in Alexandrov et al. 
 [@Alex2013]:
 
-```{r process_old_sigs}
+```{r processOldSigs}
 Alex_signatures_path <- paste0("ftp://ftp.sanger.ac.uk/pub/cancer/",
                                "AlexandrovEtAl/signatures.txt")
 AlexInitialArtif_sig_df <- read.csv(Alex_signatures_path,header=TRUE,sep="\t")
@@ -664,7 +672,7 @@ kable(AlexInitialArtif_sig_df[c(1:9),c(1:4)])
 
 We will now reformat the dataframe:
 
-```{r reformat_old_sigs}
+```{r reformatOldSigs}
 Alex_rownames <- paste(AlexInitialArtif_sig_df[,1],
                        AlexInitialArtif_sig_df[,2],sep=" ")
 select_ind <- grep("Signature",names(AlexInitialArtif_sig_df))
@@ -682,7 +690,7 @@ signatures as column vectors. It is worth noting that in the initial
 publication, only a subset of these `r number_of_Alex_sigs` signatures were 
 validated by an orthogonal sequencing technology. So we can filter down:
 
-```{r filter_validated_signatures}
+```{r filterValidatedSignatures}
 AlexInitialValid_sig_df <- AlexInitialArtif_sig_df[,grep("^A[0-9]+",
                                           names(AlexInitialArtif_sig_df))]
 number_of_Alex_validated_sigs <- dim(AlexInitialValid_sig_df)[2]
@@ -696,7 +704,7 @@ An updated and curated set of mutational signatures is maintained by Ludmil
 Alexandrov at <http://cancer.sanger.ac.uk/cosmic/signatures>. We will use this 
 set for the following analysis:
 
-```{r load_sigs}
+```{r loadSigs}
 Alex_COSMIC_signatures_path <- 
   paste0("http://cancer.sanger.ac.uk/cancergenome/",
          "assets/signatures_probabilities.txt")
@@ -720,7 +728,7 @@ the initial signatures, we reorder the features. To this end, we adhere to the
 convention chosen in the initial publication by Alexandrov et al. [@Alex2013] 
 for the initial signatures.
 
-```{r reorder_features}
+```{r reorderFeatures}
 COSMIC_order_ind <- match(Alex_rownames,Alex_COSMIC_rownames)
 AlexCosmicValid_sig_df <- AlexCosmicValid_sig_df[COSMIC_order_ind,]
 kable(AlexCosmicValid_sig_df[c(1:9),c(1:6)],
@@ -743,7 +751,7 @@ subsection we will set up such a dataframe. However, the respective dataframes
 are also stored in the package. If loaded by `data(sigs)` the following 
 code block can be bypassed.
 
-```{r, build_sig_ind_df}
+```{r, buildSigIndDf}
 signature_colour_vector <- c("darkgreen","green","pink","goldenrod",
                              "lightblue","blue","orangered","yellow",
                              "orange","brown","purple","red",
@@ -812,11 +820,11 @@ the above paragraph). For this, we will use the functions `LCD` and
 This section uses functions which are to a large extent wrappers for functions 
 in the package SomaticSignatures by Julian Gehring [@Gehring_article2015].
 
-```{r load_libraries, warning=FALSE, message=FALSE}
+```{r loadLibraries, warning=FALSE, message=FALSE}
 library(BSgenome.Hsapiens.UCSC.hg19)
 ```
 
-```{r build_mutational_catalogue, results="hide"}
+```{r buildMutationalCatalogue, results="hide"}
 word_length <- 3
 
 lymphomaNature2013_mutCat_list <- 
@@ -832,7 +840,7 @@ lymphomaNature2013_mutCat_list <-
 The function `create_mutation_catalogue_from_df` returns a list object with 
 several entries. We will use the one called `matrix`.
 
-```{r display_structure_mutation_catalogue_list}
+```{r displayStructureMutationCatalogueList}
 names(lymphomaNature2013_mutCat_list)
 lymphomaNature2013_mutCat_df <- as.data.frame(
   lymphomaNature2013_mutCat_list$matrix)
@@ -859,7 +867,7 @@ lymphomaNature2013_COSMICExposures_df <-
 Some adaptation (extracting and reformatting the information which sample 
 belongs to which subgroup):
 
-```{r make_subgroups_df_LCD}
+```{r makeSubgroupsDfLCD}
 COSMIC_subgroups_df <- 
   make_subgroups_df(lymphoma_Nature2013_df,
                     lymphomaNature2013_COSMICExposures_df)
@@ -867,12 +875,12 @@ COSMIC_subgroups_df <-
 
 The resulting signature exposures can be plotted using custom plotting 
 functions. First as absolute exposures:
-```{r caption_barplot, echo=FALSE}
+```{r captionBarplot, echo=FALSE}
 cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
         catalogues, no cutoff for the LCD (Linear Combination Decomposition)"
 ```
 
-```{r exposures_barplot_LCD, fig.width=6, fig.height=5, fig.cap=cap}
+```{r exposuresBarplotLCD, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = lymphomaNature2013_COSMICExposures_df,
   in_subgroups_df = COSMIC_subgroups_df)
@@ -882,12 +890,12 @@ Here, as no colour information was given to the plotting function
 `exposures_barplot`, the identified signatures are coloured in a rainbow 
 palette. If you want to assign colours to the signatures, this is possible via
 a data structure of type `sigInd_df`.
-```{r caption_barplot_2, echo=FALSE}
+```{r captionBarplot2, echo=FALSE}
 cap <- "Absoute exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, no cutoff for the LCD (Linear Combination Decomposition)"
 ```
 
-```{r exposures_barplot_LCD_sig_ind, fig.width=6, fig.height=5, fig.cap=cap}
+```{r exposuresBarplotLCDsigInd, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = lymphomaNature2013_COSMICExposures_df,
   in_signatures_ind_df = current_sigInd_df,
@@ -899,7 +907,7 @@ inconsistency: colour codes are assigned to all `r dim(current_sig_df)[2]`
 provided signatures, even though some of them might not have any contributions 
 in this cohort:
 
-```{r rowSums_in_cohort}
+```{r rowSumsInCohort}
 rowSums(lymphomaNature2013_COSMICExposures_df)
 ```
 
@@ -907,7 +915,7 @@ This can be overcome by using `LCD_complex_cutoff`. It requires an additional
 parameter: `in_cutoff_vector`; this is already the more general framework which
 will be explained in more detail in the following section.
 
-```{r LCD_complex_cutoff_cutoffZero}
+```{r LCDcomplexCutoffZero}
 zero_cutoff_vector <- rep(0,dim(current_sig_df)[2])
 CosmicValid_cutoffZero_LCDlist <- LCD_complex_cutoff(
   in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
@@ -919,19 +927,19 @@ CosmicValid_cutoffZero_LCDlist <- LCD_complex_cutoff(
 We can re-create the subgroup information (even though this is identical to the
 already determined one):
 
-```{r apply_make_subgroups_df_cutoffZero}
+```{r applyMakeSubgroupsDfZero}
 COSMIC_subgroups_df <- 
   make_subgroups_df(lymphoma_Nature2013_df,
                     CosmicValid_cutoffZero_LCDlist$exposures)
 ```
 
 And if we plot this, we obtain:
-```{r caption_barplot_3, echo=FALSE}
+```{r captionBarplot3, echo=FALSE}
 cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, no cutoff for the LCD (Linear Combination Decomposition)."
 ```
 
-```{r exposures_barplot_abs_cutoffZero, fig.width=6, fig.height=5, fig.cap=cap}
+```{r exposuresBarplotAbsCutoffZero, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffZero_LCDlist$exposures,
   in_signatures_ind_df = CosmicValid_cutoffZero_LCDlist$out_sig_ind_df,
@@ -949,7 +957,7 @@ cap="Relative exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, no cutoff for the LCD (Linear Combination Decomposition)."
 ```
 
-```{r exposures_barplot_rel_cutoffZero, fig.width=6, fig.height=5, fig.cap=cap}
+```{r exposuresBarplotRelCutoffZero, fig.width=6, fig.height=5, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffZero_LCDlist$norm_exposures,
   in_signatures_ind_df = CosmicValid_cutoffZero_LCDlist$out_sig_ind_df,
@@ -962,7 +970,7 @@ exposures_barplot(
 Now let's rerun the analysis with a cutoff to discard signatures with 
 insufficient cohort-wide contribution. 
 
-```{r definition_of_cutoff}
+```{r definitionCutoff}
 my_cutoff <- 0.06
 ```
 
@@ -970,7 +978,7 @@ The cutoff of `r my_cutoff` means that a signature is kept if it's exposure
 represents at least `r my_cutoff*100`% of all SNVs in the cohort. We will use 
 the function `LCD_complex_cutoff` instead of `LCD`.
 
-```{r LCD_complex_cutoff_cutoffGen, warning=FALSE}
+```{r LCDcomplexCutoffCutoffGen, warning=FALSE}
 general_cutoff_vector <- rep(my_cutoff,dim(current_sig_df)[2])
 CosmicValid_cutoffGen_LCDlist <- LCD_complex_cutoff(
   in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
@@ -990,12 +998,12 @@ kable(CosmicValid_cutoffGen_LCDlist$out_sig_ind_df, row.names=FALSE,
 
 Again we can plot absolute exposures:
 
-```{r caption_barplot_5, echo=FALSE}
+```{r captionBarplot5, echo=FALSE}
 cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
 ```
 
-```{r exposures_barplot_abs_cutoffGen, fig.width=6, fig.height=4, fig.cap=cap}
+```{r exposuresBarplotAbsCutoffGen, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffGen_LCDlist$exposures,
   in_signatures_ind_df = CosmicValid_cutoffGen_LCDlist$out_sig_ind_df,
@@ -1003,12 +1011,12 @@ exposures_barplot(
 ```
 
 And relative exposures:
-```{r caption_barplot_6, echo=FALSE}
+```{r captionBarplot6, echo=FALSE}
 cap="Relative exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
 ```
 
-```{r exposures_barplot_rel_cutoffGen, fig.width=6, fig.height=4, fig.cap=cap}
+```{r exposuresBarplotRelGutoffGen, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffGen_LCDlist$norm_exposures,
   in_signatures_ind_df = CosmicValid_cutoffGen_LCDlist$out_sig_ind_df,
@@ -1023,7 +1031,7 @@ many entries as there are signatures. In the analysis carried out above, these
 were all equal, but this is not a necessary condition. Indeed it may make sense
 to provide different cutoffs for different signatures.
 
-```{r make_specific_cutoff_vector}
+```{r makeSpecificCutoffVector}
 specific_cutoff_vector <- general_cutoff_vector
 specific_cutoff_vector[c(1,5)] <- 0
 specific_cutoff_vector
@@ -1033,7 +1041,7 @@ In this example, the cutoff for signatures AC1 and AC5 is thus set to 0,
 whereas the cutoffs for all other signatures remains at 0.06. Running the 
 function `LCD_complex_cutoff` is completely analogous:
 
-```{r LCD_complex_cutoff_cutoffSpec, warning=FALSE}
+```{r LCDcomplexCutoffCutoffSpec, warning=FALSE}
 CosmicValid_cutoffSpec_LCDlist <- LCD_complex_cutoff(
   in_mutation_catalogue_df = lymphomaNature2013_mutCat_df,
   in_signatures_df = current_sig_df,
@@ -1042,12 +1050,12 @@ CosmicValid_cutoffSpec_LCDlist <- LCD_complex_cutoff(
 ```
 
 Plotting absolute exposures for visualization:
-```{r caption_barplot_7, echo=FALSE}
+```{r captionBarplot7, echo=FALSE}
 cap="Absoute exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
 ```
 
-```{r exposures_barplot_abs_cutoffSpec, fig.width=6, fig.height=4, fig.cap=cap}
+```{r exposuresBarplotAbsCutoffSpec, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffSpec_LCDlist$exposures,
   in_signatures_ind_df = CosmicValid_cutoffSpec_LCDlist$out_sig_ind_df,
@@ -1055,12 +1063,12 @@ exposures_barplot(
 ```
 
 And relative exposures:
-```{r caption_barplot_8, echo=FALSE}
+```{r captionBarplot8, echo=FALSE}
 cap="Relative exposures of the COSMIC signatures in the lymphoma mutational
     catalogues, cutoff of 6% for the LCD (Linear Combination Decomposition)."
 ```
 
-```{r exposures_barplot_rel_cutoffSpec, fig.width=6, fig.height=4, fig.cap=cap}
+```{r exposuresBarplotRelCutoffSpec, fig.width=6, fig.height=4, fig.cap=cap}
 exposures_barplot(
   in_exposures_df = CosmicValid_cutoffSpec_LCDlist$norm_exposures,
   in_signatures_ind_df = CosmicValid_cutoffSpec_LCDlist$out_sig_ind_df,
@@ -1082,12 +1090,12 @@ processes, the exposure vectors of the samples can be compared. The YAPSA
 package provides a custom function for this task: `complex_heatmap_exposures`, 
 which uses the package `r Biocpkg("ComplexHeatmap")` by Zuguang Gu 
 [@ComplexHeatmap2015]. It produces output as follows:
-```{r caption_heatmap, echo=FALSE}
+```{r captionHeatmap, echo=FALSE}
 cap="Clustering of Samples and Signatures based on the relative exposures of
     the COSMIC signatures in the lymphoma mutational catalogues."
 ```
 
-```{r apply_heatmap_exposures, fig.width=6, fig.height=4, fig.cap=cap}
+```{r applyHeatmapExposures, fig.width=6, fig.height=4, fig.cap=cap}
 complex_heatmap_exposures(CosmicValid_cutoffGen_LCDlist$norm_exposures,
                           COSMIC_subgroups_df,
                           CosmicValid_cutoffGen_LCDlist$out_sig_ind_df,
@@ -1104,7 +1112,7 @@ cap="Clustering of the Samples based on the relative exposures of the
     COSMIC signatures in the lymphoma mutational catalogues."
 ```
 
-```{r apply_hclust_exposures, fig.width=6, fig.height=3, fig.cap=cap}
+```{r applyHclustExposures, fig.width=6, fig.height=3, fig.cap=cap}
 hclust_list <- 
   hclust_exposures(CosmicValid_cutoffGen_LCDlist$norm_exposures,
                    COSMIC_subgroups_df,
@@ -1120,7 +1128,7 @@ cap=paste0("PIDs labelled by the clusters extracted from the
             signature analysis.")
 ```
 
-```{r cluster_PIDs_sig_info, fig.width=6, fig.height=4, fig.cap=cap}
+```{r clusterPIDsSigInfo, fig.width=6, fig.height=4, fig.cap=cap}
 cluster_vector <- cutree(hclust_list$hclust,k=4)
 COSMIC_subgroups_df$cluster <- cluster_vector
 subgroup_colour_vector <- rainbow(length(unique(COSMIC_subgroups_df$cluster)))

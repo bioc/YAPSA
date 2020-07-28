@@ -251,8 +251,8 @@ test_that("Test shapiro_if_possible on very simple synthetic data", {
   expect_lt(shapiro_if_possible(runif(100,min=2,max=4)), 
             significance_threshold)
   set.seed(1)
-  expect_more_than(shapiro_if_possible(rnorm(100,mean=5,sd=3)),
-                   significance_threshold)
+  expect_gt(shapiro_if_possible(rnorm(100,mean=5,sd=3)),
+            significance_threshold)
   expect_equal(shapiro_if_possible(rep(4.3,100)),0)
   expect_null(shapiro_if_possible(c("Hello","World")))
 })
