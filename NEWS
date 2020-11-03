@@ -1,3 +1,14 @@
+  CHANGES IN VERSION 1.17.1
+
+* Introduction of an input parameter minimumNumberOfAlterations for the 
+    functions LCD_complex_cutoff_perPID(), LCD_complex_cutoff_consensus() and
+    LCD_complex_cutoff_combined(). If a sample has less mutations than this 
+    cutoff, a warning is issued. By default, this values is set to 25 and may 
+    be a good choice for analysis of SNV mutational signatures. For analysis of 
+    Indel mutational signatures, a better choice is 20.
+
+================================
+
   CHANGES IN VERSION 1.13.3
 
 This is a stable version after several important changes.

@@ -345,7 +345,8 @@ LCD_complex_cutoff_perPID <- function(in_mutation_catalogue_df,
                                       in_method="abs",
                                       in_rescale=TRUE,
                                       in_sig_ind_df=NULL,
-                                      in_cat_list=NULL){
+                                      in_cat_list=NULL,
+                                      minimumNumberOfAlterations=25){
   complex_COSMIC_list_list <- lapply(
     seq_along(in_mutation_catalogue_df), FUN=function(current_col){
       current_mut_cat <- in_mutation_catalogue_df[,current_col,drop=FALSE]
@@ -404,6 +405,13 @@ LCD_complex_cutoff_perPID <- function(in_mutation_catalogue_df,
       names(aggregate_exposures_list) <- in_cat_list
     }
   }
+  # print out warning if minimum number of mutations is not reached!
+  mutationalLoad <- colSums(exposures_full_df)
+  insufficient_boolean <- mutationalLoad < minimumNumberOfAlterations
+  if(any(insufficient_boolean)) 
+    warning("Insufficient number of alterations in samples ", 
+            paste0(colnames(exposures_full_df)[insufficient_boolean], 
+                   collapse = ";"))
   return(list(exposures=exposures_full_df,
               norm_exposures=norm_exposures_df,
               signatures=choice_signatures_df,
@@ -447,6 +455,8 @@ LCD_complex_cutoff_perPID <- function(in_mutation_catalogue_df,
 #'  extracted cohort wide still fulfill their criteria (i.e. exposures > cutoff)
 #'  after perPID extraction.
 #'@param in_verbose Verbose if \code{in_verbose=1}
+#'@param minimumNumberOfAlterations The perPID part of the analysis issues a
+#'  warning if one sample has less mutations than this minimum cutoff.
 #'
 #'@export
 #'@rdname LCD_complex_cutoff
@@ -466,7 +476,8 @@ LCD_complex_cutoff_consensus <- function(in_mutation_catalogue_df = NULL,
                                          addSigs_relAbs_cutoff = 0.01,
                                          keep.unassigned = FALSE,
                                          keep.all.cohort.sigs = TRUE,
-                                         in_verbose = FALSE){
+                                         in_verbose = FALSE,
+                                         minimumNumberOfAlterations = 25){
   ## run cohort-wide analysis
   if(is.null(in_cohort_LCDlist)){
     if(!is.null(in_mutation_catalogue_df) & !is.null(in_signatures_df)){
@@ -497,7 +508,8 @@ LCD_complex_cutoff_consensus <- function(in_mutation_catalogue_df = NULL,
         in_method = in_method,
         in_rescale = in_rescale,
         in_sig_ind_df = in_sig_ind_df,
-        in_cat_list = in_cat_list) 
+        in_cat_list = in_cat_list,
+        minimumNumberOfAlterations = minimumNumberOfAlterations) 
     } else {
       if(in_verbose) cat("YAPSA:::LCD_complex_cutoff_combined::error:",
                          "neither in_perPID_LCDlist nor sufficient input ",
@@ -618,7 +630,8 @@ LCD_complex_cutoff_combined <- function(in_mutation_catalogue_df = NULL,
                                         addSigs_perPID_cutoff = 0.25,
                                         addSigs_relAbs_cutoff = 0.01,
                                         keep.all.cohort.sigs = TRUE,
-                                        in_verbose = FALSE){
+                                        in_verbose = FALSE,
+                                        minimumNumberOfAlterations = 25){
   cohort_LCDlist <- LCD_complex_cutoff(
     in_mutation_catalogue_df,
     in_signatures_df,
@@ -636,7 +649,8 @@ LCD_complex_cutoff_combined <- function(in_mutation_catalogue_df = NULL,
     in_method = in_method,
     in_rescale = in_rescale,
     in_sig_ind_df = in_sig_ind_df,
-    in_cat_list = in_cat_list) 
+    in_cat_list = in_cat_list,
+    minimumNumberOfAlterations = minimumNumberOfAlterations) 
   consensus_LCDlist <- LCD_complex_cutoff_consensus(
     in_mutation_catalogue_df = in_mutation_catalogue_df,
     in_signatures_df = in_signatures_df,
@@ -647,7 +661,8 @@ LCD_complex_cutoff_combined <- function(in_mutation_catalogue_df = NULL,
     addSigs_perPID_cutoff = addSigs_perPID_cutoff,
     addSigs_relAbs_cutoff = addSigs_relAbs_cutoff,
     keep.unassigned = TRUE,
-    keep.all.cohort.sigs = keep.all.cohort.sigs)
+    keep.all.cohort.sigs = keep.all.cohort.sigs,
+    minimumNumberOfAlterations = minimumNumberOfAlterations)
   consensusRescale_LCDlist <- LCD_complex_cutoff_consensus(
     in_mutation_catalogue_df = in_mutation_catalogue_df,
     in_signatures_df = in_signatures_df,
@@ -658,7 +673,8 @@ LCD_complex_cutoff_combined <- function(in_mutation_catalogue_df = NULL,
     addSigs_perPID_cutoff = addSigs_perPID_cutoff,
     addSigs_relAbs_cutoff = addSigs_relAbs_cutoff,
     keep.unassigned = FALSE,
-    keep.all.cohort.sigs = keep.all.cohort.sigs)
+    keep.all.cohort.sigs = keep.all.cohort.sigs,
+    minimumNumberOfAlterations = minimumNumberOfAlterations)
   return(list(cohort = cohort_LCDlist,
               perPID = perPID_LCDlist,
               consensus = consensus_LCDlist,

@@ -27,7 +27,8 @@ LCD_complex_cutoff_perPID(
   in_method = "abs",
   in_rescale = TRUE,
   in_sig_ind_df = NULL,
-  in_cat_list = NULL
+  in_cat_list = NULL,
+  minimumNumberOfAlterations = 25
 )
 
 LCD_complex_cutoff_consensus(
@@ -46,7 +47,8 @@ LCD_complex_cutoff_consensus(
   addSigs_relAbs_cutoff = 0.01,
   keep.unassigned = FALSE,
   keep.all.cohort.sigs = TRUE,
-  in_verbose = FALSE
+  in_verbose = FALSE,
+  minimumNumberOfAlterations = 25
 )
 
 LCD_complex_cutoff_combined(
@@ -62,7 +64,8 @@ LCD_complex_cutoff_combined(
   addSigs_perPID_cutoff = 0.25,
   addSigs_relAbs_cutoff = 0.01,
   keep.all.cohort.sigs = TRUE,
-  in_verbose = FALSE
+  in_verbose = FALSE,
+  minimumNumberOfAlterations = 25
 )
 }
 \arguments{
@@ -96,6 +99,9 @@ name, function and meta-information of the signatures. Default is NULL.}
 
 \item{in_cat_list}{List of categories for aggregation. Have to be among the
 column names of \code{in_sig_ind_df}. Default is NULL.}
+
+\item{minimumNumberOfAlterations}{The perPID part of the analysis issues a
+warning if one sample has less mutations than this minimum cutoff.}
 
 \item{in_cohort_LCDlist}{Optional, if not provided, the cohort-wide exposures
 are recalculated by calling \code{\link[YAPSA]{LCD_complex_cutoff}}}
