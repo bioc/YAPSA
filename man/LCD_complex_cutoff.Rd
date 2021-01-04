@@ -3,6 +3,7 @@
 \name{LCD_complex_cutoff}
 \alias{LCD_complex_cutoff}
 \alias{LCD_complex_cutoff_perPID}
+\alias{LCD_extractCohort_callPerPID}
 \alias{LCD_complex_cutoff_consensus}
 \alias{LCD_complex_cutoff_combined}
 \title{LCD with a signature-specific cutoff on exposures}
@@ -29,6 +30,20 @@ LCD_complex_cutoff_perPID(
   in_sig_ind_df = NULL,
   in_cat_list = NULL,
   minimumNumberOfAlterations = 25
+)
+
+LCD_extractCohort_callPerPID(
+  in_mutation_catalogue_df,
+  in_signatures_df,
+  in_cutoff_vector = NULL,
+  in_filename = NULL,
+  in_method = "abs",
+  in_rescale = TRUE,
+  in_sig_ind_df = NULL,
+  in_cat_list = NULL,
+  in_verbose = FALSE,
+  minimumNumberOfAlterations = 25,
+  cutoff_type = "adaptive"
 )
 
 LCD_complex_cutoff_consensus(
@@ -65,7 +80,8 @@ LCD_complex_cutoff_combined(
   addSigs_relAbs_cutoff = 0.01,
   keep.all.cohort.sigs = TRUE,
   in_verbose = FALSE,
-  minimumNumberOfAlterations = 25
+  minimumNumberOfAlterations = 25,
+  cutoff_type = "adaptive"
 )
 }
 \arguments{
@@ -103,6 +119,13 @@ column names of \code{in_sig_ind_df}. Default is NULL.}
 \item{minimumNumberOfAlterations}{The perPID part of the analysis issues a
 warning if one sample has less mutations than this minimum cutoff.}
 
+\item{in_verbose}{Verbose if \code{in_verbose=1}}
+
+\item{cutoff_type}{If chosen to be "adaptive", the default, then 
+signature-specific cutoffs are used for the the per-PID analysis in 
+\code{\link[YAPSA]{LCD_extractCohort_callPerPID}}, otherwise, no cutoffs 
+are used.}
+
 \item{in_cohort_LCDlist}{Optional, if not provided, the cohort-wide exposures
 are recalculated by calling \code{\link[YAPSA]{LCD_complex_cutoff}}}
 
@@ -129,8 +152,6 @@ exposures as "unassigned", otherwise the exposures are rescaled.}
 wide are kept, if FALSE, the function reevaluates whether the signatures
 extracted cohort wide still fulfill their criteria (i.e. exposures > cutoff)
 after perPID extraction.}
-
-\item{in_verbose}{Verbose if \code{in_verbose=1}}
 }
 \value{
 A list with entries: \itemize{ \item \code{exposures}: The exposures
@@ -154,9 +175,9 @@ A list with entries: \itemize{ \item \code{exposures}: The exposures
  computed per column (i.e. per sample, i.e. as many scaler products as there
  are samples in the cohort) \item \code{sum_ind}: Decreasing order of
  mutational loads based on the input mutational catalogue \item
- \code{out_sig_ind}: Data frame of the type \code{signature_indices_df}, i.e.
- indicating name, function and meta-information of the signatures. Default is
- NULL, non-NULL only if \code{in_sig_ind_df} is non-NULL. \item
+ \code{out_sig_ind_df}: Data frame of the type \code{signature_indices_df}, 
+ i.e. indicating name, function and meta-information of the signatures. 
+ Default is NULL, non-NULL only if \code{in_sig_ind_df} is non-NULL. \item
  \code{aggregate_exposures_list}: List of exposure data frames aggregated
  over different categories. Default is NULL, non-NULL only if
  \code{in_sig_ind_df} and \code{in_cat_list} are non-NULL and if the
@@ -175,6 +196,10 @@ the whole cohort.
 \code{\link[YAPSA]{LCD_complex_cutoff_perPID}} is a wrapper for
 \code{\link[YAPSA]{LCD_complex_cutoff}} and runs individually for every PID.
 
+\code{\link[YAPSA]{LCD_extractCohort_callPerPID}} runs
+\code{\link[YAPSA]{LCD_complex_cutoff}} and takes the identified signatures as 
+input for \code{\link[YAPSA]{LCD_complex_cutoff_perPID}}.
+
 \code{\link[YAPSA]{LCD_complex_cutoff_consensus}} calls
 \code{\link[YAPSA]{LCD_complex_cutoff_combined}} AND
 \code{\link[YAPSA]{LCD_complex_cutoff_perPID}} and makes a consensus
@@ -182,8 +207,9 @@ signature call set.
 
 \code{\link[YAPSA]{LCD_complex_cutoff_combined}} is a wrapper for
 \code{\link[YAPSA]{LCD_complex_cutoff}},
-\code{\link[YAPSA]{LCD_complex_cutoff_perPID}} AND
-\code{\link[YAPSA]{LCD_complex_cutoff_consensus}}.
+\code{\link[YAPSA]{LCD_complex_cutoff_perPID}},
+\code{\link[YAPSA]{LCD_complex_cutoff_consensus}} AND
+\code{\link[YAPSA]{LCD_extractCohort_callPerPID}}.
 }
 \examples{
  NULL

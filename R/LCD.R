@@ -216,9 +216,9 @@ LCD_cutoff <- function(in_mutation_catalogue_df,in_signatures_df,
 #'  computed per column (i.e. per sample, i.e. as many scaler products as there
 #'  are samples in the cohort) \item \code{sum_ind}: Decreasing order of
 #'  mutational loads based on the input mutational catalogue \item
-#'  \code{out_sig_ind}: Data frame of the type \code{signature_indices_df}, i.e.
-#'  indicating name, function and meta-information of the signatures. Default is
-#'  NULL, non-NULL only if \code{in_sig_ind_df} is non-NULL. \item
+#'  \code{out_sig_ind_df}: Data frame of the type \code{signature_indices_df}, 
+#'  i.e. indicating name, function and meta-information of the signatures. 
+#'  Default is NULL, non-NULL only if \code{in_sig_ind_df} is non-NULL. \item
 #'  \code{aggregate_exposures_list}: List of exposure data frames aggregated
 #'  over different categories. Default is NULL, non-NULL only if
 #'  \code{in_sig_ind_df} and \code{in_cat_list} are non-NULL and if the
@@ -427,6 +427,68 @@ LCD_complex_cutoff_perPID <- function(in_mutation_catalogue_df,
 }
 
 
+#' LCD, identify signatures present in cohort but then call them per PID
+#'
+#'\code{\link[YAPSA]{LCD_extractCohort_callPerPID}} runs
+#'\code{\link[YAPSA]{LCD_complex_cutoff}} and takes the identified signatures as 
+#'input for \code{\link[YAPSA]{LCD_complex_cutoff_perPID}}.
+#'
+#'@param cutoff_type If chosen to be "adaptive", the default, then 
+#'  signature-specific cutoffs are used for the the per-PID analysis in 
+#'  \code{\link[YAPSA]{LCD_extractCohort_callPerPID}}, otherwise, no cutoffs 
+#'  are used.
+#'  
+#' @export
+#' @rdname LCD_complex_cutoff
+#' 
+LCD_extractCohort_callPerPID <- function(in_mutation_catalogue_df,
+                                         in_signatures_df,
+                                         in_cutoff_vector = NULL,
+                                         in_filename = NULL,
+                                         in_method = "abs",
+                                         in_rescale = TRUE,
+                                         in_sig_ind_df = NULL,
+                                         in_cat_list = NULL,
+                                         in_verbose = FALSE,
+                                         minimumNumberOfAlterations = 25,
+                                         cutoff_type = "adaptive"){
+  ## run cohort-wide analysis
+  if(!is.null(in_mutation_catalogue_df) & !is.null(in_signatures_df)){
+    my_cohort_LCDlist <- LCD_complex_cutoff(
+      in_mutation_catalogue_df,
+      in_signatures_df,
+      in_cutoff_vector = in_cutoff_vector,
+      in_filename = in_filename,
+      in_method = in_method,
+      in_rescale = in_rescale,
+      in_sig_ind_df = in_sig_ind_df,
+      in_cat_list = in_cat_list) 
+  } else {
+    if(in_verbose) cat("YAPSA:::LCD_complex_cutoff_combined::error:",
+                       "neither in_cohort_LCDlist nor sufficient input ",
+                       "provided. Abort. \n")
+    return(NULL)
+  }
+  ## run per PID analysis but with only those signatures which have been
+  ## identified in the cohort-wide analysis
+  if(cutoff_type == "adaptive" & !is.null(names(in_cutoff_vector)))
+    my_cutoff_vector <- in_cutoff_vector[names(my_cohort_LCDlist$signatures)]
+  else
+    my_cutoff_vector <- rep(0, ncol(my_cohort_LCDlist$signatures))
+  out_perPID_LCDlist <- LCD_complex_cutoff_perPID(
+    in_mutation_catalogue_df,
+    my_cohort_LCDlist$signatures,
+    in_cutoff_vector = my_cutoff_vector,
+    in_filename = in_filename,
+    in_method = in_method,
+    in_rescale = in_rescale,
+    in_sig_ind_df = my_cohort_LCDlist$out_sig_ind_df,
+    in_cat_list = in_cat_list,
+    minimumNumberOfAlterations = minimumNumberOfAlterations) 
+  return(out_perPID_LCDlist)
+}
+
+
 #'LCD, consensus between cohort-wide AND per-PID extraction
 #'
 #'\code{\link[YAPSA]{LCD_complex_cutoff_consensus}} calls
@@ -612,8 +674,9 @@ LCD_complex_cutoff_consensus <- function(in_mutation_catalogue_df = NULL,
 #'
 #'\code{\link[YAPSA]{LCD_complex_cutoff_combined}} is a wrapper for
 #'\code{\link[YAPSA]{LCD_complex_cutoff}},
-#'\code{\link[YAPSA]{LCD_complex_cutoff_perPID}} AND
-#'\code{\link[YAPSA]{LCD_complex_cutoff_consensus}}.
+#'\code{\link[YAPSA]{LCD_complex_cutoff_perPID}},
+#'\code{\link[YAPSA]{LCD_complex_cutoff_consensus}} AND
+#'\code{\link[YAPSA]{LCD_extractCohort_callPerPID}}.
 #'
 #' @export
 #' @rdname LCD_complex_cutoff
@@ -631,7 +694,8 @@ LCD_complex_cutoff_combined <- function(in_mutation_catalogue_df = NULL,
                                         addSigs_relAbs_cutoff = 0.01,
                                         keep.all.cohort.sigs = TRUE,
                                         in_verbose = FALSE,
-                                        minimumNumberOfAlterations = 25){
+                                        minimumNumberOfAlterations = 25,
+                                        cutoff_type = "adaptive"){
   cohort_LCDlist <- LCD_complex_cutoff(
     in_mutation_catalogue_df,
     in_signatures_df,
@@ -675,10 +739,22 @@ LCD_complex_cutoff_combined <- function(in_mutation_catalogue_df = NULL,
     keep.unassigned = FALSE,
     keep.all.cohort.sigs = keep.all.cohort.sigs,
     minimumNumberOfAlterations = minimumNumberOfAlterations)
+  extractCohort_callPerPID_LCDlist <- LCD_extractCohort_callPerPID(
+    in_mutation_catalogue_df,
+    in_signatures_df,
+    in_cutoff_vector = in_cutoff_vector,
+    in_filename = in_filename,
+    in_method = in_method,
+    in_rescale = in_rescale,
+    in_sig_ind_df = in_sig_ind_df,
+    in_cat_list = in_cat_list,
+    minimumNumberOfAlterations = minimumNumberOfAlterations,
+    cutoff_type = cutoff_type) 
   return(list(cohort = cohort_LCDlist,
               perPID = perPID_LCDlist,
               consensus = consensus_LCDlist,
-              consensusRescale = consensusRescale_LCDlist))
+              consensusRescale = consensusRescale_LCDlist,
+              extractCohort_callPerPID = extractCohort_callPerPID_LCDlist))
 }
 
 

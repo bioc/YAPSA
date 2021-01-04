@@ -1,3 +1,15 @@
+  CHANGES IN VERSION 1.17.2
+
+* We provide a new function LCD_extractCohort_callPerPID() which also belongs to 
+    the LCD family and which performs the detection of signatures at cohort-wide 
+    level, but re-runs the actual computation of the exposures per-PID with only 
+    the signatures identified in the cohort-wide calling. The ovall wrapper 
+    function LCD_complex_cutoff_combined() now also calls the new function and 
+    stores the result in the returned list with item name 
+    extractCohort_callPerPID 
+
+================================
+
   CHANGES IN VERSION 1.17.1
 
 * Introduction of an input parameter minimumNumberOfAlterations for the 
