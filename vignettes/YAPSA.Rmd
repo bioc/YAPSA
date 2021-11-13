@@ -702,14 +702,12 @@ We are left with `r number_of_Alex_validated_sigs` signatures.
 
 An updated and curated set of mutational signatures is maintained by Ludmil 
 Alexandrov at <http://cancer.sanger.ac.uk/cosmic/signatures>. We will use this 
-set for the following analysis:
+set for the following analysis. In particular, we will use the signatures stored 
+in <http://cancer.sanger.ac.uk/cancergenome/assets/signatures_probabilities.txt> 
+which for convenience we have stored in a data frame in YAPSA.
 
 ```{r loadSigs}
-Alex_COSMIC_signatures_path <- 
-  paste0("http://cancer.sanger.ac.uk/cancergenome/",
-         "assets/signatures_probabilities.txt")
-AlexCosmicValid_sig_df <- read.csv(Alex_COSMIC_signatures_path,
-                                      header=TRUE,sep="\t")
+data(AlexCosmicValid_sig_df)
 Alex_COSMIC_rownames <- paste(AlexCosmicValid_sig_df[,1],
                               AlexCosmicValid_sig_df[,2],sep=" ")
 COSMIC_select_ind <- grep("Signature",names(AlexCosmicValid_sig_df))

@@ -1,3 +1,13 @@
+  CHANGES IN VERSION 1.19.1
+
+* We comply with changes in upstream dependency: PMCMR is replaced by PMCMRplus 
+    and consecutively the function posthoc.kruskal.nemenyi.test.default() is 
+    replaced by kwAllPairsNemenyiTest(). Also, in the package description, the 
+    syntax for authors and maintainers is adapted to current requirements of 
+    BiocCheck.
+
+================================
+
   CHANGES IN VERSION 1.17.2
 
 * We provide a new function LCD_extractCohort_callPerPID() which also belongs to 

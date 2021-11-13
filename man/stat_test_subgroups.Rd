@@ -33,7 +33,7 @@ A list with entries \code{kruskal_df}, \code{kruskal_posthoc_list},
   \item \code{kruskal_posthoc_list}: A list of results of pairwise posthoc
   tests carried out for those signatures where the Kruskal Wallis test
   yielded a significant p-value (carried out by
-  \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}). }
+  \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}). }
 }
 \description{
 Apply Kruskal-Wallis tests to detect differences in the signature exposures
@@ -49,7 +49,7 @@ Algorithm analogous to \code{\link{stat_test_SMC}}.
 
 \code{\link{stat_test_SMC}}
 
-\code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}
+\code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}
 
 \code{\link[stats]{kruskal.test}}
 }

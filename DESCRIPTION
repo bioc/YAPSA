@@ -1,10 +1,14 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.17.2
-Date: 2019-11-26
-Author: Daniel Huebschmann, Lea Jopp-Saile, Carolin Andresen, Zuguang Gu and Matthias Schlesner
-Maintainer: Daniel Huebschmann <huebschmann.daniel@googlemail.com>
+Version: 1.19.1
+Date: 2021-11-13
+Authors@R: c(person("Daniel", "Huebschmann", 
+    email = "huebschmann.daniel@googlemail.com", role = c("aut", "cre")),
+    person("Lea", "Jopp-Saile", role = "aut"),
+    person("Carolin", "Andresen", role = "aut"),
+    person("Zuguang", "Gu", role = "aut"),
+    person("Matthias", "Schlesner", role = "aut"))
 Imports:
     limSolve,
     SomaticSignatures,
@@ -18,7 +22,7 @@ Imports:
     circlize,
     gtrellis,
     doParallel,
-    PMCMR,
+    PMCMRplus,
     ggbeeswarm,
     ComplexHeatmap,
     KEGGREST,
@@ -58,5 +62,5 @@ VignetteBuilder: knitr
 LazyLoad: yes
 biocViews: Sequencing, DNASeq, SomaticMutation, Visualization,
     Clustering, GenomicVariation, StatisticalMethod, BiologicalQuestion
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
