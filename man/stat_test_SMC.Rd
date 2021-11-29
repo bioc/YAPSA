@@ -32,14 +32,14 @@ A list with entries \code{kruskal_df}, \code{shapiro_df},
   \code{kruskal_posthoc_list}: A list of results of pairwise posthoc tests
   carried out for those signatures where the Kruskal Wallis test yielded a
   significant p-value (carried out by
-  \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}). }
+  \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}). }
 }
 \description{
 \code{stat_test_SMC} tests for enrichment or depletion in the different
 strata of a stratification of the mutational catalogue for every signature
 independently by applying Kruskal Wallis tests. For those signatures where
 the Kruskal Wallis test gives a significant p-value, pairwise posthoc tests
-are carried out by calling \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}.
+are carried out by calling \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}.
 Additionally all data is tested for normality by Shapiro Wilk tests, so that
 the user may apply ANOVA and pairwise posthoc t-test where allowed.
 }
@@ -50,7 +50,7 @@ the user may apply ANOVA and pairwise posthoc t-test where allowed.
 \seealso{
 \code{\link{run_SMC}}
 
-\code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}
+\code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}
 
 \code{\link[stats]{kruskal.test}}
 

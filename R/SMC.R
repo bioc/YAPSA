@@ -456,7 +456,7 @@ SMC <- function(df_list, this_signatures_df, in_all_exposures_df,
 #' strata of a stratification of the mutational catalogue for every signature
 #' independently by applying Kruskal Wallis tests. For those signatures where
 #' the Kruskal Wallis test gives a significant p-value, pairwise posthoc tests
-#' are carried out by calling \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}.
+#' are carried out by calling \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}.
 #' Additionally all data is tested for normality by Shapiro Wilk tests, so that
 #' the user may apply ANOVA and pairwise posthoc t-test where allowed.
 #'
@@ -483,18 +483,18 @@ SMC <- function(df_list, this_signatures_df, in_all_exposures_df,
 #'   \code{kruskal_posthoc_list}: A list of results of pairwise posthoc tests
 #'   carried out for those signatures where the Kruskal Wallis test yielded a
 #'   significant p-value (carried out by
-#'   \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}). }
+#'   \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}). }
 #'
 #' @examples
 #'  NULL
 #'
 #' @seealso \code{\link{run_SMC}}
-#' @seealso \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}
+#' @seealso \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}
 #' @seealso \code{\link[stats]{kruskal.test}}
 #' @seealso \code{\link{shapiro_if_possible}}
 #' @seealso \code{\link[stats]{shapiro.test}}
 #'
-#' @import PMCMR
+#' @import PMCMRplus
 #' @export
 #' 
 stat_test_SMC <- function(in_strat_list,in_flag="norm"){
@@ -533,7 +533,7 @@ stat_test_SMC <- function(in_strat_list,in_flag="norm"){
     sig_strata_vector <- factor(sig_strata_vector)
     sig_kruskal <- kruskal.test(sig_exposures_vector,sig_strata_vector)
     posthoc_list[[temp_sig]] <- 
-      posthoc.kruskal.nemenyi.test(x=sig_exposures_vector,g=sig_strata_vector)
+      kwAllPairsNemenyiTest(x=sig_exposures_vector,g=sig_strata_vector)
     out_stat_df[temp_sig,1] <- sig_kruskal$statistic
     out_stat_df[temp_sig,2] <- sig_kruskal$parameter
     out_stat_df[temp_sig,3] <- sig_kruskal$p.value
@@ -568,11 +568,11 @@ stat_test_SMC <- function(in_strat_list,in_flag="norm"){
 #'   \item \code{kruskal_posthoc_list}: A list of results of pairwise posthoc
 #'   tests carried out for those signatures where the Kruskal Wallis test
 #'   yielded a significant p-value (carried out by
-#'   \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}). }
+#'   \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}). }
 #'
 #' @seealso \code{\link{split_exposures_by_subgroups}}
 #' @seealso \code{\link{stat_test_SMC}}
-#' @seealso \code{\link[PMCMR]{posthoc.kruskal.nemenyi.test}}
+#' @seealso \code{\link[PMCMRplus]{kwAllPairsNemenyiTest}}
 #' @seealso \code{\link[stats]{kruskal.test}}
 #'
 #' @examples
@@ -610,7 +610,7 @@ stat_test_subgroups <- function(in_exposures_df,in_subgroups_df,
     sig_subgroups_vector <- factor(sig_subgroups_vector)
     sig_kruskal <- kruskal.test(sig_exposures_vector,sig_subgroups_vector)
     posthoc_list[[temp_sig]] <- 
-      posthoc.kruskal.nemenyi.test(x = sig_exposures_vector,
+      kwAllPairsNemenyiTest(x = sig_exposures_vector,
                                    g = sig_subgroups_vector)
     out_stat_df[temp_sig,1] <- sig_kruskal$statistic
     out_stat_df[temp_sig,2] <- sig_kruskal$parameter
