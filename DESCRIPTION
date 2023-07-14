@@ -1,7 +1,7 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.27.0
+Version: 1.27.1
 Date: 2021-11-13
 Authors@R: c(person("Daniel", "Huebschmann", 
     email = "huebschmann.daniel@googlemail.com", role = c("aut", "cre")),
@@ -64,3 +64,4 @@ biocViews: Sequencing, DNASeq, SomaticMutation, Visualization,
     Clustering, GenomicVariation, StatisticalMethod, BiologicalQuestion
 RoxygenNote: 7.1.2
 Encoding: UTF-8
+PackageStatus: Deprecated
