@@ -399,7 +399,7 @@ testSigs <- function(in_catalogue_df, in_sig_df, in_exposures_df,
 #'   \link{confIntExp}, if NULL assumed to be normal distribution.
 #'
 #' @return A melted data frame.
-#' @import magrittr
+#' @rawNamespace import(magrittr, except=c(subtract))
 #' @importFrom reshape2 melt
 #' @rawNamespace import(dplyr, except = c(combine, select, setdiff, intersect,
 #'   union))

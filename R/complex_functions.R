@@ -43,7 +43,7 @@
 #'
 #' @seealso \code{\link{makeGRangesFromDataFrame}}
 #'
-#' @import GenomicRanges
+#' @rawNamespace import(GenomicRanges, except=c(subtract))
 #' @import VariantAnnotation
 #' @importFrom GenomeInfoDb seqlengths seqlengths<-
 #' @export
@@ -848,6 +848,7 @@ cut_breaks_as_intervals <- function(in_vector,
 #' @export
 #' 
 get_extreme_PIDs <- function(in_exposures_df,in_quantile=0.03) {
+    in_exposures_df = as.matrix(in_exposures_df)
     my_number_of_sigs <- dim(in_exposures_df)[1]
     my_number_of_PIDs <- dim(in_exposures_df)[2]
     my_number_of_extremes <- ceiling(in_quantile*my_number_of_PIDs)

@@ -78,6 +78,7 @@ read_entry <- function(current_ind,
 #'   \code{proc_time}, which stores the time needed for reading in the data }
 #'
 #' @importFrom doParallel registerDoParallel
+#' @importFrom parallel detectCores makeCluster mclapply stopCluster
 #' @export
 #'
 #' @rdname read_entry

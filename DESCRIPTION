@@ -1,14 +1,13 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.27.1
+Version: 1.26.1
 Date: 2023-07-17
-Authors@R: c(person("Daniel", "Huebschmann",  role = c("aut", "cre")),
+Authors@R: c(person("Daniel", "Huebschmann",  role = c("aut")),
     person("Lea", "Jopp-Saile", role = "aut"),
     person("Carolin", "Andresen", role = "aut"),
-    person("Zuguang", "Gu", role = "aut"),
+    person("Zuguang", "Gu", role = c("aut", "cre"), email = "z.gu@dkfz.de"),
     person("Matthias", "Schlesner", role = "aut"))
-Maintainer: Zuguang Gu <z.gu@dkfz.de>
 Imports:
     limSolve,
     SomaticSignatures,
@@ -32,7 +31,8 @@ Imports:
     magrittr,
     pracma,
     dplyr, 
-    utils
+    utils,
+    parallel
 Depends:
     R (>= 3.6.0),
     GenomicRanges,
@@ -62,6 +62,6 @@ VignetteBuilder: knitr
 LazyLoad: yes
 biocViews: Sequencing, DNASeq, SomaticMutation, Visualization,
     Clustering, GenomicVariation, StatisticalMethod, BiologicalQuestion
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 PackageStatus: Deprecated

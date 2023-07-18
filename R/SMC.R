@@ -494,7 +494,7 @@ SMC <- function(df_list, this_signatures_df, in_all_exposures_df,
 #' @seealso \code{\link{shapiro_if_possible}}
 #' @seealso \code{\link[stats]{shapiro.test}}
 #'
-#' @import PMCMRplus
+#' @importFrom  PMCMRplus kwAllPairsNemenyiTest
 #' @export
 #' 
 stat_test_SMC <- function(in_strat_list,in_flag="norm"){
