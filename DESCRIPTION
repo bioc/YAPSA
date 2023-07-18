@@ -1,14 +1,13 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.27.1
-Date: 2023-07-17
-Authors@R: c(person("Daniel", "Huebschmann",  role = c("aut", "cre")),
+Version: 1.27.2
+Date: 2023-07-18
+Authors@R: c(person("Daniel", "Huebschmann",  role = c"aut"),
     person("Lea", "Jopp-Saile", role = "aut"),
     person("Carolin", "Andresen", role = "aut"),
-    person("Zuguang", "Gu", role = "aut"),
+    person("Zuguang", "Gu", role = c("aut", "cre"), email = "z.gu@dkfz.de"),
     person("Matthias", "Schlesner", role = "aut"))
-Maintainer: Zuguang Gu <z.gu@dkfz.de>
 Imports:
     limSolve,
     SomaticSignatures,
