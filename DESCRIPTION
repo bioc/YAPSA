@@ -3,7 +3,7 @@ Type: Package
 Title: Yet Another Package for Signature Analysis 
 Version: 1.27.3
 Date: 2023-07-28
-Authors@R: c(person("Daniel", "Huebschmann",  role = c"aut"),
+Authors@R: c(person("Daniel", "Huebschmann",  role = "aut"),
     person("Lea", "Jopp-Saile", role = "aut"),
     person("Carolin", "Andresen", role = "aut"),
     person("Zuguang", "Gu", role = c("aut", "cre"), email = "z.gu@dkfz.de"),
@@ -21,6 +21,7 @@ Imports:
     circlize,
     gtrellis,
     doParallel,
+    parallel,
     PMCMRplus,
     ggbeeswarm,
     ComplexHeatmap,
