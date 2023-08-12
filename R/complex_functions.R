@@ -854,7 +854,7 @@ get_extreme_PIDs <- function(in_exposures_df,in_quantile=0.03) {
     extreme_PID_df <- repeat_df(0,my_number_of_extremes,my_number_of_sigs*4)
     for(i in seq_len(my_number_of_sigs)) {
         this_sig <- rownames(in_exposures_df)[i]
-        my_exposure_vector <- in_exposures_df[i,]
+        my_exposure_vector <- unlist(in_exposures_df[i,])
         my_breaks <- as.numeric(quantile(my_exposure_vector,
                         probs=c(in_quantile,(1-in_quantile))))
         extreme_low_ind <- which(my_exposure_vector<=my_breaks[1])
