@@ -1,7 +1,7 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.26.6
+Version: 1.27.7
 Date: 2023-09-16
 Authors@R: c(person("Daniel", "Huebschmann", role = "aut"),
     person("Lea", "Jopp-Saile", role = "aut"),
@@ -34,7 +34,7 @@ Imports:
     dplyr, 
     utils
 Depends:
-    R (>= 3.6.0),
+    R (>= 4.0.0),
     GenomicRanges,
     ggplot2,
     grid
