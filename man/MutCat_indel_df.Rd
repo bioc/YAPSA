@@ -28,5 +28,5 @@ dim(MutCat_indel_df)
 \references{
 Mutational catalog created form release version 5 of the Genome 
 of NL 
-\url{http://www.nlgenome.nl/?page_id=9}
+\url{https://www.nlgenome.nl/menu/main/app-go-nl/?page_id=9}
 }

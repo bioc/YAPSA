@@ -26,8 +26,7 @@ context.}
 \source{
 \code{PCAWG_SNV}: \url{https://www.synapse.org/#!Synapse:syn11738319}
 
-\code{PCAWG_INDEL}: \url{https://cancer.sanger.ac.uk/cosmic/
-  signatures/ID}
+\code{PCAWG_INDEL}: \url{https://cancer.sanger.ac.uk/cosmic/signatures/ID}
 }
 \usage{
 data(sigs_pcawg)

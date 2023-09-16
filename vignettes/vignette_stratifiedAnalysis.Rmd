@@ -70,7 +70,7 @@ V_{(\cdot j)}^{k}|| \quad \forall j,k \\
 $$
 
 As defined in 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+[1. Usage of YAPSA](YAPSA.html), 
 $j$ is the index over samples, $m$ is the number of samples, $i$ 
 is the index over signatures and $l$ is the number of signatures. In addition, 
 $k$ is the index over strata and $s$ is the number of strata. Note that the 
@@ -105,7 +105,7 @@ extracted by the NMF analysis.
 
 In the following section, we briefly recapitulate the analysis of SNV 
 mutational signatures on an example data set as performed in 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html).
+[1. Usage of YAPSA](YAPSA.html).
 We thus first load the example data stored in the package:
 
 ```{r, loadStoredSigData}
@@ -159,7 +159,7 @@ exposures_barplot(
 The functions for the stratified analysis access the raw data in order to 
 provide the highest degree of flexibility for the definition of the strata 
 themselves. Therefore we have to repeat the formatting steps already performed 
-in the [first vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html). 
+in the [first vignette](YAPSA.html). 
 
 ```{r formatRaw, warning=FALSE, fig.width=8, fig.height=6, fig.cap= cap}
 data("lymphoma_Nature2013_raw")

@@ -410,7 +410,7 @@ requirements on statistical power of the input data.
 
 In a context where mutational signatures $W$ are already known (because they 
 were decribed and published as in [@Alex2013] or they are available in a 
-database as under <http://cancer.sanger.ac.uk/cosmic/signatures>), we might 
+database as under <https://cancer.sanger.ac.uk/cosmic/signatures>), we might 
 want to just find the exposures $H$ for these known signatures in the 
 mutational catalogue $V$ of a given cohort. Mathematically, this is a different
 and potentially simpler task. 
@@ -485,7 +485,7 @@ cutoffs: a signature which leads to many false positive calls has to cross a
 higher threshold than a signature which rarely leads to false positive calls. 
 While this vignette introduces [how to work with signature-specific cutoffs in 
 general](#sigSpecCutoffs), optimal signature-specific cutoffs are presented in 
-[2. Signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html).
+[2. Signature-specific cutoffs](vignette_signature_specific_cutoffs.html).
 
 ## Confidence intervals for mutational signature exposures
 
@@ -493,7 +493,7 @@ In order to evaluate the confidence of computed exposures to mutational
 signatures, YAPSA provides 95% confidence intervals (CIs). The computation 
 relies on the concept of profile likelihood [@Raue_Bioinformatics2009]. Details 
 can be found in 
-[3. Confidence Intervals](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_confidenceIntervals.html).
+[3. Confidence Intervals](vignette_confidenceIntervals.html).
 
 ## Stratification of the Mutational Catalogue (SMC)
 
@@ -505,7 +505,7 @@ performing completely separate and independent NNLS analyses of mutational
 signatures on the different strata. Instead, the results of the unstratified 
 analysis are used as input for a constrained analysis for the strata. Details 
 can be found in 
-[4. Stratified Analysis of Mutational Signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_stratifiedAnalysis.html)
+[4. Stratified Analysis of Mutational Signatures](vignette_stratifiedAnalysis.html)
 
 ## Indel signatures
 
@@ -516,7 +516,7 @@ for the first time had sufficient statistical power to also extract 17 Indel
 signatures, based on a classification of Indels into 83 categories or features. 
 YAPSA also offers functionality to perform supervised analyses of mutational 
 signatures on these Indel signatures, details can be found in
-[5. Indel signature analysis](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html)
+[5. Indel signature analysis](vignettes_Indel.html)
 
   
 # Example: a cohort of B-cell lymphomas
@@ -553,8 +553,8 @@ is equivalent to executing the R code
 ```{r loadLymphomaFtp, eval=FALSE}
 lymphoma_Nature2013_ftp_path <- paste0(
   "ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/",
-  "somatic_mutation_data/Lymphoma B-cell/",
-  "Lymphoma B-cell_clean_somatic_mutations_",
+  "somatic_mutation_data/Lymphoma%20B-cell/",
+  "Lymphoma%20B-cell_clean_somatic_mutations_",
   "for_signature_analysis.txt")
 lymphoma_Nature2013_raw_df <- read.csv(file=lymphoma_Nature2013_ftp_path,
                                        header=FALSE,sep="\t")
@@ -648,7 +648,7 @@ designed to do mutational signatures analysis with known signatures. There are
 (at least) two possible sources for signature data: i) the ones published
 initially by Alexandrov et al. [@Alex2013], and ii) an updated and curated
 current set of mutational signatures is maintained by Ludmil Alexandrov at
-<http://cancer.sanger.ac.uk/cosmic/signatures>. The following three subsections
+<https://cancer.sanger.ac.uk/cosmic/signatures>. The following three subsections
 describe how you can load the data from these resources. Alternatively, you can
 bypass the three following subsections because the signature datasets are also
 included in this package:
@@ -701,9 +701,9 @@ We are left with `r number_of_Alex_validated_sigs` signatures.
 ### Loading the updated set of mutational signatures
 
 An updated and curated set of mutational signatures is maintained by Ludmil 
-Alexandrov at <http://cancer.sanger.ac.uk/cosmic/signatures>. We will use this 
+Alexandrov at <https://cancer.sanger.ac.uk/cosmic/signatures>. We will use this 
 set for the following analysis. In particular, we will use the signatures stored 
-in <http://cancer.sanger.ac.uk/cancergenome/assets/signatures_probabilities.txt> 
+in <https://cancer.sanger.ac.uk/cancergenome/assets/signatures_probabilities.txt> 
 which for convenience we have stored in a data frame in YAPSA.
 
 ```{r loadSigs}
@@ -802,8 +802,8 @@ AlexCosmicValid_sigInd_df$process <- COSMIC_bio_process_vector
 
 YAPSA can also perform analyses based on other sets of mutational signatures. 
 Details can be found in additional vignettes on 
-[signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html) and 
-[Indel signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html).
+[signature-specific cutoffs](vignette_signature_specific_cutoffs.html) and 
+[Indel signatures](vignettes_Indel.html).
 
 
 ## Performing an LCD analysis

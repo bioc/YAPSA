@@ -314,7 +314,7 @@ opts_chunk$set(fig.show='asis')
 
 The usage of YAPSA for Whole Genome Sequencing (WGS) data has been described in 
 detail in the preceding vignettes, with an introduction and an overview of the 
-general framework in [1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html).
+general framework in [1. Usage of YAPSA](YAPSA.html).
 YAPSA can also be applied to Whole Exome Sequencing (WES) data, however, a few 
 caveats apply and a few steps have to be followed. These are described in this 
 vignette.
@@ -388,8 +388,8 @@ the R code below (not evaluated in this vignette):
 ```{r loadLymphomaFtp, eval=FALSE}
 smallCellLungCancer_NatureGenetics2012_ftp_path <- paste0(
   "ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/",
-  "somatic_mutation_data/Lung Small Cell/",
-  "Lung Small Cell_clean_somatic_mutations_for_signature_analysis.txt")
+  "somatic_mutation_data/Lung%20Small%20Cell/",
+  "Lung%20Small%20Cell_clean_somatic_mutations_for_signature_analysis.txt")
 exome_vcf_like_df <- 
   read.csv(file = smallCellLungCancer_NatureGenetics2012_ftp_path,
            header=FALSE,sep="\t")

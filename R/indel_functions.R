@@ -1179,10 +1179,10 @@ create_indel_mutation_catalogue_from_df <- function(in_dat,
 #' 
 confidence_indel_calulation <- function(in_current_indel_df, 
                                         in_current_snv_df){
-  data(sigs_pcawg)
-  data(cutoffs_pcawg)
-  data(sigs)
-  data(cutoffs)
+  data(sigs_pcawg, envir = environment())
+  data(cutoffs_pcawg, envir = environment())
+  data(sigs, envir = environment())
+  data(cutoffs, envir = environment())
   
   CosmicValid_absCutoffVector <- cutoffCosmicValid_abs_df[6, ]
   CosmicValid_normCutoffVector <- cutoffCosmicValid_rel_df[6, ]

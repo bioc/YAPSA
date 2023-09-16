@@ -13,11 +13,9 @@
 \alias{AlexCosmicArtif_sigInd_df}
 \title{Data for mutational signatures}
 \source{
-\code{AlexInitial}: \url{ftp://ftp.sanger.ac.uk/pub/cancer/
-AlexandrovEtAl/signatures.txt}
+\code{AlexInitial}: \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/signatures.txt}
 
-\code{AlexCosmic}: \url{http://cancer.sanger.ac.uk/cancergenome/
-assets/signatures_probabilities.txt}
+\code{AlexCosmic}: \url{https://cancer.sanger.ac.uk/cancergenome/assets/signatures_probabilities.txt}
 }
 \usage{
 data(sigs)
@@ -77,7 +75,7 @@ first 22 columns of \code{AlexInitialArtif_sig_df}
 
 \code{AlexCosmicValid_sig_df}: Data frame of the updated signatures list 
 maintained by Ludmil Alexandrov at
-\url{http://cancer.sanger.ac.uk/cosmic/signatures}. The column names are 
+\url{https://cancer.sanger.ac.uk/cosmic/signatures}. The column names are 
 \emph{AC} pasted to the number of the signature, e.g. \emph{AC5}. The naming
 convention for the rows is as described for 
 \code{\link{AlexInitialArtif_sig_df}}.
@@ -87,7 +85,7 @@ convention for the rows is as described for
 
 \code{AlexCosmicArtif_sig_df}: Data frame of the updated signatures list 
 maintained by Ludmil Alexandrov at
-\url{http://cancer.sanger.ac.uk/cosmic/signatures} and complemented by the 
+\url{https://cancer.sanger.ac.uk/cosmic/signatures} and complemented by the 
 artifact signatures from the initial publication, i.e. the last 5 columns of
 \code{\link{AlexInitialArtif_sig_df}}. The column names are \emph{AC} pasted
 to the number of the signature, e.g. \emph{AC5}. The naming convention for 

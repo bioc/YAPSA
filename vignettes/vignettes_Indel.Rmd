@@ -280,11 +280,11 @@ for the first time had sufficient statistical power to also extract 17 Indel
 Doublet Base Signatures (DBS) based on somatic di-nucleotide exchanges. In this 
 vignette, we present an example analysis with the new PCAWG Indel signatures. 
 The setup and line of arguments is analogous to the 
-[first vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html).
+[first vignette](YAPSA.html).
 However, YAPSA doesn't provide functions for DBS signatures as mutation counts 
 are often not sufficient for a deconvolution analysis.
 
-As for the [COSMIC SNV mutational signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html),
+As for the [COSMIC SNV mutational signatures](YAPSA.html),
 the patterns for both the SNV and Indel PCAWG mutational signatures are stored 
 in the software package and can be loaded into the workspace as follows: 
 
@@ -293,7 +293,7 @@ data(sigs_pcawg)
 ```
 
 For a precise description of all the data loaded by the above command, please 
-refer to [2. Signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html)
+refer to [2. Signature-specific cutoffs](vignette_signature_specific_cutoffs.html)
 
 
 # Classification of Indels
@@ -375,7 +375,7 @@ if(!exists("repress_tables"))
 In order to demonstrate the functionalities of the Indel signature analysis 
 with YAPSA, a publicly available data set was chosen, the Genome of the 
 Netherlands
-(<http://www.nlgenome.nl/?page_id=9>) [release5](https://molgenis26.target.rug.nl/downloads/gonl_public/variants/release5/).
+(<https://www.nlgenome.nl/menu/main/app-go-nl/?page_id=9>) [release5](https://molgenis26.gcc.rug.nl/downloads/gonl_public/variants/release5/).
 The data set is not related to cancer and instead contains germline variation 
 in the genomes of the Dutch population. Hence no biological interpretation or 
 conclusion of this analysis with respect to mutational processes should be 
@@ -407,7 +407,7 @@ if(load_data_new){
   for(index in seq_along(1:22)){
               print(index)
               temp <- tempfile()
-              file_path <- paste0("https://molgenis26.target.rug.nl/
+              file_path <- paste0("https://molgenis26.gcc.rug.nl/
                                   downloads/gonl_public/variants/release5/
                                   gonl.chr",
                                   index, ".snps_indels.r5.vcf.gz")
@@ -508,10 +508,10 @@ which perform supervised mutational signature analysis. Here we describe how
 this class of functions has been extended in order to make this supervised 
 signature analysis available to Indel mutational signatures. As previously 
 described for 
-[SNV mutational signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+[SNV mutational signatures](YAPSA.html), 
 the deconvolution is based on a non-negative least squares (NNLS) algorithm. In 
 order to reduce false positive calls, 
-[signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html) 
+[signature-specific cutoffs](vignette_signature_specific_cutoffs.html) 
 were introduced in YAPSA. Signature-specific cutoffs
 are applied after a first decomposition with NNLS, and only signatures with 
 computed contributions higher than their signature-specific cutoff are used in 
@@ -528,7 +528,7 @@ analysis of mutational signatures from the different types of mutation may thus
 increase discriminatory power.
 
 As described 
-[here](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html), signature-specific cutoffs were trained in a modified 
+[here](vignette_signature_specific_cutoffs.html), signature-specific cutoffs were trained in a modified 
 ROC analysis with the package `r CRANpkg("ROCR")` [@ROCR_package2005] using the 
 results of the unsupervised discovery analysis as training data. As for the SNV 
 mutational signatures, signature-specific cutoffs are stored in dataframes 
@@ -539,7 +539,7 @@ data(cutoffs_pcawg)
 ```
 
 As described in 
-[2. Signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html), the modified ROC analyses are parametrized by 
+[2. Signature-specific cutoffs](vignette_signature_specific_cutoffs.html), the modified ROC analyses are parametrized by 
 defining cost terms for punishing false-negative ($cost_{FN}$) and 
 false-positive ($cost_{FP}$) findings separately, but the shape and minima of 
 the cost functions depend only on the ratio between the cost for a 
@@ -578,7 +578,7 @@ The exposures, i.e., the contributions of the different signatures to the
 mutational catalog of every sample, can be visualized with the function
 `exposures_barplot()`. All the functionalities which are available for
 SNV mutational signatures, such as the annotation of subgroups (cf. 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_confidenceIntervals.html)) 
+[1. Usage of YAPSA](vignette_confidenceIntervals.html)) 
 are also available for the Indel mutational signatures.
 
 ```{r captionExposure, echo=FALSE}
@@ -597,7 +597,7 @@ exposures_barplot(current_LCDlistsList$perPID$exposures,
 
 In order to assess trustworthiness of the computed exposures, YAPSA provides 
 the calculation of confidence intervals (CIs). Analogously to 
-[CIs for SNV mutational signatures](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+[CIs for SNV mutational signatures](YAPSA.html), 
 the CIs for Indel mutational signatures are computed using the concept of 
 profile likelihood.
 

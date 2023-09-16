@@ -233,7 +233,7 @@ need to be extrapolated by a Gauss-Newton method to yield 95% CIs.
 
 In the following section, we briefly recapitulate the analysis of SNV 
 mutational signatures on an example data set as performed in 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html).
+[1. Usage of YAPSA](YAPSA.html).
 We thus first load the example data stored in the package:
 
 ```{r, loadStoredSigData}
@@ -244,7 +244,7 @@ current_cutoff_vector <- cutoffCosmicValid_abs_df[6,]
 ```
 
 We then perform a supervised analysis of SNV mutational signatures using 
-[signature-specific cutoffs](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html):
+[signature-specific cutoffs](vignette_signature_specific_cutoffs.html):
 
 ```{r LCDwithCutoffs}
 lymphoma_COSMIC_listsList <-
@@ -336,7 +336,7 @@ confidence interval are zero as well.
 Of note, the functionality to compute 95% CIs for signature exposures is also 
 available for the analysis of Indel mutational signatures, an example is 
 provided in the 
-[corresponding vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html).
+[corresponding vignette](vignettes_Indel.html).
 
 
 # References 

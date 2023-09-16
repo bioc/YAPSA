@@ -48,7 +48,7 @@ The function doesn't return any value.
 A trellis is a plot structure which allows space optimized multi-panel multi
 track plots. This function uses the package \pkg{gtrellis} developed by
 Zuguang Gu, also available at
-\url{http://www.bioconductor.org/packages/release/bioc/html/gtrellis.html}.
+\url{https://www.bioconductor.org/packages/release/bioc/html/gtrellis.html}.
 The graphics in the tracks within a gtrellis plot are mostly drawn with
 functions from the package \pkg{grid}. Note that for technical reasons, the
 column indicating the chromosome MUST have the name \emph{chr} and be the

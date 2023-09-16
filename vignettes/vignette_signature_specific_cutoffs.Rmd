@@ -274,7 +274,7 @@ opts_chunk$set(fig.show='asis')
 # Introduction {#introduction}
 
 The vignette 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html) 
+[1. Usage of YAPSA](YAPSA.html) 
 describes the general usage of YAPSA as a tool
 to perform supervised analyses of mutational signatures. Calling of mutational
 signature in YAPSA is performed with a Non-Negative Least Square (NNLS) 
@@ -293,7 +293,7 @@ signature-specific cutoff
 1. Rerun NNLS based on the selected subset of signatures
 
 Mutational signatures as provided by 
-http://cancer.sanger.ac.uk/cosmic/signatures have been extracted by 
+https://cancer.sanger.ac.uk/cosmic/signatures have been extracted by 
 Non-negative Matrix Factorization (NMF). Due to the constraint of 
 non-negativity, these signatures cannot be orthogonal. However, orthogonality 
 is a prerequisite or at least beneficial for least squares algorithms. This 
@@ -339,7 +339,7 @@ false attributions. Using this criterion, for the Alexandrov COSMIC signatures
 In YAPSA, the patterns of nucleotide exchanges in their triplet context 
 constituting the mutational signatures are stored in data frames which can be 
 loaded as follows (more information provided by the help function, cf. 
-([1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html))
+([1. Usage of YAPSA](YAPSA.html))
 for an overview of how these data frames can be re-created from data available 
 online):
 
@@ -398,7 +398,7 @@ on August 16th, 2018):
 
 As of december 2019 and to our knowledge, it is a unique feature of YAPSA to 
 include PCAWG mutational signatures. Of note, a 
-[separate vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignettes_Indel.html) describes the usage of and analysis with Indel signatures.
+[separate vignette](vignettes_Indel.html) describes the usage of and analysis with Indel signatures.
 
 
 ## Optimal cutoffs {#OptimalCutoffs}
@@ -492,7 +492,7 @@ current_cutoff_vector
 # Application example
 
 The vignette 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html) 
+[1. Usage of YAPSA](YAPSA.html) 
 shows how to obtain a mutational catalog ($V$) from a
 vcf file. Here, for the sake of simplicits, we just use an example data set 
 stored in the software package. 
@@ -508,7 +508,7 @@ by NMF) per sample or cohort. This is done by the function
 `LCD_complex_cutoff_combined`.
 
 In the examples provided in 
-[1. Usage of YAPSA](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/YAPSA.html), 
+[1. Usage of YAPSA](YAPSA.html), 
 signature exposures were determined (i) with a zero cutoff vector, i.e. without
 signature-specific cutoffs or (ii) with a manually chosen but not necessarily 
 optimal cutoff. In contrast, in the following, we will perform an analysis of 
