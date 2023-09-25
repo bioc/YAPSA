@@ -264,7 +264,7 @@ NULL
 #' @docType data
 #' @name exampleINDEL_YAPSA
 #' @author Daniel Huebschmann \email{huebschmann.daniel@@googlemail.com}
-#' @references \url{http://www.ncbi.nlm.nih.gov/pubmed/23945592}
+#' @references \url{https://www.ncbi.nlm.nih.gov/pubmed/23945592}
 #' 
 NULL
 
@@ -276,7 +276,7 @@ NULL
 #' \code{lymphoma_PID_df}: A data frame carrying subgroup information for a 
 #' subcohort of samples used in the vignette. Data in the vignette is 
 #' downloaded from 
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in. In the vignette we want to restrict the 
@@ -294,7 +294,7 @@ NULL
 #' 
 #' \code{lymphoma_test_df}: A data frame carrying point mutation calls. It 
 #' represents a subset of the data stored in
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in. The data frame \code{lymphoma_test_df} has 
@@ -318,7 +318,7 @@ NULL
 #' 
 #' \code{lymphoma_Nature2013_raw_df}: A data frame carrying point mutation 
 #' calls. It represents a subset of the data stored in
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in.
@@ -339,7 +339,7 @@ NULL
 #' \code{GenomeOfNl_raw}: A data frame contains the gemiline varinats of 
 #' the dutch population.  carrying point mutation 
 #' calls. It represents a subset of the data stored in
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' In the file available under that link somatic point mutation calls from 
 #' several samples are listed in a vcf-like format. One column encodes the 
 #' sample the variant was found in.
@@ -365,7 +365,7 @@ NULL
 #' 
 #' @name lymphomaNature2013_mutCat_df
 #' @usage data(lymphomaNature2013_mutCat_df)
-#' @references \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}
+#' @references \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}
 #' @return  A data fame in the layout of a SNV mutational catalog
 #' 
 #' @examples
@@ -425,7 +425,7 @@ NULL
 #' 
 #' \code{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 #' exposures for testing the plot functions. Data taken from
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' 
 #' @name lymphoma_Nature2013_COSMIC_cutoff_exposures_df
 #' @usage data(lymphoma_cohort_LCD_results)
@@ -439,7 +439,7 @@ NULL
 #' \code{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 #' normalized or relative exposures for testing the plot functions. Data taken 
 #' from
-#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+#' \url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 #' 
 #' @name rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df
 #' @usage data(lymphoma_cohort_LCD_results)

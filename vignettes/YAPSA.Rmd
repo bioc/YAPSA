@@ -1077,7 +1077,7 @@ Note that the signatures extracted with the signature-specific cutoffs are the
 same in the example displayed here. Depending on the analyzed cohort and the 
 choice of cutoffs, the extracted signatures may vary considerably. A unique 
 feature of YAPSA is that it also provides optimal signature-specific cutoffs, a 
-topic explained in a separate [vignette](http://bioconductor.org/packages/3.11/bioc/vignettes/YAPSA/inst/doc/vignette_signature_specific_cutoffs.html).
+topic explained in a separate [vignette](vignette_signature_specific_cutoffs.html).
 
 
 

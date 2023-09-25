@@ -22,5 +22,5 @@ dim(lymphomaNature2013_mutCat_df)
 
 }
 \references{
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}
 }
