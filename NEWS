@@ -1,3 +1,11 @@
+  CHANGES IN VERSION 1.26.7
+
+* Some URLs are reformatted in the documentations and vignettes.
+* Data is only loaded into the function environment with `data(..., envir = environment())`.
+* Namespace imports are adjusted to fixed the function name conflict.
+
+===============================
+
   CHANGES IN VERSION 1.19.1
 
 * We comply with changes in upstream dependency: PMCMR is replaced by PMCMRplus 

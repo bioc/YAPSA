@@ -13,7 +13,7 @@ A data frame in a vcf-like format
 \code{GenomeOfNl_raw}: A data frame contains the gemiline varinats of 
 the dutch population.  carrying point mutation 
 calls. It represents a subset of the data stored in
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in.

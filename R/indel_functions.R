@@ -1404,8 +1404,8 @@ confidence_indel_calulation <- function(in_current_indel_df,
 #' 
 confidence_indel_only_calulation <- function(in_current_indel_df){
   
-  data(sigs_pcawg)
-  data(cutoffs_pcawg)
+  data(sigs_pcawg, envir = environment())
+  data(cutoffs_pcawg, envir = environment())
   #devtools:::use_data(sigs_pcawg, overwrite = FALSE)
   #devtools:::use_data(cutoffs_pcawg, overwrite = FALSE)
   

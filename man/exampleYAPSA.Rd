@@ -36,7 +36,7 @@ of the YAPSA package.
 \code{lymphoma_PID_df}: A data frame carrying subgroup information for a 
 subcohort of samples used in the vignette. Data in the vignette is 
 downloaded from 
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in. In the vignette we want to restrict the 
@@ -46,7 +46,7 @@ the attributed subgroup in a column called \code{subgroup}.
 
 \code{lymphoma_test_df}: A data frame carrying point mutation calls. It 
 represents a subset of the data stored in
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in. The data frame \code{lymphoma_test_df} has 
@@ -55,19 +55,19 @@ and 4121361.
 
 \code{lymphoma_Nature2013_raw_df}: A data frame carrying point mutation 
 calls. It represents a subset of the data stored in
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 In the file available under that link somatic point mutation calls from 
 several samples are listed in a vcf-like format. One column encodes the 
 sample the variant was found in.
 
 \code{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 exposures for testing the plot functions. Data taken from
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 
 \code{rel_lymphoma_Nature2013_COSMIC_cutoff_exposures_df}: Data frame with 
 normalized or relative exposures for testing the plot functions. Data taken 
 from
-\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma+B-cell/Lymphoma+B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
+\url{ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/somatic_mutation_data/Lymphoma\%20B-cell/Lymphoma\%20B-cell_clean_somatic_mutations_for_signature_analysis.txt}.
 
 \code{COSMIC_subgroups_df}: Subgroup information for the data stored in
 \code{\link{lymphoma_Nature2013_COSMIC_cutoff_exposures_df}} and 

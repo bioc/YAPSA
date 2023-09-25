@@ -10,7 +10,7 @@ Data structures used in examples, Indel tests and the Indel signature
 vignette of the YAPSA package.
 }
 \references{
-\url{http://www.ncbi.nlm.nih.gov/pubmed/23945592}
+\url{https://www.ncbi.nlm.nih.gov/pubmed/23945592}
 }
 \author{
 Daniel Huebschmann \email{huebschmann.daniel@googlemail.com}
