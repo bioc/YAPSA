@@ -552,7 +552,7 @@ is equivalent to executing the R code
 
 ```{r loadLymphomaFtp, eval=FALSE}
 lymphoma_Nature2013_ftp_path <- paste0(
-  "ftp://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/",
+  "https://ftp.sanger.ac.uk/pub/cancer/AlexandrovEtAl/",
   "somatic_mutation_data/Lymphoma%20B-cell/",
   "Lymphoma%20B-cell_clean_somatic_mutations_",
   "for_signature_analysis.txt")
@@ -664,7 +664,7 @@ We first load the (older) set of signatures as published in Alexandrov et al.
 [@Alex2013]:
 
 ```{r processOldSigs}
-Alex_signatures_path <- paste0("ftp://ftp.sanger.ac.uk/pub/cancer/",
+Alex_signatures_path <- paste0("https://ftp.sanger.ac.uk/pub/cancer/",
                                "AlexandrovEtAl/signatures.txt")
 AlexInitialArtif_sig_df <- read.csv(Alex_signatures_path,header=TRUE,sep="\t")
 kable(AlexInitialArtif_sig_df[c(1:9),c(1:4)])
