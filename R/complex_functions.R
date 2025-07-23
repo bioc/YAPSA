@@ -45,7 +45,7 @@
 #'
 #' @rawNamespace import(GenomicRanges, except=c(subtract))
 #' @import VariantAnnotation
-#' @importFrom GenomeInfoDb seqlengths seqlengths<-
+#' @importFrom Seqinfo seqlengths seqlengths<-
 #' @export
 #' 
 makeVRangesFromDataFrame <- function(in_df,in_keep.extra.columns=TRUE,

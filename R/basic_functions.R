@@ -671,7 +671,7 @@ stderrmean_over_present <- function(in_df,in_dimension) {
 #' hg19_df <- translate_to_hg19(test_df, in_CHROM.field = "CHROM")
 #' hg19_df
 #'
-#' @importFrom GenomeInfoDb seqlevels seqlevels<-
+#' @importFrom Seqinfo seqlevels seqlevels<-
 #' @export
 #' 
 translate_to_hg19 <- function(in_dat,
@@ -718,7 +718,7 @@ translate_to_hg19 <- function(in_dat,
 #' onekG_df <- translate_to_1kG(hg19_df, in_CHROM.field = "CHROM")
 #' onekG_df
 #' 
-#' @importFrom GenomeInfoDb seqlevels seqlevels<-
+#' @importFrom Seqinfo seqlevels seqlevels<-
 #' @export
 #' @rdname translate_to_hg19
 #' 
