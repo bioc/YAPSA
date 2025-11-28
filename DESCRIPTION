@@ -6,7 +6,7 @@ Date: 2025-11-28
 Authors@R: c(person("Daniel", "Huebschmann", role = c("aut", "cre"), email = "huebschmann.daniel@googlemail.com"),
     person("Lea", "Jopp-Saile", role = "aut"),
     person("Carolin", "Andresen", role = "aut"),
-    person("Zuguang", "Gu", role = c("aut")),
+    person("Zuguang", "Gu", role = "aut"),
     person("Matthias", "Schlesner", role = "aut"))
 Imports:
     limSolve,
