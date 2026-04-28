@@ -1,7 +1,7 @@
 Package: YAPSA
 Type: Package
 Title: Yet Another Package for Signature Analysis 
-Version: 1.38.0
+Version: 1.39.0
 Date: 2025-11-28
 Authors@R: c(person("Daniel", "Huebschmann", role = c("aut", "cre"), email = "huebschmann.daniel@googlemail.com"),
     person("Lea", "Jopp-Saile", role = "aut"),
